@@ -1,0 +1,80 @@
+
+	<div id="booking" class="section">
+		<app-navbar ></app-navbar>
+		<div class="section-center mt-5">
+			<div class="container mt-5">
+				<div class="row">
+					<div class="booking-form">
+						<div class="booking-bg">
+						</div>
+						<form (ngSubmit)="addAppointment()">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Nom</span>
+										<input placeholder="nom" class="form-control" type="text" id="nom" name="nom" [(ngModel)]="newAppointment.nom" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Address mail</span>
+										<input placeholder="exemple@exemple.com" class="form-control" type="email" id="Address" name="Address" [(ngModel)]="newAppointment.email" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Numero du Telephone</span>
+										<input placeholder="88888" class="form-control" type="number" id="numt" name="numt"[(ngModel)]="newAppointment.numt" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<span class="form-label">Date de Rendez-vous</span>
+										<input class="form-control" type="date" id="date" name="date" [(ngModel)]="newAppointment.date" required>
+									</div>
+								</div>
+							</div>
+								<div class="form-group">
+								<span class="form-label">Motif de consultation</span>
+								<select class="form-control" name="motif" id="motif" [(ngModel)]="newAppointment.motif" required>
+									<option selected hidden value="">Selectionner :</option>
+									<option value="Accouchement" value="">Accouchement</option>
+									<option value="Adénomynose">Adénomynose</option>
+                  					<option value="Aménorrhée">Aménorrhée</option>
+									<option value="Aphtoses génitales">Aphtoses génitales</option>
+                  					<option value="Avortement">Avortement</option>
+									<option value="Contraception">Contraception</option>
+                 					<option value="Douleur mammaire">Douleur mammaire</option>
+									<option value="Douleurs des fosses iliaques">Douleurs des fosses iliaques</option>
+                  					<option value="Douleurs menstruelles">Douleurs menstruelles</option>
+									<option value="Dysplasies du col utérin">Dysplasies du col utérin</option>
+                  					<option value="Echographie">Echographie</option>
+									<option value="écoulement vaginal">écoulement vaginal</option>
+                  					<option value="Galactorrhée">Galactorrhée</option>
+									<option value="Hyménoplastie">Hyménoplastie</option>
+                 					<option value="Infertilité/Stérilité">Infertilité/Stérilité</option>
+									<option value="Masse mammaire">Masse mammaire</option>
+                  					<option value="Ménopause">Ménopause</option>
+									<option value="Pertes vaginales">Pertes vaginales</option>
+                  					<option value="PMA">PMA </option>
+									<option value="Suivie de grossesse">Suivie de grossesse</option>
+
+								</select>
+								<span class="select-arrow"></span>
+							</div>
+							
+							
+							<div class="form-btn">
+								<button class="submit-btn" type="submit">Prenez un Rendez-vous</button>
+							</div>
+							<div *ngFor="let message of errorMessages">
+								<p style="color: red">{{ message }}</p>
+							  </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

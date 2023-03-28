@@ -1,0 +1,424 @@
+<div class="formbold-main-wrapper">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="formbold-form-wrapper">
+         <img class="mo" src="https://as1.ftcdn.net/v2/jpg/04/53/58/00/1000_F_453580043_EMxfWldt4xDuXniLOAiWp77OVDPRBSlP.jpg">
+    <form>
+      <div class="formbold-input-wrapp formbold-mb-3">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName" >Name</label>
+            <input class="formbold-form-input formbold-mb-3m-input " type="text" formControlName="nom" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.nom'].errors?.['required']">
+              Name is required.
+            </div>
+          </div>
+    <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">Prenom</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="prenom" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.prenom'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+<!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">Adresse</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="adresse" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.adresse'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+  <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="date">naissance</label>
+            <input class="formbold-form-input formbold-mb-3" id="date" type="date" formControlName="naissance" />
+            
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.naissance'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+ <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">nationalite</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="nationalite" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.nationalite'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+    <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">Cin</label>
+            <input class="formbold-form-input formbold-mb-3" type="number" formControlName="Cin" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.Cin'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <!--*************************************************************************************-->
+          <div class="form-group">
+            <span class="form-label">Niveau D'instruction</span>
+            <select class="form-control formbold-form-input formbold-mb-3" required formControlName="niv_inst" >
+              <option selected hidden value="">Selectionner :</option>
+              <option value="Niveau primaire">Niveau primaire</option>
+              <option value="Niveau secondaire">Niveau secondaire</option>
+              <option value="Niveau supérieur ">Niveau supérieur </option>
+              <option value="Éducation continue">Éducation continue</option>
+              <option value="Rien">Rien</option>
+            </select>
+          </div>
+          <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">occupation</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="occupation" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.occupation'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">tel</label>
+            <input class="formbold-form-input formbold-mb-3" type="number" formControlName="tel" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.tel'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+    <!--*************************************************************************************-->
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">COUVERTURE MEDICALE </label>
+            <mat-radio-group formControlName="couv" class="example-radio-group">
+            <mat-radio-button  class="example-radio-button" *ngFor="let couverture of couvertureList" [value]="couverture">
+          {{couverture}} 
+      </mat-radio-button>
+      </mat-radio-group>
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.couv'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">num_c</label>
+            <input class="formbold-form-input formbold-mb-3" type="number" formControlName="num_c" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.num_c'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">Group sanguin </label>
+            <mat-radio-group class="example-radio-group" type="text" formControlName="sang" >
+     <mat-radio-button  class="example-radio-button" *ngFor="let sang of sangList" [value]="sang">
+   {{sang}} 
+  </mat-radio-button>
+</mat-radio-group>
+</div>
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.sang'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">rhesus</label>
+            <mat-radio-group formControlName="rhesus" class="example-radio-group">
+              <mat-radio-button  class="example-radio-button" *ngFor="let rhesus of rhesusList" [value]="rhesus">
+              {{rhesus}} 
+              </mat-radio-button>
+              </mat-radio-group>
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.rhesus'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">type_allergie</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="type_allergie" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.type_allergie'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="date">declaree_allergie</label>
+            <input class="formbold-form-input formbold-mb-3" type="date" formControlName="declaree_allergie" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.declaree_allergie'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">traitement</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="traitement" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.traitement'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">med_tret</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="med_tret" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.med_tret'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">age_pub</label>
+            <input class="formbold-form-input formbold-mb-3" type="number" formControlName="age_pub" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.age_pub'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">prob</label>
+            <input class="formbold-form-input formbold-mb-3"  formControlName="prob" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.prob'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <span class="form-label">Maladie</span>
+            <select class="form-control formbold-form-input formbold-mb-3" required formControlName="maladie" >
+              <option selected hidden value="">Selectionner :</option>
+              <option value="Diabéte">Diabéte</option>
+              <option value="Cardiopathie">Cardiopathie</option>
+              <option value="Insuffisance_rénale_chronique">Insuffisance_rénale_chronique</option>
+              <option value="Asthme">Asthme</option>
+              <option value="Anémie">Anémie</option>
+              <option value="Hépatite_C">Hépatite_C</option>
+              <option value="Hépatite_B">Hépatite_B</option>
+              <option value="Rien">Rien</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">maladieF</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="maladieF" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.maladieF'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">type_handicap</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="type_handicap" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.type_handicap'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="date">declaree_handicap</label>
+            <input class="formbold-form-input formbold-mb-3" type="date" formControlName="declaree_handicap" />
+            <!-- error -->
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="date">date_vaccin1</label>
+            <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_vaccin1" />
+            <!-- error -->
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">lieu_vaccin1</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_vaccin1" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.lieu_vaccin1'].errors?.['required']"
+            >
+            </div> 
+            <div class="form-group">
+              <label class="formbold-form-label" for="date">date_vaccin2</label>
+              <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_vaccin2" />
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="inputName">lieu_vaccin2</label>
+              <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_vaccin2" />
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['carnet.lieu_vaccin2'].errors?.['required']"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="date">date_vaccin3</label>
+              <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_vaccin3" />
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="inputName">lieu_vaccin3</label>
+              <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_vaccin3" />
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['carnet.lieu_vaccin3'].errors?.['required']"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="date">date_vaccin4</label>
+              <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_vaccin4" />
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="inputName">lieu_vaccin4</label>
+              <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_vaccin4" />
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['carnet.lieu_vaccin4'].errors?.['required']"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="date">date_vaccin5</label>
+              <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_vaccin5" />
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="inputName">lieu_vaccin5</label>
+              <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_vaccin5" />
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['carnet.lieu_vaccin5'].errors?.['required']"
+              >
+                Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="date">date_rubeole</label>
+              <input class="formbold-form-input formbold-mb-3" type="date" formControlName="date_rubeole" />
+            </div>
+            <div class="form-group">
+              <label class="formbold-form-label" for="inputName">lieu_rubeole</label>
+              <input class="formbold-form-input formbold-mb-3" type="text" formControlName="lieu_rubeole" />
+              <!-- error -->
+              <div
+                class="invalid-feedback"
+                *ngIf="submitted && myForm['carnet.lieu_rubeole'].errors?.['required']"
+              >
+                Name is required.
+              </div>
+            </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">autre_vaccin</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="autre_vaccin" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.autre_vaccin'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">nomM</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="nomM" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.nomM'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">prenomM</label>
+            <input class="formbold-form-input formbold-mb-3" type="text" formControlName="prenomM" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.prenomM'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="formbold-form-label" for="inputName">telM</label>
+            <input class="formbold-form-input formbold-mb-3" type="number" formControlName="telM" />
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.telM'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <button class="formbold-btn " type="submit">
+              Register
+            </button>
+          </div>
+          </div>
+        </form>
+      </div>
+</form>
