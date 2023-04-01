@@ -6,16 +6,18 @@ import { EmployeeEditComponent } from './components/employee-edit/employee-edit.
 import { CarnetCreateComponent } from './components/carnet-create/carnet-create.component';
 import { CarnetListComponent } from './components/carnet-list/carnet-list.component';
 import { CarnetEditComponent } from './components/carnet-edit/carnet-edit.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServiceComponent } from './components/service/service.component';
+import { CategorieComponent } from './components/categorie/categorie.component';
+import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'create-employee' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'create-employee', component: EmployeeCreateComponent },
   { path: 'edit-employee/:id', component: EmployeeEditComponent },
   { path: 'employees-list', component: EmployeeListComponent }, 
@@ -27,6 +29,9 @@ const routes: Routes = [
   { path: 'contact' , component: ContactComponent  }, 
   { path: 'about' , component: AboutComponent  }, 
   { path: 'service' , component: ServiceComponent  }, 
+  { path: 'categorie' , component: CategorieComponent  }, 
+  { path: 'card' , component: CardcarnetComponent  },
+
 
   
 

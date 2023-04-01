@@ -1,4 +1,5 @@
 export class Carnet {
+    categorie!:string;
 
     photo!: string ;
     

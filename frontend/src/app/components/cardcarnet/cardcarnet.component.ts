@@ -3,13 +3,11 @@ import { carnetService } from './../../service/carnet.service';
 import {  FormBuilder} from '@angular/forms';
 
 @Component({
-  selector: 'app-carnet-list',
-  templateUrl: './carnet-list.component.html',
-  styleUrls: ['./carnet-list.component.css']
+  selector: 'app-cardcarnet',
+  templateUrl: './cardcarnet.component.html',
+  styleUrls: ['./cardcarnet.component.css']
 })
-export class CarnetListComponent implements OnInit {
-  
-  
+export class CardcarnetComponent {
   Carnet:any = [];
 
   //checkbox
@@ -33,13 +31,6 @@ maladie = this.fb.group({
 
     })    
   }
-  removeCarnet(carnet: any, index: number) {
-    if(window.confirm('Are you sure?')) {
-        this.CarnetService.deleteCarnet(carnet._id).subscribe((data) => {
-          this.Carnet.splice(index, 1);
-        }
-      )    
-    }
-  }
+
   
 }

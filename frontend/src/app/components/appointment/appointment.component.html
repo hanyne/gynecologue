@@ -1,6 +1,7 @@
 
 	<div id="booking" class="section">
 		<app-navbar ></app-navbar>
+		
 		<div class="section-center mt-5">
 			<div class="container mt-5">
 				<div class="row">
@@ -26,7 +27,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<span class="form-label">Numero du Telephone</span>
-										<input placeholder="88888" class="form-control" type="number" id="numt" name="numt"[(ngModel)]="newAppointment.numt" required>
+										<input placeholder="+216 00 000 000" class="form-control" type="number" id="numt" name="numt"[(ngModel)]="newAppointment.numt" required>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -70,8 +71,12 @@
 								<button class="submit-btn" type="submit">Prenez un Rendez-vous</button>
 							</div>
 							<div *ngFor="let message of errorMessages">
-								<p style="color: red">{{ message }}</p>
+								<div class="alert alert-danger alert-dismissible mt-2 text-center" role="alert">
+								  {{ message }}
+								  
+								</div>
 							  </div>
+							  							  
 						</form>
 					</div>
 				</div>

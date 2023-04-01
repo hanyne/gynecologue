@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../../service/appointment.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment',
@@ -12,18 +14,31 @@ export class AppointmentComponent implements OnInit {
   errorMessages: string[] = [];
  
 
-  constructor( private appointmentService: AppointmentService) { }
+  constructor( private appointmentService: AppointmentService, private toastrService: ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   addAppointment() {
+    
     this.errorMessages = [];
+  
 
     if (!this.newAppointment?.nom || !this.newAppointment?.email || !this.newAppointment?.numt || !this.newAppointment?.date || !this.newAppointment?.motif) {
       this.errorMessages.push('Veuillez entrer tous les détails du rendez-vous');
       return;
     }
+
+    const selectedDate = new Date(this.newAppointment.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate <= today) {
+      this.errorMessages.push('Veuillez choisir une date ultérieure à aujourd\'hui');
+      return;
+    }
+
 
     const appointment = {
       nom: this.newAppointment.nom,
@@ -44,6 +59,8 @@ export class AppointmentComponent implements OnInit {
           date: '',
           motif:'',
         };
+
+       
       },
       (error) => {
         console.error(error);
@@ -53,3 +70,4 @@ export class AppointmentComponent implements OnInit {
   }
 
 }
+

@@ -1,0 +1,23 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Carnet.length <= 0" class="no-data text-center">There is no Carnetadded yet!</div>
+    <!-- Carnetlist -->
+    <div *ngIf="Carnet.length > 0">
+        <div *ngFor="let carnet of Carnet; let i = index">
+          <th scope="row">{{carnet._id}}</th>
+            <mat-card class="example-card">
+            <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{carnet.nom}} {{carnet.prenom}}</mat-card-title>
+            <mat-card-subtitle>{{carnet.Cin}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+            <p>
+                {{carnet.categorie}}
+            </p>
+            </mat-card-content>
+            <mat-card-actions>
+            <a class="submit" href="">Voir le carnet </a>
+            </mat-card-actions>
+        </mat-card>
+</div></div>

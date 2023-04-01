@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CarnetCreateComponent } from './components/carnet-create/carnet-create.component';
 import { CarnetListComponent } from './components/carnet-list/carnet-list.component';
 import { CarnetEditComponent } from './components/carnet-edit/carnet-edit.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components//home/home.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ListappoComponent } from './components/listappo/listappo.component';
 //angular material 
@@ -35,8 +35,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { ToastrModule } from 'ngx-toastr';
+import { CategorieComponent } from './components/categorie/categorie.component';
+import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
 
@@ -57,6 +59,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ServiceComponent,
     NavbarComponent,
     FooterComponent,
+    CategorieComponent,
+    CardcarnetComponent,
 
     
     
@@ -80,7 +84,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    ToastrModule.forRoot(),
+    MatCardModule
 
 
   ],

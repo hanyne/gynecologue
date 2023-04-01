@@ -7,6 +7,25 @@
       <div class="formbold-input-wrapp formbold-mb-3">
         <form [formGroup]="carnetForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
+            <label class="formbold-form-label" for="inputName">Categorie </label>
+            <mat-radio-group formControlName="categorie" class="example-radio-group">
+            <mat-radio-button  class="example-radio-button" *ngFor="let categorie of categorieList" [value]="categorie">
+          {{categorie}} 
+      </mat-radio-button>
+      </mat-radio-group>
+            <!-- error -->
+            <div
+              class="invalid-feedback"
+              *ngIf="submitted && myForm['carnet.categorie'].errors?.['required']"
+            >
+              Name is required.
+            </div>
+          </div>
+
+
+          
+          <!--*************************************************************************************-->
+          <div class="form-group">
             <label class="formbold-form-label" for="inputName" >Name</label>
             <input class="formbold-form-input formbold-mb-3m-input " type="text" formControlName="nom" />
             <!-- error -->
@@ -17,7 +36,6 @@
               Name is required.
             </div>
           </div>
-    <!--*************************************************************************************-->
           <div class="form-group">
             <label class="formbold-form-label" for="inputName">Prenom</label>
             <input class="formbold-form-input formbold-mb-3" type="text" formControlName="prenom" />

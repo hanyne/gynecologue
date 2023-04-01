@@ -17,6 +17,7 @@ export class CarnetEditComponent implements OnInit {
 couvertureList= ["Oui","Non"];
 sangList=["A","B","AB","O"];
 rhesusList=["Positive","Negative"];
+categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein","Coelioscopie","Stérilité du couple","ECG"];
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
@@ -27,7 +28,8 @@ rhesusList=["Positive","Negative"];
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getCarnet(id);
     this.editForm = this.fb.group({
-
+      
+    categorie: ['', [Validators.required]],
     nom: ['', [Validators.required]],
     prenom: ['', [Validators.required]],
     adresse: ['', [Validators.required]],
@@ -77,7 +79,7 @@ rhesusList=["Positive","Negative"];
   getCarnet(id: string | null) {
     this.CarnetService .getCarnet(id).subscribe((data) => {
       this.editForm.setValue({
-
+        categorie:data['categorie'],
        nom :data['nom'],
 
         prenom:data['prenom'],
@@ -160,6 +162,7 @@ rhesusList=["Positive","Negative"];
   }
   updateCarnet() {
     this.editForm = this.fb.group({
+      categorie:'',
 
       nom: ['', [Validators.required]],
       prenom: '',

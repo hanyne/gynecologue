@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Carnet = new Schema({
+   categorie:{
+      type: String
+   },
    nom: {
       type: String
    },

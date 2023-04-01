@@ -17,6 +17,7 @@ export class CarnetCreateComponent implements OnInit {
   carnetForm!: FormGroup;
   photo: any = null; 
   //radiobox
+categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein","Coelioscopie","Stérilité du couple","ECG"];
 couvertureList= ["Oui","Non"];
 sangList=["A","B","AB","O"];
 rhesusList=["Positive","Negative"];
@@ -36,7 +37,7 @@ rhesusList=["Positive","Negative"];
   ) {
     this.carnetForm = this.fb.group({
 
-       
+       categorie: '',
 
         nom: '', 
 
