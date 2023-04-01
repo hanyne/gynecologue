@@ -19,8 +19,9 @@ export class carnetService {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   // Get all carnets
-  getCarnets() {
-    return this.http.get(`${this.baseUri}`);
+  getCarnets(searchTerm: string = '') {
+    const query = searchTerm ? `?nom=${searchTerm}` : '';
+    return this.http.get(`${this.baseUri}${query}`);
   }
 // Get carnet
 getCarnet(id: any): Observable<any> {

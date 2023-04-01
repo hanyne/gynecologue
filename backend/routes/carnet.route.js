@@ -21,14 +21,16 @@ carnetRoute.route('/create').post((req, res, next) => {
 
 // Get All Carnets
 carnetRoute.route('/').get((req, res) => {
-    Carnet.find((error, data) => {
+  const { nom } = req.query;
+  const query = nom ? { nom: { $regex: new RegExp(nom), $options: 'i' } } : {};
+  Carnet.find(query, (error, data) => {
     if (error) {
-      return next(error)
+      return next(error);
     } else {
-      res.json(data)
+      res.json(data);
     }
-  })
-})
+  });
+});
 
 // Get single Carnet
 carnetRoute.route('/read/:id').get((req, res) => {

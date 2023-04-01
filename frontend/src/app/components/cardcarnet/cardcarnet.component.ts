@@ -9,7 +9,7 @@ import {  FormBuilder} from '@angular/forms';
 })
 export class CardcarnetComponent {
   Carnet:any = [];
-
+  searchTerm: string = '';
   //checkbox
 maladie = this.fb.group({
   Diabéte: false,
@@ -25,11 +25,10 @@ maladie = this.fb.group({
   }
  
   ngOnInit() {}
-  readCarnet(){
-    this.CarnetService.getCarnets().subscribe((data) => {
-     this.Carnet = data;
-
-    })    
+  readCarnet(searchTerm: string = '') {
+    this.CarnetService.getCarnets(searchTerm).subscribe((data) => {
+      this.Carnet = data;
+    });
   }
 
   
