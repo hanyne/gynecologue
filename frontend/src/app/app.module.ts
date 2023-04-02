@@ -39,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import {MatCardModule} from '@angular/material/card';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
 
@@ -61,6 +62,7 @@ import {MatCardModule} from '@angular/material/card';
     FooterComponent,
     CategorieComponent,
     CardcarnetComponent,
+    ArticleComponent,
 
     
     

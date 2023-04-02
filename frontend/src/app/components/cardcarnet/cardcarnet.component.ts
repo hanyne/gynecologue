@@ -27,9 +27,12 @@ maladie = this.fb.group({
   ngOnInit() {}
   readCarnet(searchTerm: string = '') {
     this.CarnetService.getCarnets(searchTerm).subscribe((data) => {
-      this.Carnet = data;
+      if (Object.keys(data).length === 0) {
+        this.Carnet = 'No search result found';
+      } else {
+        this.Carnet = data;
+      }
     });
   }
-
   
 }
