@@ -1,10 +1,10 @@
 const express = require('express')
 const path = require('path')
+const multer = require('multer');
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const createError = require('http-errors')
-
 
 // Connecting with mongo db
 mongoose
@@ -17,10 +17,12 @@ mongoose
   })
 
 // Setting up port with express js
+const upload = multer({ dest: 'uploads/' }); // specify the uploads folder
 const employeeRoute = require('../backend/routes/employee.route')
 const carnetRoute = require('../backend/routes/carnet.route')
 const appointmentRoutes = require('../backend/routes/appointment');
 const messageRoutes = require('../backend/routes/message');
+const articleRoutes = require('../backend/routes/article.route');
 
 const app = express()
 app.use(bodyParser.json());
@@ -32,6 +34,8 @@ app.use('/api', employeeRoute);
 app.use('/carnet', carnetRoute);
 app.use('/appointment', appointmentRoutes);
 app.use('/message', messageRoutes);
+app.use('/article', articleRoutes);
+
 
 // Create port
 const port = process.env.PORT || 4000;
