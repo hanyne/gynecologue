@@ -1,38 +1,14 @@
- <div class="section-center mt-5">
-                    <div class="container mt-5">
-                        <div class="row">
-                            <div class="booking-form">
-                                <div class="booking-bg">
-                                </div>
-                                <form (ngSubmit)="addArticle()" >
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Nom</span>
-                                                <input placeholder="nom" class="form-control" type="text" id="nom" name="nom" [(ngModel)]="newArticle.title" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">description</span>
-                                                <input placeholder="exemple@exemple.com" class="form-control" type="description" id="description" name="description" [(ngModel)]="newArticle.description" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Numero du Telephone</span>
-                                                <input placeholder="+216 00 000 000" class="form-control" type="number" id="numt" name="numt"[(ngModel)]="newArticle.shortDesc" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Date de Rendez-vous</span>
-                                                <input class="form-control" type="date" id="date" name="date" [(ngModel)]="newArticle.photo" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </form>
-                                    </div>
-                                    </div></div></div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List of Articles</title>
+</head>
+<body>
+  <h1>List of Articles</h1>
+  <ul id="article-list"></ul>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

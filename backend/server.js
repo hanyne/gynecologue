@@ -15,14 +15,15 @@ mongoose
   .catch((err) => {
     console.error('Error connecting to mongo', err.reason)
   })
+ 
 
 // Setting up port with express js
-const upload = multer({ dest: 'uploads/' }); // specify the uploads folder
 const employeeRoute = require('../backend/routes/employee.route')
 const carnetRoute = require('../backend/routes/carnet.route')
 const appointmentRoutes = require('../backend/routes/appointment');
 const messageRoutes = require('../backend/routes/message');
-const articleRoutes = require('../backend/routes/article.route');
+const articleRoutes = require('../backend/routes/article');
+
 
 const app = express()
 app.use(bodyParser.json());
@@ -34,9 +35,9 @@ app.use('/api', employeeRoute);
 app.use('/carnet', carnetRoute);
 app.use('/appointment', appointmentRoutes);
 app.use('/message', messageRoutes);
-app.use('/article', articleRoutes);
-
-
+// routes middleware
+app.use('/articles', articleRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Create port
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
@@ -54,6 +55,7 @@ app.use(function (err, req, res, next) {
   if (!err.statusCode) err.statusCode = 500 // If err has no specified error code, set error code to 'Internal Server Error (500)'
   res.status(err.statusCode).send(err.message) // All HTTP requests must have a response, so let's send back an error with its status code and message
 })
+
 
 // Allow cross-origin requests from the Angular app
 app.use((req, res, next) => {

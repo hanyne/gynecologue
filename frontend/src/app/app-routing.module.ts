@@ -13,7 +13,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ServiceComponent } from './components/service/service.component';
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
-import { ArticleComponent } from './components/article/article.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 
 
@@ -33,9 +33,7 @@ const routes: Routes = [
   { path: 'service' , component: ServiceComponent  }, 
   { path: 'categorie' , component: CategorieComponent  }, 
   { path: 'card' , component: CardcarnetComponent  },
-  { path: 'article' , component: ArticleComponent  },
-
-   
+  { path: 'blog' , component: BlogComponent  },
 
   
 

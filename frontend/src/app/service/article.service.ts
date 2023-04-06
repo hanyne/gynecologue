@@ -1,40 +1,46 @@
+// article.service.ts
+
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Article } from '../model/article';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
-
-  private apiUrl = 'http://localhost:4000/article';
+  private apiUrl = 'http://localhost:4000/articles';
 
   constructor(private http: HttpClient) { }
 
-  getArticles(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/`).pipe(
-      catchError(this.handleError)
-    );
+  getArticles(): Observable<Article[]> {
+    return this.http.get<Article[]>(this.apiUrl);
   }
 
-  addArticle(article: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.apiUrl}/new`, article, { headers }).pipe(
-      catchError(this.handleError)
-    );
+  createArticle(article: Article, photo: File): Observable<Article> {
+    const formData = new FormData();
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+    formData.append('photo', photo, photo.name);
+    return this.http.post<Article>(this.apiUrl, formData);
   }
 
-  deleteArticle(article: any): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.apiUrl}/destroy`, article, { headers }).pipe(
-      catchError(this.handleError)
-    );
+  getArticle(id: string): Observable<Article> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Article>(url);
   }
 
-  private handleError(error: any) {
-    console.error('An error occurred', error);
-    return throwError(error.message || error);
+  updateArticle(id: string, article: Article, photo: File): Observable<Article> {
+    const formData = new FormData();
+    formData.append('title', article.title);
+    formData.append('content', article.content);
+    formData.append('photo', photo, photo.name);
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.patch<Article>(url, formData);
   }
 
+  deleteArticle(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
 }
