@@ -40,7 +40,7 @@ import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import {MatCardModule} from '@angular/material/card';
 import { BlogComponent } from './components/blog/blog.component';
-import { ArticleComponent } from './components/article/article.component';
+import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
 
 
 
@@ -66,7 +66,8 @@ import { ArticleComponent } from './components/article/article.component';
     CategorieComponent,
     CardcarnetComponent,
     BlogComponent,
-    ArticleComponent,
+
+    MessageGestionComponent,
 
  
 

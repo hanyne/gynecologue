@@ -83,7 +83,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.selectedArticle = article;
     this.isEditMode = true;
   }
-
+  
   onCancel() {
     this.articleForm.reset();
     this.photo = undefined;

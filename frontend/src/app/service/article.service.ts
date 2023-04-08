@@ -39,6 +39,8 @@ export class ArticleService {
     return this.http.patch<Article>(url, formData);
   }
 
+
+
   deleteArticle(id: string): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url);

@@ -14,6 +14,7 @@ import { ServiceComponent } from './components/service/service.component';
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
 
 
 
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'categorie' , component: CategorieComponent  }, 
   { path: 'card' , component: CardcarnetComponent  },
   { path: 'blog' , component: BlogComponent  },
+  { path: 'msg' , component: MessageGestionComponent }, 
 
   
 
