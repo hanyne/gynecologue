@@ -63,17 +63,26 @@ messageRoutes.put('/update/:id',(req, res) => {
     },
   )
 })
-
-messageRoutes.delete('/delete', (req, res) => {
-  Message.findByIdAndRemove(req.params.id, (err, message) => {
+// Delete a message by id
+messageRoutes.delete('/delete/:id', (req, res) => {
+  Message.findByIdAndDelete(req.params.id, (err, message) => {
     if (err) {
       res.status(500).json({ error: err.message });
+    } else if (!message) {
+      res.status(404).json({ error: 'Message not found' });
     } else {
-      res.status(200).json({ message: 'Message deleted successfully!' });
+      res.status(200).json({ message: 'Message deleted successfully' });
     }
   });
 });
-
-
+// Delete an message
+router.delete('delete/:id', Message, async (req, res) => {
+  try {
+    await res.message.remove();
+    res.json({ message: 'message deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
     module.exports = messageRoutes;

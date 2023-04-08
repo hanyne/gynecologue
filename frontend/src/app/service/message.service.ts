@@ -46,14 +46,12 @@ getMessage(id: any): Observable<any> {
       .pipe(catchError(this.handleError));
   }
 
-    // Delete message
-    deleteMessage(id: string): Observable<any> {
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      let url = `${this.apiUrl}/delete/${id}`;
-      return this.http
-        .delete(url, { headers })
-        .pipe(catchError(this.handleError));
-    }
+   // Delete message
+   deleteMessage(id: string): Observable<any> {
+    const url = `${this.apiUrl}/delete/${id}`;
+    return this.http.delete(url);
+  }
+    
     
   private handleError(error: any) {
     console.error('An error occurred', error);
