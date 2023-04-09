@@ -61,18 +61,17 @@ carnetRoute.route('/update/:id').put((req, res, next) => {
     },
   )
 })
-
-// Delete Carnet
-carnetRoute.route('/delete/:id').delete((req, res, next) => {
-    Carnet.findOneAndRemove(req.params.id, (error, data) => {
-    if (error) {
-      return next(error)
+// Delete a carnet by id
+carnetRoute.route('/delete/:id').delete((req, res) => {
+  Carnet.findByIdAndDelete(req.params.id, (err, message) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else if (!message) {
+      res.status(404).json({ error: 'Message not found' });
     } else {
-      res.status(200).json({
-        msg: data,
-      })
+      res.status(200).json({ message: 'Message deleted successfully' });
     }
-  })
-})
+  });
+});
 
 module.exports = carnetRoute

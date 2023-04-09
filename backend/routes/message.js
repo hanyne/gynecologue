@@ -75,14 +75,6 @@ messageRoutes.delete('/delete/:id', (req, res) => {
     }
   });
 });
-// Delete an message
-router.delete('delete/:id', Message, async (req, res) => {
-  try {
-    await res.message.remove();
-    res.json({ message: 'message deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+
 
     module.exports = messageRoutes;

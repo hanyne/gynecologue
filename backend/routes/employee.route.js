@@ -68,6 +68,6 @@ employeeRoute.route('/delete/:id').delete((req, res, next) => {
       })
     }
   })
-})
+}) 
 
 module.exports = employeeRoute

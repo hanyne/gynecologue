@@ -3,16 +3,17 @@
     <p *ngIf="Carnet.length <= 0" class="no-data text-center">There is no Carnetadded yet!</div>
     <!-- Carnetlist -->
     <div *ngIf="Carnet.length > 0">
-        <div *ngFor="let carnet of Carnet; let i = index">
+        <div *ngFor="let carnet of Carnet">
           <th scope="row">{{carnet._id}}</th>
           <td class="text-center edit-block">
             <span class="edit" [routerLink]="['/edit-carnet/', carnet._id]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>
             </span>
-            <span class="delete" (click)="removeCarnet(carnet, i)">
+            <span class="delete" (click)="onDelete(carnet)">
               <button type="button" class="btn btn-danger btn-sm">Delete</button>
             </span>
           </td>
+          
         
   <div>categorie:<p>{{carnet.categorie}}</p> </div>  
   <div>nom:<p>{{carnet.nom}}</p> </div>    

@@ -42,11 +42,9 @@ getCarnet(id: any): Observable<any> {
       .pipe(catchError(this.errorMgmt));
   }
   // Delete carnet
-  deleteCarnet(id: any): Observable<any> {
-    let url = `${this.baseUri}/delete/${id}`;
-    return this.http
-      .delete(url, { headers: this.headers })
-      .pipe(catchError(this.errorMgmt));
+  deleteCarnet(id: string): Observable<any> {
+    const url = `${this.baseUri}/delete/${id}`;
+    return this.http.delete(url);
   }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {

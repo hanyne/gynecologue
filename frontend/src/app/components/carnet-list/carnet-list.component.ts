@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { carnetService } from './../../service/carnet.service';
 import {  FormBuilder} from '@angular/forms';
+import { Carnet } from 'src/app/model/carnet';
 
 @Component({
   selector: 'app-carnet-list',
@@ -9,7 +10,7 @@ import {  FormBuilder} from '@angular/forms';
 })
 export class CarnetListComponent implements OnInit {
   
-  
+  carnets!:Carnet;
   Carnet:any = [];
 
   //checkbox
@@ -33,12 +34,15 @@ maladie = this.fb.group({
 
     })    
   }
-  removeCarnet(carnet: any, index: number) {
-    if(window.confirm('Are you sure?')) {
-        this.CarnetService.deleteCarnet(carnet._id).subscribe((data) => {
-          this.Carnet.splice(index, 1);
-        }
-      )    
+  onDelete(carnet: Carnet) {
+    if (carnet && carnet._id && confirm(`Souhaitez-vous confirmer la suppression de carnet de"${carnet.nom}"?`)) {
+      this.CarnetService.deleteCarnet(carnet._id).subscribe(
+        () => {
+          const index = this.carnets.findIndex((a: { _id: string | undefined; }) => a._id === carnet._id);
+          this.carnets.splice(index, 1);
+        },
+        (err) => console.error(err)
+      );
     }
   }
   

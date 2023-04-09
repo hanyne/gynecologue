@@ -1,8 +1,8 @@
 export class Carnet {
+    _id?: string;
     categorie!:string;
 
     photo!: string ;
-    
     nom!: string ;
 
     prenom!: string;
@@ -79,5 +79,7 @@ export class Carnet {
     prenomM!: string;
  
     telM!: Number;
+  splice: any;
+  findIndex: any;
 
 }
