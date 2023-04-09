@@ -20,7 +20,7 @@ import { MessageGestionComponent } from './components/message-gestion/message-ge
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '*', pathMatch: 'full', redirectTo: 'home' },
   { path: 'create-employee', component: EmployeeCreateComponent },
   { path: 'edit-employee/:id', component: EmployeeEditComponent },
   { path: 'employees-list', component: EmployeeListComponent }, 

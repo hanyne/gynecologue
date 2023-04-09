@@ -41,6 +41,7 @@ import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.componen
 import {MatCardModule} from '@angular/material/card';
 import { BlogComponent } from './components/blog/blog.component';
 import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 
@@ -66,8 +67,8 @@ import { MessageGestionComponent } from './components/message-gestion/message-ge
     CategorieComponent,
     CardcarnetComponent,
     BlogComponent,
-
     MessageGestionComponent,
+    PagenotfoundComponent,
 
  
 
