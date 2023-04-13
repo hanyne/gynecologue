@@ -42,6 +42,7 @@ import {MatCardModule} from '@angular/material/card';
 import { BlogComponent } from './components/blog/blog.component';
 import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -69,6 +70,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
     BlogComponent,
     MessageGestionComponent,
     PagenotfoundComponent,
+    LoginComponent,
 
  
 
