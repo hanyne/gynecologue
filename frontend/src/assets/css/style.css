@@ -5,7 +5,12 @@
     --light: #EFF5F9;
     --dark: #1a1d45;
 }
-
+.ma{
+    background-color: #d38282;
+   
+        color: #ffffff;
+   
+}
 .btn {
     font-weight: 700;
     transition: .5s;
