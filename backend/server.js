@@ -23,7 +23,10 @@ const carnetRoute = require('../backend/routes/carnet.route')
 const appointmentRoutes = require('../backend/routes/appointment');
 const messageRoutes = require('../backend/routes/message');
 const articleRoutes = require('../backend/routes/article');
-
+const auth = require("../backend/routes/auth.routes")
+const patiente = require("../backend/routes/patiente.routes")
+const secretaire = require("../backend/routes/secretaire.routes")
+const medic = require("../backend/routes/medic.routes")
 
 const app = express()
 app.use(bodyParser.json());
@@ -38,6 +41,13 @@ app.use('/message', messageRoutes);
 // routes middleware
 app.use('/articles', articleRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// routes
+app.use('/auth', auth);
+app.use('/patiente', patiente);
+app.use('/secretaire', secretaire);
+app.use('/uploads', express.static('uploads'));
+app.use('/medic', medic);
+
 // Create port
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
@@ -55,6 +65,15 @@ app.use(function (err, req, res, next) {
   if (!err.statusCode) err.statusCode = 500 // If err has no specified error code, set error code to 'Internal Server Error (500)'
   res.status(err.statusCode).send(err.message) // All HTTP requests must have a response, so let's send back an error with its status code and message
 })
+
+//pour les images BFR(Backend et Frontend Relation)
+const corsOptions = {
+  origin: 'http://localhost:4200', // Replace with your Angular app's domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions)); 
 
 
 // Allow cross-origin requests from the Angular app
