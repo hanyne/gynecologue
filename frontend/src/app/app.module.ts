@@ -15,6 +15,19 @@ import { CarnetEditComponent } from './components/carnet-edit/carnet-edit.compon
 import { HomeComponent } from './components//home/home.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ListappoComponent } from './components/listappo/listappo.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { LoginComponent } from './components/login/login.component';
+import { AddMedicComponent } from './components/docteur/add-medic/add-medic.component';
+import { AddPatComponent } from './components/docteur/add-pat/add-pat.component';
+import { DashboardComponent } from './components/docteur/dashboard/dashboard.component';
+import { ListMedicComponent } from './components/docteur/list-medic/list-medic.component';
+import { ListPatientesComponent } from './components/docteur/list-patientes/list-patientes.component';
+import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { RequestResetComponent } from './components/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 //angular material 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -41,19 +54,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import {MatCardModule} from '@angular/material/card';
-import { BlogComponent } from './components/blog/blog.component';
-import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
-import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { LoginComponent } from './components/login/login.component';
-import { AddMedicComponent } from './components/docteur/add-medic/add-medic.component';
-import { AddPatComponent } from './components/docteur/add-pat/add-pat.component';
-import { DashboardComponent } from './components/docteur/dashboard/dashboard.component';
-import { ListMedicComponent } from './components/docteur/list-medic/list-medic.component';
-import { ListPatientesComponent } from './components/docteur/list-patientes/list-patientes.component';
-import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.component';
-import { ChangePassComponent } from './components/change-pass/change-pass.component';
-import { RequestResetComponent } from './components/request-reset/request-reset.component';
-import { ResponseResetComponent } from './components/response-reset/response-reset.component';
+import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
+
 
 @NgModule({
 
@@ -89,6 +91,7 @@ import { ResponseResetComponent } from './components/response-reset/response-res
     ChangePassComponent,
     RequestResetComponent,
     ResponseResetComponent,
+    AppointmentListComponent,
 
  
 

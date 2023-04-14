@@ -1,0 +1,11 @@
+<h1>Appointments</h1>
+
+<!-- Displaying appointments -->
+<div *ngFor="let appointment of appointmentsList">
+  <div>{{ appointment.nom }}</div>
+  <div>{{ appointment.email }}</div>
+  <div>{{ appointment.numt }}</div>
+  <div>{{ appointment.date }}</div>
+  <div>{{ appointment.motif }}</div>
+  <button (click)="deleteAppointment(appointment)">Delete</button>
+</div>

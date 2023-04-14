@@ -25,6 +25,7 @@ import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { RequestResetComponent } from './components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
+import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 
 
 
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'edit-carnet/:id', component: CarnetEditComponent },
   { path: 'carnet-list', component: CarnetListComponent }, 
   { path: 'home' , component: HomeComponent }, 
-  { path: 'appointment' , component: AppointmentComponent  }, 
+  { path: 'appointment' , component: AppointmentComponent  },
+  { path: 'admin/listapp' , component: AppointmentListComponent  },  
   { path: 'contact' , component: ContactComponent  }, 
   { path: 'about' , component: AboutComponent  }, 
   { path: 'service' , component: ServiceComponent  }, 
