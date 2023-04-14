@@ -35,6 +35,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { ToastrModule } from 'ngx-toastr';
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
@@ -43,8 +45,15 @@ import { BlogComponent } from './components/blog/blog.component';
 import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { LoginComponent } from './components/login/login.component';
-
-
+import { AddMedicComponent } from './components/docteur/add-medic/add-medic.component';
+import { AddPatComponent } from './components/docteur/add-pat/add-pat.component';
+import { DashboardComponent } from './components/docteur/dashboard/dashboard.component';
+import { ListMedicComponent } from './components/docteur/list-medic/list-medic.component';
+import { ListPatientesComponent } from './components/docteur/list-patientes/list-patientes.component';
+import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { RequestResetComponent } from './components/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 
 @NgModule({
 
@@ -71,6 +80,15 @@ import { LoginComponent } from './components/login/login.component';
     MessageGestionComponent,
     PagenotfoundComponent,
     LoginComponent,
+    AddMedicComponent,
+    AddPatComponent,
+    DashboardComponent,
+    ListMedicComponent,
+    ListPatientesComponent,
+    OrdonnanceComponent,
+    ChangePassComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
 
  
 
@@ -98,7 +116,11 @@ import { LoginComponent } from './components/login/login.component';
     MatSnackBarModule,
     NoopAnimationsModule,
     ToastrModule.forRoot(),
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    
+
 
 
   ],

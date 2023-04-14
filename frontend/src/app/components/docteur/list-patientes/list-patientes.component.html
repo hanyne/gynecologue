@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PFE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="/assets/admin/images/favicon.ico" type="image/x-icon">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/assets/admin/css/style.css">
+</head>
+<body class="" style="background-color: rgb(231, 111, 167);">
+	<!-- [ navigation menu ] start -->
+	<nav class="pcoded-navbar menu-dark " style="background-color: rgb(138, 14, 82);">
+		<div class="navbar-wrapper  ">
+			<div class="navbar-content scroll-div " >
+				<div class="">
+					<div class="main-menu-header">
+						<img class="img-radius" src="/assets/admin/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<div class="user-details">
+							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
+                                <p><span class="online_animation" id="actif"></span> Actif</p></div>
+						</div>
+					</div>
+				</div>
+				<ul class="nav pcoded-inner-navbar "id="tit1">
+					<li class="nav-item">
+					    <a href="admin/dashboard" class="nav-link "><span class="pcoded-micon">
+                      <i class="feather icon-home"></i></span>
+                      <span class="pcoded-mtext">Tableau de bord</span></a>
+					</li>
+                
+               <li class="nav-item pcoded-hasmenu">
+                  <a href="/admin/listP" class="nav-link "><span class="pcoded-micon">
+                     <i class="fa fa-users"></i></span>
+                     <span class="pcoded-mtext">Gérer les patientes</span></a>
+                  <ul class="pcoded-submenu">
+                      <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
+                  </ul>
+              </li>
+		<li class="nav-item pcoded-hasmenu">
+            <a href="/admin/recl" class="nav-link "><span class="pcoded-micon">
+               <i class="fa fa-file-text"></i></span>
+               <span class="pcoded-mtext">Gérer les réclamations</span></a>
+            <ul class="pcoded-submenu">
+                <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
+            </ul>
+        </li>
+		<br><br><br>
+		<li><a href="/login" (click)="logOut()"><i class="fa fa-sign-out black_color text-bold"></i> 
+			<span>Déconnexion</span></a></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+		<div class="m-header">
+					<a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
+					<a href="#!" class="b-brand">
+						<!-- ========   change your logo hear   ============ -->
+						<img src="/assets/admin/images/logo-icon.png" alt="" class="logo-thumb">
+					</a>
+					<a href="#!" class="mob-toggler" >
+						<i class="feather icon-more-vertical"></i>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+                        
+						<li class="nav-item" id="logout">
+							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+							<div class="search-bar">
+								<input type="text" id="m-search" class="form-control"  
+                                placeholder="Rechercher...">
+								<button type="button" class="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+                      
+						<li>
+							<div class="dropdown" id="logout">
+								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+								<div class="dropdown-menu dropdown-menu-right notification">
+									<div class="noti-head" >
+										<h6 class="d-inline-block m-b-0">Notifications</h6>
+									</div>
+								</div>
+							</div>
+						</li>&nbsp;&nbsp;&nbsp;
+						<li>
+							<div class="dropdown drp-user">
+								<a href="/login" (click)="logOut()" id="logout"
+                                     class="dropdown-toggle" data-toggle="dropdown">
+									<i class="feather icon-log-out"></i>
+								</a>
+							</div>
+						</li>
+                        <li>
+                            
+                        </li>
+					</ul>
+				</div>
+				
+			
+	</header>
+	<!-- [ Header ] end -->
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Patiente</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/admin/listP">Gérer les patientes</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/listP">Patiente</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+		<div class="col-xl-12">
+			<div class="container p-3 my-3 border cont">
+				<div class="form-group mb-4">
+				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des patientes</h1></div>
+				   <input id="exampleFormControlInput2" type="text" placeholder="Chercher ...?"
+				    [(ngModel)]="textsearch" class="form-control form-control-underlined">
+				 </div><br>
+				<!-- table section -->
+			   
+				<table class="table align-middle mb-0 text-center table-responsive-lg" style="overflow-x:auto;">
+				   <thead class="bg countour border text-bold">
+					 <tr>
+					   <th>ID</th>
+					   <th>Nom</th>
+					   <th>Prénom</th>
+					   <th>Date de naissance</th>
+					   <th>Tel</th>
+					   <th>Actions</th>
+					   
+					 </tr>
+				   </thead>
+				   <tbody *ngFor="let patiente of patientes"  >
+					 <tr>
+						<td><p class="fw-normal mb-1">{{ patiente.userName}}</p></td>
+					   <td><p class="fw-normal mb-1">{{ patiente.nomP}}</p></td>
+					   <td><p class="fw-normal mb-1">{{ patiente.prenomP}}</p></td>
+                       <td><p class="fw-normal mb-1">{{ patiente.naissance}}</p></td>
+					   <td><p class="fw-normal mb-1">{{ patiente.tel}}</p></td>
+					   <td>
+						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="deletepatiente(patiente)">
+						   <i class="fa fa-trash icon"></i>
+						 </button>
+					   </td>
+					 </tr>
+					 
+				   </tbody>
+				   
+				 </table>
+                 <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+                </mat-paginator>
+			</div>
+</div>
+
+        <!-- [ Main Content ] end -->
+    </div>
+</section>
+   <!-- Required Js -->
+   <script src="/assets/admin/js/vendor-all.min.js"></script>
+   <script src="/assets/admin/js/plugins/bootstrap.min.js"></script>
+   <script src="/assets/admin/js/ripple.js"></script>
+   <script src="/assets/admin/js/pcoded.min.js"></script>
+<!-- Apex Chart -->
+<script src="/assets/admin/js/plugins/apexcharts.min.js"></script>
+<!-- custom-chart js -->
+<script src="/assets/admin/js/pages/dashboard-main.js"></script>
+</body>
+</html>

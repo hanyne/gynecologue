@@ -1,0 +1,61 @@
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+input[type="text"] {
+    padding: 5px;
+    font-size: 12pt;
+    width: 200px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+li {
+    padding: 5px;
+    cursor: pointer;
+}
+li:hover {
+    background-color: #f2f2f2;
+}
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 16pt;
+    margin: 0;
+    padding: 10px;
+}
+h3{
+    font-size: 12pt;
+    margin: 0;
+    padding: 10px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+.header, .footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.footer {
+    font-style: italic;
+    font-size: 10pt;
+}

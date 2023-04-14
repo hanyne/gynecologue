@@ -15,6 +15,16 @@ import { CategorieComponent } from './components/categorie/categorie.component';
 import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
+import { LoginComponent } from './components/login/login.component';
+import { AddMedicComponent } from './components/docteur/add-medic/add-medic.component';
+import { AddPatComponent } from './components/docteur/add-pat/add-pat.component';
+import { DashboardComponent } from './components/docteur/dashboard/dashboard.component';
+import { ListMedicComponent } from './components/docteur/list-medic/list-medic.component';
+import { ListPatientesComponent } from './components/docteur/list-patientes/list-patientes.component';
+import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { RequestResetComponent } from './components/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 
 
 
@@ -36,6 +46,18 @@ const routes: Routes = [
   { path: 'card' , component: CardcarnetComponent  },
   { path: 'blog' , component: BlogComponent  },
   { path: 'msg' , component: MessageGestionComponent }, 
+  { path: 'login', component: LoginComponent },
+  { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/listP', component: ListPatientesComponent },
+  { path: 'admin/ord', component: OrdonnanceComponent},
+  {path: 'admin/patiente', component:AddPatComponent},
+  {path:'admin/addmedic', component:AddMedicComponent },
+  {path:'admin/listM', component:ListMedicComponent },
+  //psw
+  {path:'request', component:RequestResetComponent },
+  {path:'response/:resettoken', component:ResponseResetComponent},
+  {path:'changepass/:id', component: ChangePassComponent },
+
 
   
 
