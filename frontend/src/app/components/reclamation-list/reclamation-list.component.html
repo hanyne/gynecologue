@@ -1,1 +1,21 @@
-<p>reclamation-list works!</p>
+<div>
+    <h2>Messages</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+      <div *ngFor="let message of messages">
+        <h2>{{ message.nom }}</h2>
+        <p>{{ message.email }}</p>
+        <p>{{ message.subject }}</p>
+        <p>{{ message.mess }}</p>
+        <button *ngIf="message._id" (click)="deleteMessage(message._id)">Delete</button>
+      </div>   </tr>   
+    </table>
+</div>

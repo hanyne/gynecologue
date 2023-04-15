@@ -26,6 +26,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
 import { RequestResetComponent } from './components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
+import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 
 
 
@@ -55,11 +56,12 @@ const routes: Routes = [
   {path: 'admin/patiente', component:AddPatComponent},
   {path:'admin/addmedic', component:AddMedicComponent },
   {path:'admin/listM', component:ListMedicComponent },
+  {path:'admin/listR', component:ReclamationListComponent  },
   //psw
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
   {path:'changepass/:id', component: ChangePassComponent },
-
+  
 
   
 
