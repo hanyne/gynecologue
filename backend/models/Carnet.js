@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
+const Role = require("../_helpers/role")
 const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Carnet = new Schema({
-   categorie:{
-      type: String
-   },
    nom: {
       type: String
    },
@@ -123,7 +121,8 @@ let Carnet = new Schema({
    telM: {
       type: Number
    },
-
+   role: {type: String, default: Role.Patiente},
+   password: {type: String, required: true },
 }, {
    collection: 'carnets'
 })

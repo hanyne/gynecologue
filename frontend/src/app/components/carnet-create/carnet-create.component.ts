@@ -37,8 +37,6 @@ rhesusList=["Positive","Negative"];
   ) {
     this.carnetForm = this.fb.group({
 
-       categorie: '',
-
         nom: '', 
 
         prenom: '', 
@@ -115,6 +113,9 @@ rhesusList=["Positive","Negative"];
         prenomM: '', 
      
         telM: '', 
+        password :'',
+
+      
      
     });
   }

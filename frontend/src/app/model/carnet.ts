@@ -1,7 +1,5 @@
 export class Carnet {
     _id?: string;
-    categorie!:string;
-
     photo!: string ;
     nom!: string ;
 
@@ -79,6 +77,9 @@ export class Carnet {
     prenomM!: string;
  
     telM!: Number;
+    password!: String;
+    role!: String;
+    
   splice: any;
   findIndex: any;
 

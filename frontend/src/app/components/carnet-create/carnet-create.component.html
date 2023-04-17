@@ -5,12 +5,6 @@
           <div class="card">
               <form class="form-card" [formGroup]="carnetForm" (ngSubmit)="onSubmit()" >
             <div class="row justify-content-between text-left">
-              <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Categorie<span class="text-danger"> *</span></label> <mat-radio-group formControlName="categorie" class="example-radio-group">
-                <mat-radio-button  class="example-radio-button col-sm-6 " *ngFor="let categorie of categorieList" [value]="categorie">
-              {{categorie}} 
-          </mat-radio-button>
-          </mat-radio-group>
-          </div>
                   <div class="row justify-content-between text-left">
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"> Name<span class="text-danger"> *</span></label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" formControlName="nom"  > </div>
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Prenom<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" formControlName="prenom" > </div>
@@ -24,7 +18,7 @@
                     <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Cin<span class="text-danger"> *</span></label> <input type="number" id="mob" name="mob" placeholder="" formControlName="Cin" > </div>
                 </div>
                 <div class="row justify-content-between text-left">
-                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Niveau D'instruction<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3" required formControlName="niv_inst" >
+                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Niveau D'instruction<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3"  formControlName="niv_inst" >
                     <option selected hidden value="">Selectionner :</option>
                     <option value="Niveau primaire">Niveau primaire</option>
                     <option value="Niveau secondaire">Niveau secondaire</option>
@@ -69,7 +63,7 @@
         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">prob<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prob"> </div>
     </div>
     <div class="row justify-content-between text-left">
-        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Maladie<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3" required formControlName="maladie" >
+        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Maladie<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3"  formControlName="maladie" >
           <option selected hidden value="">Selectionner :</option>
           <option value="Diabéte">Diabéte</option>
           <option value="Cardiopathie">Cardiopathie</option>
@@ -118,6 +112,9 @@
 <div class="row justify-content-between text-left">
   <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">prenomM<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prenomM"> </div>
   <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">telM<span class="text-danger"> *</span></label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="telM"> </div>
+</div>
+<div class="row justify-content-between text-left">
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">psw<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="password"> </div>
 </div>
 <div class="form-group">
   <button class="formbold-btn " type="submit">
