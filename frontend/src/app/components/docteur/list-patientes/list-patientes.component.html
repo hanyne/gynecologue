@@ -124,7 +124,7 @@
 						</li>&nbsp;&nbsp;&nbsp;
 						<li>
 							<div class="dropdown drp-user">
-								<a href="/login" (click)="logOut()" id="logout"
+								<a href="/login"  id="logout"
                                      class="dropdown-toggle" data-toggle="dropdown">
 									<i class="feather icon-log-out"></i>
 								</a>
@@ -166,7 +166,7 @@
 				<div class="form-group mb-4">
 				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des patientes</h1></div>
 				   <input id="exampleFormControlInput2" type="text" placeholder="Chercher ...?"
-				    [(ngModel)]="textsearch" class="form-control form-control-underlined">
+				   class="form-control form-control-underlined">
 				 </div><br>
 				<!-- table section -->
 				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/create-carnet"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>
@@ -182,15 +182,15 @@
 					   
 					 </tr>
 				   </thead>
-				   <tbody *ngFor="let patiente of patientes"  >
+				   <tbody *ngFor="let carnet of Carnet"  >
 					 <tr>
-						<td><p class="fw-normal mb-1">{{ patiente.userName}}</p></td>
-					   <td><p class="fw-normal mb-1">{{ patiente.nomP}}</p></td>
-					   <td><p class="fw-normal mb-1">{{ patiente.prenomP}}</p></td>
-                       <td><p class="fw-normal mb-1">{{ patiente.naissance}}</p></td>
-					   <td><p class="fw-normal mb-1">{{ patiente.tel}}</p></td>
+						<td><p class="fw-normal mb-1">1</p></td>
+						<td><p class="fw-normal mb-1">{{ carnet.nom}}</p></td>
+					   <td><p class="fw-normal mb-1">{{ carnet.prenom}}</p></td>
+					   <td><p class="fw-normal mb-1">{{ carnet.naissance}}</p></td>
+                       <td><p class="fw-normal mb-1">{{ carnet.tel}}</p></td>
 					   <td>
-						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="deletepatiente(patiente)">
+						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="onDelete(carnet)">
 						   <i class="fa fa-trash icon"></i>
 						 </button>
 					   </td>
