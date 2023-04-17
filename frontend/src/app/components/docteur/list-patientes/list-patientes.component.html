@@ -9,52 +9,77 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
+
+    
     <link rel="icon" href="/assets/admin/images/favicon.ico" type="image/x-icon">
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/admin/css/style.css">
 </head>
-<body class="" style="background-color: rgb(231, 111, 167);">
+<body style="background-color: rgb(231, 111, 167);"  >
 	<!-- [ navigation menu ] start -->
-	<nav class="pcoded-navbar menu-dark " style="background-color: rgb(138, 14, 82);">
+	<nav class="pcoded-navbar menu-dark ">
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div " >
-				<div class="">
+				<div >
 					<div class="main-menu-header">
-						<img class="img-radius" src="/assets/admin/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<img class="img-radius" src="/assets/img/gyne.png" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
-                                <p><span class="online_animation" id="actif"></span> Actif</p></div>
+                            </div>
 						</div>
 					</div>
 				</div>
-				<ul class="nav pcoded-inner-navbar "id="tit1">
+<br><br>
+				<ul class="nav pcoded-inner-navbar contain "id="tit1">
 					<li class="nav-item">
-					    <a href="admin/dashboard" class="nav-link "><span class="pcoded-micon">
-                      <i class="feather icon-home"></i></span>
+					    <a href="admin/dashboard" class="nav-link "><span>
+                      <img src="/assets/icons/home.png" class="icon"></span>
                       <span class="pcoded-mtext">Tableau de bord</span></a>
 					</li>
-                
+                    
                <li class="nav-item pcoded-hasmenu">
-                  <a href="/admin/listP" class="nav-link "><span class="pcoded-micon">
-                     <i class="fa fa-users"></i></span>
+                  <a href="/admin/listP" class="nav-link "><span>
+                     <img src="/assets/icons/woman.png"  class="icon"></span>
                      <span class="pcoded-mtext">Gérer les patientes</span></a>
                   <ul class="pcoded-submenu">
                       <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
                   </ul>
               </li>
-		<li class="nav-item pcoded-hasmenu">
-            <a href="/admin/recl" class="nav-link "><span class="pcoded-micon">
-               <i class="fa fa-file-text"></i></span>
+              <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/recl" class="nav-link "><span>
+                   <img src="/assets/icons/rendez.png" class="icon"></span>
+                   <span class="pcoded-mtext">Gérer les rendez-vous</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
+                </ul>
+              <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/listP" class="nav-link "><span>
+                   <img src="assets/icons/medica.png"  class="icon" ></span>
+                   <span class="pcoded-mtext">Gérer les médicaments</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
+                </ul>
+            </li>
+            <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/listP" class="nav-link "><span>
+                   <img src="/assets/icons/analysee.png" class="icon"></span>
+                   <span class="pcoded-mtext">Gérer les analyses</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/listP" target="_blank">Liste des analyses</a></li>
+                </ul>
+            </li>
+        <li class="nav-item pcoded-hasmenu">
+            <a href="/admin/recl" class="nav-link "><span>
+                <img src="/assets/icons/msg.png" class="icon"></span>
                <span class="pcoded-mtext">Gérer les réclamations</span></a>
             <ul class="pcoded-submenu">
                 <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
             </ul>
         </li>
-		<br><br><br>
-		<li><a href="/login" (click)="logOut()"><i class="fa fa-sign-out black_color text-bold"></i> 
-			<span>Déconnexion</span></a></li>
-
-				</ul>
+        <br><br><br>
+		<li><a href="/login" ><i class="fa fa-sign-out black_color text-bold"></i> 
+			<span>Déconnexion</span></a></li>		
+    </ul>
 			</div>
 		</div>
 	</nav>
@@ -119,7 +144,7 @@
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
         <div class="page-header">
-            <div class="page-block">
+            <div class="page-block container">
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
@@ -144,7 +169,7 @@
 				    [(ngModel)]="textsearch" class="form-control form-control-underlined">
 				 </div><br>
 				<!-- table section -->
-			   
+				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/create-carnet"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>
 				<table class="table align-middle mb-0 text-center table-responsive-lg" style="overflow-x:auto;">
 				   <thead class="bg countour border text-bold">
 					 <tr>
