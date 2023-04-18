@@ -50,7 +50,7 @@
                    <img src="/assets/icons/rendez.png" class="icon"></span>
                    <span class="pcoded-mtext">Gérer les rendez-vous</span></a>
                 <ul class="pcoded-submenu">
-                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
+                    <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
                 </ul>
               <li class="nav-item pcoded-hasmenu">
                 <a href="/admin/listP" class="nav-link "><span>
@@ -69,11 +69,11 @@
                 </ul>
             </li>
         <li class="nav-item pcoded-hasmenu">
-            <a href="/admin/recl" class="nav-link "><span>
+            <a href="/admin/listR" class="nav-link "><span>
                 <img src="/assets/icons/msg.png" class="icon"></span>
                <span class="pcoded-mtext">Gérer les réclamations</span></a>
             <ul class="pcoded-submenu">
-                <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
+                <li><a href="admin/listR" target="_blank">Consulter les réclamations</a></li>
             </ul>
         </li>
         <br><br><br>
@@ -83,29 +83,79 @@
 			</div>
 		</div>
 	</nav>
-	<!-- [ navigation menu ] end -->
-	<!-- [ Header ] start -->
-
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+		<div class="m-header">
+					<a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
+					<a href="#!" class="b-brand">
+						<!-- ========   change your logo hear   ============ -->
+						<img src="/assets/admin/images/logo-icon.png" alt="" class="logo-thumb">
+					</a>
+					<a href="#!" class="mob-toggler" >
+						<i class="feather icon-more-vertical"></i>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+                        
+						<li class="nav-item" id="logout">
+							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+							<div class="search-bar">
+								<input type="text" id="m-search" class="form-control"  
+                                placeholder="Rechercher...">
+								<button type="button" class="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+                      
+						<li>
+							<div class="dropdown" id="logout">
+								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+								<div class="dropdown-menu dropdown-menu-right notification">
+									<div class="noti-head" >
+										<h6 class="d-inline-block m-b-0">Notifications</h6>
+									</div>
+								</div>
+							</div>
+						</li>&nbsp;&nbsp;&nbsp;
+						<li>
+							<div class="dropdown drp-user">
+								<a href="/login"  id="logout"
+                                     class="dropdown-toggle" data-toggle="dropdown">
+									<i class="feather icon-log-out"></i>
+								</a>
+							</div>
+						</li>
+                        <li>
+                            
+                        </li>
+					</ul>
+				</div>
+				
+			
+	</header>
 	<!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
-<section class="pcoded-main-container">
+<div class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block container">
+        <div class="page-header container">
+            <div class="page-block ">
                 <div class="row align-items-center">
-                    <div class="col-md-12">
+                    <div class="col-md-16">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Patiente</h5>
+                            <h5 class="m-b-10" id="tit">Liste des patientes</h5>
                         </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/admin/listP">Gérer les patientes</a></li>
-                            <li class="breadcrumb-item"><a href="/admin/listP">Patiente</a></li>
+                        <ul class="breadcrumb" id="tit">
+                            <li class="breadcrumb-item"><a href="admin/dashboard"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="admin/dashboard">Liste des patientes</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
+            
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
@@ -113,8 +163,7 @@
 			<div class="container p-3 my-3 border cont">
 				<div class="form-group mb-4">
 				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des patientes</h1></div>
-				   <input id="exampleFormControlInput2" type="text" placeholder="Chercher ...?"
-				   class="form-control form-control-underlined">
+				   <input type="text" class="form-control fa fa-search form-control-feedback" placeholder="Search" [(ngModel)]="searchTerm" (input)="readCarnet(searchTerm)">
 				 </div><br>
 				<!-- table section -->
 				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/create-carnet"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>
@@ -127,7 +176,6 @@
 					   <th>Date de naissance</th>
 					   <th>Tel</th>
 					   <th>Actions</th>
-					   
 					 </tr>
 				   </thead>
 				   <tbody *ngFor="let carnet of Carnet"  >
@@ -138,7 +186,10 @@
 					   <td><p class="fw-normal mb-1">{{ carnet.naissance}}</p></td>
                        <td><p class="fw-normal mb-1">{{ carnet.tel}}</p></td>
 					   <td>
-						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="onDelete(carnet)">
+                         <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="onDelete(carnet)">
+                            <i class="fa fa-eye icon" aria-hidden="true"></i>
+                        </button>
+						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer" >
 						   <i class="fa fa-trash icon"></i>
 						 </button>
 					   </td>
@@ -156,15 +207,6 @@
 
         <!-- [ Main Content ] end -->
     </div>
-</section>
-   <!-- Required Js -->
-   <script src="/assets/admin/js/vendor-all.min.js"></script>
-   <script src="/assets/admin/js/plugins/bootstrap.min.js"></script>
-   <script src="/assets/admin/js/ripple.js"></script>
-   <script src="/assets/admin/js/pcoded.min.js"></script>
-<!-- Apex Chart -->
-<script src="/assets/admin/js/plugins/apexcharts.min.js"></script>
-<!-- custom-chart js -->
-<script src="/assets/admin/js/pages/dashboard-main.js"></script>
-</body>
+  
+</div></body>
 </html>

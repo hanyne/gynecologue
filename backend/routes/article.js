@@ -32,6 +32,7 @@ router.get('/', async (req, res) => {
 router.post('/', upload.single('photo'), async (req, res) => {
   const article = new Article({
     title: req.body.title,
+    description: req.body.description,
     content: req.body.content,
     photo: req.file.filename
   });
@@ -53,6 +54,9 @@ router.get('/:id', getArticle, (req, res) => {
 router.patch('/:id', getArticle, async (req, res) => {
   if (req.body.title != null) {
     res.article.title = req.body.title;
+  }
+  if (req.body.description != null) {
+    res.article.description = req.body.description;
   }
   if (req.body.content != null) {
     res.article.content = req.body.content;

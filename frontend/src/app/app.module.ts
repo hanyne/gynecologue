@@ -56,6 +56,7 @@ import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.componen
 import {MatCardModule} from '@angular/material/card';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
+import { HistoriqueComponent } from './components/historique/historique.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { ReclamationListComponent } from './components/reclamation-list/reclamat
     ResponseResetComponent,
     AppointmentListComponent,
     ReclamationListComponent,
+    HistoriqueComponent,
 
  
 

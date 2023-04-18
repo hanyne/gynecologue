@@ -24,6 +24,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.articleForm = new FormGroup({
       title: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       photo: new FormControl('')
     });
@@ -78,6 +79,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   onEdit(article: Article) {
     this.articleForm.patchValue({
       title: article.title,
+      description: article.description,
       content: article.content
     });
     this.selectedArticle = article;

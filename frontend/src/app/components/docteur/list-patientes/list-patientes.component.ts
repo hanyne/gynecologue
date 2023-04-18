@@ -11,17 +11,21 @@ import {  FormBuilder} from '@angular/forms';
   styleUrls: ['./list-patientes.component.css']
 })
 export class ListPatientesComponent implements OnInit {
-  carnets!:Carnet;
   Carnet:any = [];
+  searchTerm: string = '';
+  carnets!:Carnet;
   constructor(public fb: FormBuilder,private CarnetService: carnetService) { 
     this.readCarnet();
   }
   ngOnInit() {}
-  readCarnet(){
-    this.CarnetService.getCarnets().subscribe((data) => {
-     this.Carnet = data;
-
-    })    
+  readCarnet(searchTerm: string = '') {
+    this.CarnetService.getCarnets(searchTerm).subscribe((data) => {
+      if (Object.keys(data).length === 0) {
+        this.Carnet = 'No search result found';
+      } else {
+        this.Carnet = data;
+      }
+    });
   }
   onDelete(carnet: Carnet) {
     if (carnet && carnet._id && confirm(`Souhaitez-vous confirmer la suppression de carnet de"${carnet.nom}"?`)) {
@@ -36,3 +40,6 @@ export class ListPatientesComponent implements OnInit {
   }
   
 }
+
+
+

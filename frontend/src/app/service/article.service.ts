@@ -20,6 +20,7 @@ export class ArticleService {
   createArticle(article: Article, photo: File): Observable<Article> {
     const formData = new FormData();
     formData.append('title', article.title);
+    formData.append('description', article.description);
     formData.append('content', article.content);
     formData.append('photo', photo, photo.name);
     return this.http.post<Article>(this.apiUrl, formData);
@@ -33,6 +34,7 @@ export class ArticleService {
   updateArticle(id: string, article: Article, photo: File): Observable<Article> {
     const formData = new FormData();
     formData.append('title', article.title);
+    formData.append('description', article.description);
     formData.append('content', article.content);
     formData.append('photo', photo, photo.name);
     const url = `${this.apiUrl}/${id}`;
