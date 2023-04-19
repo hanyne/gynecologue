@@ -57,6 +57,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import { HistoriqueComponent } from './components/historique/historique.componen
     AppointmentListComponent,
     ReclamationListComponent,
     HistoriqueComponent,
+    ConsultationComponent,
 
  
 
