@@ -62,7 +62,7 @@ const routes: Routes = [
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
   {path:'changepass/:id', component: ChangePassComponent },
-  {path:'const', component:ConsultationComponent },
+  {path:'carnet/:id', component:ConsultationComponent },
 
   
   

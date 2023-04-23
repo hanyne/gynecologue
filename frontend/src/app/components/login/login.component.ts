@@ -40,29 +40,26 @@ export class LoginComponent implements OnInit {
      }
      this.loading = true;
      this.userService.login(this.loginForm.value)        
-     .subscribe(     
-      data => {
-        localStorage.setItem('token', data.token); 
-        localStorage.setItem('userName', data.user.userName);   
-        if (data === null) {
-          alert('Username or password is wrong');
+     .subscribe(data => {
+      localStorage.setItem('token', data.token);
+      if (data.user === null) {
+        alert('Username or password is wrong');
+      } else {
+        localStorage.setItem('userName', data.user?.userName);
+        console.log('Login successful');
+        console.log('Data.user.role', data.user.role);
+        if (data.user.role === 'docteur') {
+          this.router.navigate(['admin/dashboard']);
+        } else if (data.user.role === 'patiente') {
+          this.router.navigate(['/home']);
+        } else if (data.user.role === 'secretaire') {
+          this.router.navigate(['admin/dashboard']);
         } else {
-          console.log('Login successful');
-          console.log('Data.user.role:', data.user.role);
-          if (data.user.role ==='docteur') {
-            this.router.navigate(['admin/dashboard']);
-          } else if (data.user.role === 'patiente') {
-            //const id = data.user._id;
-            /*this.router.navigate(['/changepass',id]);*/
-            this.router.navigate(['/home']);
-          } else if (data.user.role === 'secretaire') {
-            this.router.navigate(['admin/dashboard']);
-          } else {
-            console.log('Unknown role:', data);
-            alert('Unknown user role');
-          }
+          console.log('Unknown role:', data);
+          alert('Unknown user role');
         }
-      }, err => {
-        alert("Login failed");        
-      })
+      }
+    }, err => {
+      alert("Login failed");        
+    });
    }}

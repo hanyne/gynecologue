@@ -1,99 +1,80 @@
-<div class="container">
-    <!-- No data message -->
-    <p *ngIf="Carnet.length <= 0" class="no-data text-center">There is no Carnetadded yet!</div>
-    <!-- Carnetlist -->
-    <div *ngIf="Carnet.length > 0">
-        <div *ngFor="let carnet of Carnet">
-          <th scope="row">{{carnet._id}}</th>
-          <td class="text-center edit-block">
-            <span class="edit" [routerLink]="['/edit-carnet/', carnet._id]">
-              <button type="button" class="btn btn-success btn-sm">Edit</button>
-            </span>
-            <span class="delete" (click)="onDelete(carnet)">
-              <button type="button" class="btn btn-danger btn-sm">Delete</button>
-            </span>
-          </td>
-          
-        
+<div>
+  <h1>{{ carnet.nom }} {{ carnet.prenom }}</h1>
+  <p><strong>prenom :</strong>{{carnet.prenom}}</p>  
 
-  <div>nom:<p>{{carnet.nom}}</p> </div>    
-   <div>prenom:<p>{{carnet.prenom}}</p> </div> 
-
-   <div>adresse:<p>{{carnet.adresse}}</p> </div> 
+   <p><strong>adresse :</strong>{{carnet.adresse}}</p>  
  
-    <div>naissance <p>{{carnet.naissance}}</p></div>
+    <p><strong>naissance  :</strong>{{carnet.naissance | date }}</p>
  
-    <div>nationalite:<p>{{carnet.nationalite}}</p> </div> 
+    <p><strong>nationalite :</strong>{{carnet.nationalite}}</p>  
  
-    <div>Cin:<p>{{carnet.Cin}}</p> </div> 
+    <p><strong>Cin :</strong>{{carnet.Cin}}</p>  
  
-    <div>niv_inst:<p>{{carnet.niv_inst}}</p> </div> 
+    <p><strong>niv_inst :</strong>{{carnet.niv_inst}}</p>  
  
-    <div>occupation:<p>{{carnet.occupation}}</p> </div> 
+    <p><strong>occupation :</strong>{{carnet.occupation}}</p>  
  
-    <div> tel<p>{{carnet.tel}}</p></div>
+    <p><strong> tel :</strong>{{carnet.tel}}</p>
  
-    <div>couv <p>{{carnet.couv}}</p></div>
+    <p><strong>couv  :</strong>{{carnet.couv}}</p>
  
-    <div>num_c:<p>{{carnet.num_c}}</p> </div> 
+    <p><strong>num_c :</strong>{{carnet.num_c}}</p>  
  
-    <div>sang <p>{{carnet.sang}}</p></div>
+    <p><strong>sang  :</strong>{{carnet.sang}}</p>
  
-    <div>rhesus<p>{{carnet.rhesus}}</p></div>
+    <p><strong>rhesus :</strong>{{carnet.rhesus}}</p>
  
-    <div>type_allergie<p>{{carnet.type_allergie}}</p></div>
+    <p><strong>type_allergie :</strong>{{carnet.type_allergie}}</p>
  
-    <div>declaree_allergie<p>{{carnet.declaree_allergie}}</p></div>
+    <p><strong>declaree_allergie :</strong>{{carnet.declaree_allergie | date }}</p>
  
-    <div>traitement<p>{{carnet.traitement}}</p></div>
+    <p><strong>traitement :</strong>{{carnet.traitement}}</p>
  
-    <div>med_tret<p>{{carnet.med_tret}}</p></div>
+    <p><strong>med_tret :</strong>{{carnet.med_tret}}</p>
  
-    <div>age_pub<p>{{carnet.age_pub}}</p></div>
+    <p><strong>age_pub :</strong>{{carnet.age_pub}}</p>
  
-    <div>prob:<p>{{carnet.prob}}</p> </div> 
+    <p><strong>prob :</strong>{{carnet.prob}}</p>  
  
-    <div>maladie<p>{{carnet.maladie}}</p></div>
+    <p><strong>maladie :</strong>{{carnet.maladie}}</p>
  
-    <div> maladieF <p>{{carnet.maladieF}}</p></div>
+    <p><strong> maladieF  :</strong>{{carnet.maladieF}}</p>
  
-    <div>type_handicap<p>{{carnet.type_handicap}}</p></div>
+    <p><strong>type_handicap :</strong>{{carnet.type_handicap}}</p>
  
-    <div>declaree_handicap<p>{{carnet.declaree_handicap}}</p></div>
+    <p><strong>declaree_handicap :</strong>{{carnet.declaree_handicap | date }}</p>
  
-    <div>date_vaccin1<p>{{carnet.date_vaccin1}}</p></div>
+    <p><strong>date_vaccin1 :</strong>{{carnet.date_vaccin1 | date }}</p>
  
-    <div>lieu_vaccin1<p>{{carnet.lieu_vaccin1}}</p></div>
+    <p><strong>lieu_vaccin1 :</strong>{{carnet.lieu_vaccin1}}</p>
  
-    <div>date_vaccin2<p>{{carnet.date_vaccin2}}</p></div>
+    <p><strong>date_vaccin2 :</strong>{{carnet.date_vaccin2 | date }}</p>
  
-    <div>lieu_vaccin2<p>{{carnet.lieu_vaccin2}}</p></div>
+    <p><strong>lieu_vaccin2 :</strong>{{carnet.lieu_vaccin2}}</p>
  
-    <div>date_vaccin3<p>{{carnet.date_vaccin3}}</p></div>
+    <p><strong>date_vaccin3 :</strong>{{carnet.date_vaccin3 | date }}</p>
  
-    <div>lieu_vaccin3<p>{{carnet.lieu_vaccin3}}</p></div>
+    <p><strong>lieu_vaccin3 :</strong>{{carnet.lieu_vaccin3}}</p>
  
-    <div>date_vaccin4<p>{{carnet.date_vaccin4}}</p></div>
+    <p><strong>date_vaccin4 :</strong>{{carnet.date_vaccin4 | date }}</p>
  
-    <div>lieu_vaccin4<p>{{carnet.lieu_vaccin4}}</p></div>
+    <p><strong>lieu_vaccin4 :</strong>{{carnet.lieu_vaccin4}}</p>
  
-    <div>date_vaccin5<p>{{carnet.date_vaccin5}}</p></div>
+    <p><strong>date_vaccin5 :</strong>{{carnet.date_vaccin5| date }}</p>
  
-    <div>lieu_vaccin5<p>{{carnet.lieu_vaccin5}}</p></div>
+    <p><strong>lieu_vaccin5 :</strong>{{carnet.lieu_vaccin5}}</p>
  
-    <div>date_rubeole<p>{{carnet.date_rubeole}}</p></div>
-    <div>lieu_rubeole:<p>{{carnet.lieu_rubeole}}</p> </div> 
+    <p><strong>date_rubeole :</strong>{{carnet.date_rubeole| date }}</p>
+    <p><strong>lieu_rubeole :</strong>{{carnet.lieu_rubeole}}</p>  
  
-    <div>autre_vaccin<p>{{carnet.autre_vaccin}}</p></div>
+    <p><strong>autre_vaccin :</strong>{{carnet.autre_vaccin}}</p>
  
-    <div>nomM<p>{{carnet.nomM}}</p></div>
+    <p><strong>nomM :</strong>{{carnet.nomM}}</p>
  
-    <div>prenomM:<p>{{carnet.prenomM}}</p> </div> 
+    <p><strong>prenomM :</strong>{{carnet.prenomM}}</p>  
  
-    <div>telM <p>{{carnet.telM}}</p> </div>
-    <div>telM <p>{{carnet.password}}</p> </div>
-    <div>telM <p>{{carnet.role}}</p> </div>
-
-    </div>
-    </div>
-
+    <p><strong>telM  :</strong>{{carnet.telM}}</p> 
+    <p><strong>password  :</strong>{{carnet.password}}</p> 
+    
+ 
+  </div>
