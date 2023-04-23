@@ -27,6 +27,7 @@ import { RequestResetComponent } from './components/request-reset/request-reset.
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
 
 
 
@@ -61,8 +62,9 @@ const routes: Routes = [
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
   {path:'changepass/:id', component: ChangePassComponent },
-  
+  {path:'const', component:ConsultationComponent },
 
+  
   
 
 
