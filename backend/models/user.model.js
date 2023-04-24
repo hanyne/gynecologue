@@ -1,9 +1,18 @@
-const mongoose = require('mongoose')
-const Role = require("../_helpers/role")
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-    userName:{type: String, required: true },
-    password:{type: String, required: true },
-    role: {type: String, default: Role.Docteur}
-})
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model(
+  "User",
+  new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+    roles: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role"
+      }
+    ]
+  })
+);
+
+module.exports = User;

@@ -1,103 +1,117 @@
-const User = require('../models/user.model');
-const Patiente = require('../models/patiente.model');
-const Secretaire = require('../models/secretaire.model');
-const jwt = require('jsonwebtoken');
-const bcrypt = require("bcryptjs");
-const { secret } = require('../middleware/auth.config');
+const config = require("../config/auth.config");
+const db = require("../models");
+const User = db.user;
+const Role = db.role;
 
-exports.signup = async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    const newUser = new User({ 
-      userName: req.body.userName,
-      password: hashedPassword
-    });
-    await newUser.save();
-    res.status(200).json("User successfully added");
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
 
-exports.signin = async (req, res) => {
-  try {
-    const user = await User.findOne({ userName: req.body.userName });
+exports.signup = (req, res) => {
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+  });
 
-    if (!user) {
-      const secretaire = await Secretaire.findOne({ userName: req.body.userName });
-      if (secretaire) {
-        bcrypt.compare(req.body.password, secretaire.password, function (err, isMatch) {
-          if (isMatch && !err) {
-            var token = jwt.sign(
-              { _id: secretaire._id, role: secretaire.role },
-              secret
-            );
-            res.json({
-              success: true,
-              token: token,
-              role: "secretaire",
-              user: secretaire,
-            });
-          } else {
-            res.send({
-              success: false,
-              msg: "Authentication failed. Wrong password.",
-            });
+  user.save((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (req.body.roles) {
+      Role.find(
+        {
+          name: { $in: req.body.roles },
+        },
+        (err, roles) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
           }
-        });
-      } else {
-        const patiente = await Patiente.findOne({ userName: req.body.userName });
-        if (!patiente) {
-          res.send({
-            success: false,
-            msg: "Authentication failed. User not found.",
-          });
-        } else {
-          bcrypt.compare(req.body.password, patiente.password, function (err, isMatch) {
-            if (isMatch && !err) {
-              var token = jwt.sign(
-                { _id: patiente._id, role: patiente.role },
-                secret
-              );
-              res.json({
-                success: true,
-                token: token,
-                role: "patiente",
-                user: patiente,
-              });
-            } else {
-              res.send({
-                success: false,
-                msg: "Authentication failed. Wrong password.",
-              });
+
+          user.roles = roles.map((role) => role._id);
+          user.save((err) => {
+            if (err) {
+              res.status(500).send({ message: err });
+              return;
             }
+
+            res.send({ message: "User was registered successfully!" });
           });
         }
-      }
+      );
     } else {
-      bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          var token = jwt.sign({ _id: user._id, role: user.role }, secret);
-          res.json({
-            success: true,
-            token: token,
-            role: "docteur",
-            user: user,
-          });
-        } else {
-          res.send({
-            success: false,
-            msg: "Authentication failed. Wrong password.",
-          });
+      Role.findOne({ name: "user" }, (err, role) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
         }
+
+        user.roles = [role._id];
+        user.save((err) => {
+          if (err) {
+            res.status(500).send({ message: err });
+            return;
+          }
+
+          res.send({ message: "User was registered successfully!" });
+        });
       });
     }
-  } catch (err) {
-    console.log(err);
-    res.send({
-      success: false,
-      msg: "Something went wrong. Please try again later.",
+  });
+};
+
+exports.signin = (req, res) => {
+  User.findOne({
+    username: req.body.username,
+  })
+    .populate("roles", "-__v")
+    .exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({ message: "Invalid Password!" });
+      }
+
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400, // 24 hours
+      });
+
+      var authorities = [];
+
+      for (let i = 0; i < user.roles.length; i++) {
+        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+      }
+
+      req.session.token = token;
+
+      res.status(200).send({
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        roles: authorities,
+      });
     });
+};
+
+exports.signout = async (req, res) => {
+  try {
+    req.session = null;
+    return res.status(200).send({ message: "You've been signed out!" });
+  } catch (err) {
+    this.next(err);
   }
 };
