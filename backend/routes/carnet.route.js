@@ -9,8 +9,12 @@ const multer = require("../config/multer");
 
 
 // Add Carnet
-carnetRoute.route('/create').post((req, res, next) => {
-    Carnet.create(req.body, (error, data) => {
+carnetRoute.route('/:patientId/create').post((req, res, next) => {
+    Carnet.create(
+    {...req.body, 
+    patientId: req.params.patientId,
+  },
+      (error, data) => {
     if (error) {
       return next(error)
     } else {
@@ -33,15 +37,18 @@ carnetRoute.route('/').get((req, res) => {
 });
 
 // Get single Carnet
-carnetRoute.route('/read/:id').get((req, res) => {
-    Carnet.findById(req.params.id, (error, data) => {
+carnetRoute.route('/read/:patientId/:id').get((req, res) => {
+  Carnet.findOne({
+    _id: req.params.id,
+    patientId: req.params.patientId,
+  }, (error, data) => {
     if (error) {
-      return next(error)
+      return next(error);
     } else {
-      res.json(data)
+      res.json(data);
     }
-  })
-})
+  });
+});
 
 // Update Carnet
 carnetRoute.route('/update/:id').put((req, res, next) => {

@@ -1,45 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewChild} from '@angular/core';
-import { carnetService } from 'src/app/service/carnet.service';
-import { Carnet} from 'src/app/model/carnet';
+import { PatienteService } from 'src/app/service/patiente.service';
+import { Patiente } from 'src/app/model/patiente';
+import { carnetService } from '../../../service/carnet.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {  FormBuilder} from '@angular/forms';
+import { ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-list-patientes',
   templateUrl: './list-patientes.component.html',
   styleUrls: ['./list-patientes.component.css']
 })
 export class ListPatientesComponent implements OnInit {
-  Carnet:any = [];
-  searchTerm: string = '';
-  carnets!:Carnet;
-  constructor(public fb: FormBuilder,private CarnetService: carnetService) { 
-    this.readCarnet();
-  }
-  ngOnInit() {}
-  readCarnet(searchTerm: string = '') {
-    this.CarnetService.getCarnets(searchTerm).subscribe((data) => {
-      if (Object.keys(data).length === 0) {
-        this.Carnet = 'No search result found';
-      } else {
-        this.Carnet = data;
-      }
-    });
-  }
-  onDelete(carnet: Carnet) {
-    if (carnet && carnet._id && confirm(`Souhaitez-vous confirmer la suppression de carnet de"${carnet.nom}"?`)) {
-      this.CarnetService.deleteCarnet(carnet._id).subscribe(
-        () => {
-          const index = this.carnets.findIndex((a: { _id: string | undefined; }) => a._id === carnet._id);
-          this.carnets.splice(index, 1);
-        },
-        (err) => console.error(err)
-      );
-    }
+  textsearch:any;
+  patientes: Patiente[]=[];
+  dataSource = new MatTableDataSource<Patiente>(this.patientes);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
   
-}
+  constructor(
+    private patienteService: PatienteService,
+    private carnetService: carnetService,
+    private router: Router
+  ) { }
+  
 
+  createCarnet(patientId: any) {
+    this.router.navigate(['/create-carnet', patientId]);
+  }
 
+  ngOnInit() {
+    this.getAll();
+  }
 
+  getAll(){
+    this.patienteService.getP().subscribe((data) =>
+    {
+      this.patientes = data
+      console.log(data);
+    } )
+  }
+
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.patienteService.logoutUser()
+    }
+  }
+
+  deletepatiente(patienteClicked: Patiente) {
+    if(window.confirm('Do you want to go ahead?')) {
+      this.patienteService.deleteP(patienteClicked._id)
+        .subscribe(() => {
+          this.patientes = this.patientes.filter(tL => tL._id != patienteClicked._id);
+        });
+    }
+  }
+
+ 
+  }

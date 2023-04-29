@@ -57,7 +57,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>Date de naissance</mat-label>
-          <input formControlName="naissance" matInput [matDatepicker]="naissance" 
+          <input formControlName="naissance" matInput [matDatepicker]="naissance"  id="mob" name="mob" 
           [ngClass]="{ 'is-invalid': submitted && f['naissance'].errors }">
           <div class="invalid-feedback" *ngIf="f['naissance'].errors && submitted">
             <div *ngIf="f['naissance'].errors['required']">Date is required</div>

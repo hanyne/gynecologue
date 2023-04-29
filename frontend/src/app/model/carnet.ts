@@ -1,6 +1,6 @@
 export class Carnet {
     _id?: string;
-    photo!: string ;
+
     nom!: string ;
 
     prenom!: string;

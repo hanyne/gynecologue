@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'create-employee', component: EmployeeCreateComponent },
   { path: 'edit-employee/:id', component: EmployeeEditComponent },
   { path: 'employees-list', component: EmployeeListComponent }, 
-  { path: 'create-carnet', component: CarnetCreateComponent },
+  { path: 'create-carnet/:id', component: CarnetCreateComponent },
   { path: 'edit-carnet/:id', component: CarnetEditComponent },
   { path: 'carnet-list', component: CarnetListComponent }, 
   { path: 'home' , component: HomeComponent }, 
@@ -58,6 +58,7 @@ const routes: Routes = [
   {path:'admin/addmedic', component:AddMedicComponent },
   {path:'admin/listM', component:ListMedicComponent },
   {path:'admin/listR', component:ReclamationListComponent  },
+  {path:'const/:id', component:ConsultationComponent  },
   //psw
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},

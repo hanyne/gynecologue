@@ -9,5 +9,6 @@ export class Patiente {
     password!: String;
     role!: String;
     emailToken!:String;
+    carnet: any;
 }
 

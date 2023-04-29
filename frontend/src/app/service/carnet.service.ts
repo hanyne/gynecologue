@@ -14,8 +14,8 @@ export class carnetService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) {}
   // Create
-  createCarnet(data: any): Observable<any> {
-    let url = `${this.baseUri}/create`;
+  createCarnet(patientId: string, data: any): Observable<any> {
+    const url = `${this.baseUri}/${patientId}/create`;
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   // Get all carnets

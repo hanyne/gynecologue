@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     private router: Router) {
     this.loginForm= this.formBuilder.group({
       userName: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      role: ['', Validators.required]
       })
    }
 

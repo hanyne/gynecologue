@@ -22,7 +22,6 @@ exports.savepatiente = async (req, res, next) => {
       res.status(200).json("Patiente succeffuly added");
       }
       
-//get all
 // Get all patients
 exports.findAll = async (req, res) => {
   try {

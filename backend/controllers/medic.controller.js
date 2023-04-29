@@ -90,4 +90,18 @@ exports.deleteAllDrug = (req, res) => {
             res.status(200).send(medic)
         })
         .catch((error) => { console.log(error) });
-}
+      }
+        // Get All medic
+        exports.getDrug = (req, res) => {
+  const { drugName } = req.query;
+  const query = drugName ? { drugName: { $regex: new RegExp(drugName), $options: 'i' } } : {};
+  Drug.find(query, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
+};
+        
+      

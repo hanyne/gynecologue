@@ -10,29 +10,30 @@
 <body>
 	<header class="header">
 		<div style="display: flex; justify-content: space-between;">
-			<h1 style="text-align: left">Dr Nesrine MACHAT EP. KHALFALLAH</h1>
-			<h1 style="text-align: right">الدكتورة نسرين مشاط حرم خلف الله</h1> 
+			<h1 style="text-align: left" class="text-black" >Dr Nesrine MACHAT EP. KHALFALLAH</h1>
+			<h1 style="text-align: right" class="text-black" >الدكتورة نسرين مشاط حرم خلف الله</h1> 
 		</div>
 	    <div style="display: flex; justify-content: space-between;">
-			<h3 style="text-align: left">Spécialiste en gynécologie - obstétrique</h3>
-			<h3 style="text-align: right">أخصائية أمراض النساء والتوليد</h3> 
+			<h3 style="text-align: left" class="text-black" >Spécialiste en gynécologie - obstétrique</h3>
+			<h3 style="text-align: right" class="text-black" >أخصائية أمراض النساء والتوليد</h3> 
 		</div>
 	</header>
 	<main>
 		<label for="drug">Médicament:</label>
-		<input type="text" id="drug" [(ngModel)]="selectedDrug" (change)="onFilter(selectedDrug)">
-		<ul *ngIf="filteredDrugs.length">
-			<!--<li *ngFor="let drug of filteredDrugs | filter:selectedDrug">
-				<a href="#" (click)="onSelect(drug)">{{drug.drugName}}</a>
-			</li>-->
+		<input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" (input)="readmedic(searchTerm)">
+		<ul>
+			<li *ngFor="let drug of drug">
+				<div (click)="onSelect(drug)">{{drug.drugName}} {{drug.dosage}}</div>
+			</li>
 		</ul>
+		<button> </button>
 	</main>
 	<footer class="footer">
 		<p>عمارة العروس - الطابق 3 شارع الهادي شاكر ـ طريق السينما (امام مونوبري اكسبراس) 8000 نابل</p>
 		<p>Av hedi chaker devant monoprix express ex touta Immeuble larous 3ème étage 8000 Nabeul Tunisie</p>
 		<div>
-			<i class="fas fa-phone"></i>
-			<i class="fas fa-mobile-alt"></i>
+			<i class="m-1 fas fa-phone "> <span class="mx-2">36 247 620</span></i>
+			<i class="mx-5 fas fa-mobile-alt"><span class="mx-2">97 550 587</span> </i>
 		</div>
 	</footer>
 </body>

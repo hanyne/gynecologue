@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Carnet = new Schema({
-   nom: {
+
+   patientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Patient',
+    },
+    nom: {
       type: String
    },
    prenom: {
@@ -121,9 +126,9 @@ let Carnet = new Schema({
    telM: {
       type: Number
    },
-   role: {type: String, default: Role.Patiente},
-   password: {type: String, required: true },
+
 }, {
+   timestamps: true,
    collection: 'carnets'
 })
 

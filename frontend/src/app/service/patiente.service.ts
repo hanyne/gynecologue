@@ -26,13 +26,14 @@ export class PatienteService {
   deleteP(id: String) {
     return this.http.delete(`${this.API_URI}/delete/${id}`);
   }  
-  getById(id: any): Observable<any> {
-    return this.http.get(`${this.API_URI}/get/${id}`)
-  }
+
   update(id: any, data: any): Observable<any> {
     return this.http.put(`${this.API_URI}/update/${id}`, data);
   }
   updatePassword(id:any ,oldPassword: any, newPassword: any ): Observable<any> {
     return this.http.put(`${this.API_URI}/Update-password/${id}`, { oldPassword, newPassword });
+  }
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.API_URI}/getById/${id}`)
   }
 }

@@ -1,37 +1,27 @@
 import { Component , OnInit } from '@angular/core';
-import { Medic } from 'src/app/model/medic';
-import { MedicService } from '../../../service/medic.service';
-
+import { Ordonnance} from '../../../model/ordonance';
+import { OrdonnanceService } from '../../../service/ordonance.service';
+import { Medic} from 'src/app/model/medic';
+import{MedicService} from '../../../service/medic.service';
 @Component({
   selector: 'app-ordonnance',
   templateUrl: './ordonnance.component.html',
   styleUrls: ['./ordonnance.component.css']
 })
 export class OrdonnanceComponent implements OnInit  {
-  Drug!: Medic[];
-  filteredDrugs: Medic[] = [];
+  Ord!: Ordonnance;
+  drug!:Medic[];
   selectedDrug!:any;
-  constructor(private medicService: MedicService) { }
-     // Retrieve the list of drugs from the MedicService and set the Drug property
-  getAll(): void {
-    this.medicService.getDrug().subscribe(
-        (data) => {
-          this.Drug = data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
-  onFilter(selectedDrug: string): void {
-    // Call the filterDrugs() method from the MedicService and set the filteredDrugs property
-    this.filteredDrugs = this.medicService.filterDrugs(this.Drug, selectedDrug);
-  }
+  searchTerm: string = '';
+  msg: string ='';
+  constructor(private OrdonnanceService: OrdonnanceService ,private Drug:MedicService ) { }
 
-  onSelect(drug: Medic): void {
+  onSelect(drug:Medic ): void {
     this.selectedDrug = drug.drugName;
-    // Call the addDrugOrd() method from the MedicService to add the selected drug to the prescription
-    this.medicService.addDrugOrd(drug).subscribe(
+  }
+  onAjout(Ord:Ordonnance ): void {
+    // Call the addDrugOrd() method from the OrdonnanceService to add the selected drug to the prescription
+    this.OrdonnanceService.addOrd(Ord).subscribe(
       (data) => {
         console.log('Drug added to prescription successfully');
       },
@@ -40,7 +30,16 @@ export class OrdonnanceComponent implements OnInit  {
       }
     );
   }
-  ngOnInit() {
-    this.getAll();
+  ngOnInit() {}
+  readmedic(searchTerm : string = '') {
+    this.Drug.getDrug().subscribe((data) => {
+      if (Object.keys(data).length === 0) {
+        this.msg = 'No search result found';
+
+
+      } else {
+        this.drug= data;
+      }
+    });
   }
 }

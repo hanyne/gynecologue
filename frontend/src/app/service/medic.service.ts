@@ -50,4 +50,9 @@ filterDrugs(drug:Medic[],term: string): Medic[] {
     drug.drugName.toLowerCase().startsWith(term.toLowerCase())
   );
 }
+ // Get all carnets
+ search(searchTerm: string = '') {
+  const query = searchTerm ? `?DrugName=${searchTerm}` : '';
+  return this.http.get(`${this.API_URI}${query}`);
+}
 }

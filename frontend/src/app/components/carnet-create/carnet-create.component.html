@@ -3,7 +3,8 @@
   <div class="row d-flex justify-content-center">
       <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
           <div class="card">
-              <form class="form-card" [formGroup]="carnetForm" (ngSubmit)="onSubmit()" >
+            <form class="form-card" [formGroup]="carnetForm" (ngSubmit)="onSubmit()">
+                <h1>Créer carnet de santé pour {{patient.nomP}} {{patient.prenomP}}</h1>
             <div class="row justify-content-between text-left">
                   <div class="row justify-content-between text-left">
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"> Name<span class="text-danger"> *</span></label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" formControlName="nom"  > </div>
