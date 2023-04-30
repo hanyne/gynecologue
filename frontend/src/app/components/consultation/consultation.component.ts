@@ -1,32 +1,79 @@
-import { Carnet } from './../../model/carnet';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { carnetService } from '../../service/carnet.service';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { FormGroup, FormBuilder, Validators , } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { PatienteService } from 'src/app/service/patiente.service';
+import { Patiente } from 'src/app/model/patiente';
+import { ConsultationService } from 'src/app/service/consultation.service';
 @Component({
   selector: 'app-consultation',
   templateUrl: './consultation.component.html',
   styleUrls: ['./consultation.component.css']
 })
-export class ConsultationComponent {
- carnet: Carnet = new Carnet();
+export class ConsultationComponent  implements OnInit  {
+  patient: Patiente = new Patiente();
+  submitted = false;
+  consultationForm!: FormGroup;
+  photo: any = null;
 
-  constructor(private route: ActivatedRoute, private CarnetService: carnetService) { }
+  constructor(
+    public fb: FormBuilder,
+    private router: Router,
+    private ngZone: NgZone,
+    private consultationService: ConsultationService,
+    private patienteService: PatienteService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.getCarnet();
+    const patientId = this.route.snapshot.paramMap.get('id');
+    this.patienteService.getById(patientId!).subscribe((patient) => {
+      this.patient = patient;
+      this.mainForm(patientId!);
+    });
   }
 
-  getCarnet() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.CarnetService.getCarnet(id).subscribe(
-      (res) => {
-        this.carnet = res;
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+  mainForm(_id: string) {
+  this.consultationForm = this.fb.group({
+  consultdate: '',
+  conclusion: '',
+  annexe:'',
+    });
   }
 
+  loadImage(photo: any) {
+    if (photo.target.files && photo.target.files[0]) {
+      this.photo = photo.target.files[0];
+      console.log(this.photo);
+    } else {
+      // Set a default picture if no photo was selected
+      this.photo = 'src/assets/image/default.jpg';
+    }
+  }
 
+  // Choose designation with select dropdown
+
+  // Getter to access form control
+  get myForm() {
+    return this.consultationForm.controls;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (!this.consultationForm.valid) {
+      return false;
+    } else {
+      const patientId = this.route.snapshot.paramMap.get('id');
+      return this.consultationService.createConsultation(patientId!, this.consultationForm.value).subscribe({
+        complete: () => {
+          console.log('consultation successfully created!');
+          this.ngZone.run(() => this.router.navigateByUrl('/home'));
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    }
+  }
 }
+

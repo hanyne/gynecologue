@@ -1,80 +1,22 @@
-<div>
-  <h1>{{ carnet.nom }} {{ carnet.prenom }}</h1>
-  <p><strong>prenom :</strong>{{carnet.prenom}}</p>  
 
-   <p><strong>adresse :</strong>{{carnet.adresse}}</p>  
- 
-    <p><strong>naissance  :</strong>{{carnet.naissance | date }}</p>
- 
-    <p><strong>nationalite :</strong>{{carnet.nationalite}}</p>  
- 
-    <p><strong>Cin :</strong>{{carnet.Cin}}</p>  
- 
-    <p><strong>niv_inst :</strong>{{carnet.niv_inst}}</p>  
- 
-    <p><strong>occupation :</strong>{{carnet.occupation}}</p>  
- 
-    <p><strong> tel :</strong>{{carnet.tel}}</p>
- 
-    <p><strong>couv  :</strong>{{carnet.couv}}</p>
- 
-    <p><strong>num_c :</strong>{{carnet.num_c}}</p>  
- 
-    <p><strong>sang  :</strong>{{carnet.sang}}</p>
- 
-    <p><strong>rhesus :</strong>{{carnet.rhesus}}</p>
- 
-    <p><strong>type_allergie :</strong>{{carnet.type_allergie}}</p>
- 
-    <p><strong>declaree_allergie :</strong>{{carnet.declaree_allergie | date }}</p>
- 
-    <p><strong>traitement :</strong>{{carnet.traitement}}</p>
- 
-    <p><strong>med_tret :</strong>{{carnet.med_tret}}</p>
- 
-    <p><strong>age_pub :</strong>{{carnet.age_pub}}</p>
- 
-    <p><strong>prob :</strong>{{carnet.prob}}</p>  
- 
-    <p><strong>maladie :</strong>{{carnet.maladie}}</p>
- 
-    <p><strong> maladieF  :</strong>{{carnet.maladieF}}</p>
- 
-    <p><strong>type_handicap :</strong>{{carnet.type_handicap}}</p>
- 
-    <p><strong>declaree_handicap :</strong>{{carnet.declaree_handicap | date }}</p>
- 
-    <p><strong>date_vaccin1 :</strong>{{carnet.date_vaccin1 | date }}</p>
- 
-    <p><strong>lieu_vaccin1 :</strong>{{carnet.lieu_vaccin1}}</p>
- 
-    <p><strong>date_vaccin2 :</strong>{{carnet.date_vaccin2 | date }}</p>
- 
-    <p><strong>lieu_vaccin2 :</strong>{{carnet.lieu_vaccin2}}</p>
- 
-    <p><strong>date_vaccin3 :</strong>{{carnet.date_vaccin3 | date }}</p>
- 
-    <p><strong>lieu_vaccin3 :</strong>{{carnet.lieu_vaccin3}}</p>
- 
-    <p><strong>date_vaccin4 :</strong>{{carnet.date_vaccin4 | date }}</p>
- 
-    <p><strong>lieu_vaccin4 :</strong>{{carnet.lieu_vaccin4}}</p>
- 
-    <p><strong>date_vaccin5 :</strong>{{carnet.date_vaccin5| date }}</p>
- 
-    <p><strong>lieu_vaccin5 :</strong>{{carnet.lieu_vaccin5}}</p>
- 
-    <p><strong>date_rubeole :</strong>{{carnet.date_rubeole| date }}</p>
-    <p><strong>lieu_rubeole :</strong>{{carnet.lieu_rubeole}}</p>  
- 
-    <p><strong>autre_vaccin :</strong>{{carnet.autre_vaccin}}</p>
- 
-    <p><strong>nomM :</strong>{{carnet.nomM}}</p>
- 
-    <p><strong>prenomM :</strong>{{carnet.prenomM}}</p>  
- 
-    <p><strong>telM  :</strong>{{carnet.telM}}</p> 
-    <p><strong>password  :</strong>{{carnet.password}}</p> 
-    
- 
-  </div>
+<div class="container-fluid px-1 py-5 mx-auto">
+  <div class="row d-flex justify-content-center">
+      <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+          <div class="card">
+            <form class="form-card" [formGroup]="consultationForm" (ngSubmit)="onSubmit()">
+                <h1>Créer carnet de santé pour {{patient.nomP}} {{patient.prenomP}}</h1>
+            <div class="row justify-content-between text-left">
+                  <div class="row justify-content-between text-left">
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"> date<span class="text-danger"> *</span></label> <input type="date" id="date" name="date" formControlName="consultdate"  > </div>
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">compte rendu de consultation<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" formControlName="conclusion" > </div>
+                  </div>
+                  <div class="row justify-content-between text-left">
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">annexe<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="annexe"> </div>
+                  </div>
+
+<div class="form-group">
+  <button class="formbold-btn " type="submit">
+    Register
+  </button>
+</div>
+</div></form></div></div></div></div>

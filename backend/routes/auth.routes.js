@@ -1,25 +1,13 @@
-const { verifySignUp } = require("../middleware");
-const controller = require("../controllers/auth.controller");
+const express = require("express");
+const router = express.Router();
+const authController = require("../controllers/auth.controller");
+const passController = require("../controllers/forgetpass.controller");
 
-module.exports = function(app) {
-  app.use(function(req, res, next) {
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, Content-Type, Accept"
-    );
-    next();
-  });
+router.post("/signup", authController.signup);
+router.post("/signin", authController.signin) ;
 
-  app.post(
-    "/api/auth/signup",
-    [
-      verifySignUp.checkDuplicateUsernameOrEmail,
-      verifySignUp.checkRolesExisted
-    ],
-    controller.signup
-  );
-
-  app.post("/api/auth/signin", controller.signin);
-
-  app.post("/api/auth/signout", controller.signout);
-};
+//resetPassword
+router.post("/ResetPassword", passController.ResetPassword);
+router.get("/ValidPasswordToken/:patienteId/:resettoken", passController.ValidPasswordToken);
+router.post("/NewPassword/:patienteId/:resettoken", passController.NewPassword);
+module.exports = router;

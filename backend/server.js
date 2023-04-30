@@ -28,6 +28,7 @@ const patiente = require("../backend/routes/patiente.routes")
 const secretaire = require("../backend/routes/secretaire.routes")
 const medic = require("../backend/routes/medic.routes")
 const ord = require("../backend/routes/ordonance")
+const consultationRoutes = require('../backend/routes/consultation');
 
 const app = express()
 app.use(bodyParser.json());
@@ -39,6 +40,7 @@ app.use('/api', employeeRoute);
 app.use('/carnet', carnetRoute);
 app.use('/appointment', appointmentRoutes);
 app.use('/message', messageRoutes);
+app.use('/consultation', consultationRoutes);
 // routes middleware
 app.use('/articles', articleRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

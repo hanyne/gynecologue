@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { carnetService } from '../../../service/carnet.service';
+import { ConsultationService } from '../../../service/consultation.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { ViewChild} from '@angular/core';
@@ -28,12 +29,16 @@ export class ListPatientesComponent implements OnInit {
   constructor(
     private patienteService: PatienteService,
     private carnetService: carnetService,
+    private consultationService: ConsultationService,
     private router: Router
   ) { }
   
 
   createCarnet(patientId: any) {
     this.router.navigate(['/create-carnet', patientId]);
+  }
+  createConsultation(patientId: any) {
+    this.router.navigate(['/const', patientId]);
   }
 
   ngOnInit() {
