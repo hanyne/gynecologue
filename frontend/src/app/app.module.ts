@@ -58,7 +58,7 @@ import { AppointmentListComponent } from './components/appointment-list/appointm
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
 
@@ -128,6 +128,7 @@ import { ConsultationComponent } from './components/consultation/consultation.co
     MatCardModule,
     MatProgressBarModule,
     MatPaginatorModule,
+    MatStepperModule
     
 
 

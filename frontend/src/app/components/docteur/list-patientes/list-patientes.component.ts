@@ -18,6 +18,7 @@ export class ListPatientesComponent implements OnInit {
   textsearch:any;
   patientes: Patiente[]=[];
   dataSource = new MatTableDataSource<Patiente>(this.patientes);
+  searchTerm: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
@@ -45,8 +46,8 @@ export class ListPatientesComponent implements OnInit {
     this.getAll();
   }
 
-  getAll(){
-    this.patienteService.getP().subscribe((data) =>
+  getAll(searchTerm: string = ''){
+    this.patienteService.getP(searchTerm).subscribe((data) =>
     {
       this.patientes = data
       console.log(data);

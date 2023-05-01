@@ -25,13 +25,17 @@ exports.savepatiente = async (req, res, next) => {
 // Get all patients
 exports.findAll = async (req, res) => {
   try {
-    const patients = await Patiente.find({});
+    const { nomP } = req.query;
+    const query = nomP ? { nomP: { $regex: new RegExp(nomP, 'i') } } : {};
+    const patients = await Patiente.find(query);
     res.json(patients);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
   }
 };
+
+
 //update
     exports.update = async (req,res) => {
       try{

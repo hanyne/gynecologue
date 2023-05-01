@@ -14,9 +14,11 @@ export class PatienteService {
     localStorage.clear()
     window.location.reload()
   }
-  getP(): Observable<any> {
-    return this.http.get<Patiente[]>(`${this.API_URI}/findAll`)
+  getP(searchTerm: string = ''): Observable<any> {
+    const query = searchTerm ? `?nomP=${searchTerm}` : '';
+    return this.http.get<Patiente[]>(`${this.API_URI}/findAll${query}`)
   }
+
   saveP(pat:Patiente) :Observable<any>{
     return this.http.post<Patiente>(`${this.API_URI}/saveP`, pat)
   }

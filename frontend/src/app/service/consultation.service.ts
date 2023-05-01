@@ -20,8 +20,9 @@ export class ConsultationService {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
 
+ 
 // Get consultation
-getCconsultation(id: any): Observable<any> {
+getConsultation(id: any): Observable<any> {
   const url = `${this.baseUri}/read/${id}`;
   return this.http.get(url, { headers: this.headers }).pipe(
     map((res: any) => {

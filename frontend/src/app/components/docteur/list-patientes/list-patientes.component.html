@@ -165,8 +165,9 @@
 			<div class="container p-3 my-3 border cont">
 				<div class="form-group mb-4">
 				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des patientes</h1></div>
-				   <input id="exampleFormControlInput2" type="text" placeholder="Chercher ...?"
-				    [(ngModel)]="textsearch" class="form-control form-control-underlined">
+				   <div class="form-group has-search container col-md-6 mt-1">
+					<input type="text" class="form-control fa fa-search " placeholder="Search" [(ngModel)]="searchTerm" (input)="getAll(searchTerm)">
+				</div>
 				 </div><br>
 				<!-- table section -->
 				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/create-carnet"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>

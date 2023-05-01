@@ -28,7 +28,7 @@ import { ResponseResetComponent } from './components/response-reset/response-res
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 

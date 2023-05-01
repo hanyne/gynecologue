@@ -8,7 +8,7 @@ import { carnetService } from 'src/app/service/carnet.service';
 @Component({
   selector: 'app-carnet-create',
   templateUrl: './carnet-create.component.html',
-  styleUrls: ['./carnet-create.component.css']
+  styleUrls: ['./carnet-create.component.css'],
 })
 export class CarnetCreateComponent implements OnInit {
   patient: Patiente = new Patiente();

@@ -9,8 +9,8 @@ let Consultation = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Patient',
     },
-    consultdate: { type: String },
     conclusion : { type: String },
+    consultdate: { type: String },
     annexe: { type: String },
 
 
