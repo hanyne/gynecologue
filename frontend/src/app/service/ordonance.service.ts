@@ -1,43 +1,66 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Ordonnance} from '../model/ordonance';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class OrdonnanceService {
-  ord:Ordonnance[]=[];
-  currentOrd: Ordonnance[] | undefined;
-
-  API_URI = 'http://localhost:4000/ord';
-  constructor(private http:HttpClient ) {}
-  //consulte
-getOrd(searchTerm: string = ''): Observable<any> {
-  const query = searchTerm ? '?ordName=${searchTerm}' : '';
-  return this.http.get('${this.API_URI}/listOrd');
-}
-//view 
-findOrd(id: any): Observable<any> {
-  return this.http.get('${this.API_URI}/getOrd/${id}');
-}
-  //ajout
-
-addOrd(ord:Ordonnance) :Observable<any>{
-    return this.http.post<Ordonnance>('${this.API_URI}/saveord', ord)
+  baseUri: string = 'http://localhost:4000/ord';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  constructor(private http: HttpClient) {}
+  // Create
+  createOrdonance(patientId: string, data: any): Observable<any> {
+    const url = `${this.baseUri}/${patientId}/create`;
+    return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
-
- //supression
- deleteOrd(id:String) {
-  return this.http.delete('${this.API_URI}/deleteOrd/${id}');
+  
+  // Get all ordonances
+  getOrdonances(searchTerm: string = '') {
+    const query = searchTerm ? `?date=${searchTerm}` : '';
+    return this.http.get(`${this.baseUri}${query}`);
   }
-
-//modifier
-updateOrd(id: any, data: any): Observable<any> {
-
-return this.http.put<Ordonnance>('${this.API_URI}/updateOrd/${id}', data);
+// Get ordonance
+getOrdonance(id: any): Observable<any> {
+  const url = `${this.baseUri}/read/${id}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: any) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
 }
-get(id: any): Observable<any> {
-return this.http.get('${this.API_URI}/ordByID/${id}');
-}
+
+  // Update ordonance
+  updateOrdonance(id: string | null, data: any): Observable<any> {
+    let url = `${this.baseUri}/update/${id}`;
+    return this.http
+      .put(url, data, { headers: this.headers })
+      .pipe(catchError(this.errorMgmt));
+  }
+  // Delete ordonance
+  deleteOrdonance(id: string): Observable<any> {
+    const url = `${this.baseUri}/delete/${id}`;
+    return this.http.delete(url);
+  }
+  // Error handling
+  errorMgmt(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(() => {
+      return errorMessage;
+    });
+  }
 
 }

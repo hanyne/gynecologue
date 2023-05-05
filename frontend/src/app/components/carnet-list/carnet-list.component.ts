@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { carnetService } from './../../service/carnet.service';
 import {  FormBuilder} from '@angular/forms';
 import { Carnet } from 'src/app/model/carnet';
+import { PatienteService } from 'src/app/service/patiente.service';
+import { Patiente } from 'src/app/model/patiente';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-carnet-list',
@@ -12,6 +15,7 @@ export class CarnetListComponent implements OnInit {
   
   carnets!:Carnet;
   Carnet:any = [];
+  patient: Patiente = new Patiente();
 
   //checkbox
 maladie = this.fb.group({
@@ -23,17 +27,25 @@ maladie = this.fb.group({
   Hépatite_C:false,
   Hépatite_B: false,
 });
-  constructor(public fb: FormBuilder,private CarnetService: carnetService) { 
-    this.readCarnet();
+  constructor(public fb: FormBuilder,private CarnetService: carnetService,private patienteService: PatienteService,private route: ActivatedRoute) { 
+   
   }
+  
  
-  ngOnInit() {}
-  readCarnet(){
-    this.CarnetService.getCarnets().subscribe((data) => {
-     this.Carnet = data;
-
-    })    
+  ngOnInit() {
+    const patientId = this.route.snapshot.paramMap.get('id');
+    this.patienteService.getById(patientId!).subscribe((patient) => {
+      this.patient = patient;
+      this.readCarnet(patientId!);
+    });
   }
+
+  readCarnet(patientId: string) {
+    this.CarnetService.getCarnets(patientId).subscribe((data) => {
+      this.Carnet = data;
+    });
+  }
+
   onDelete(carnet: Carnet) {
     if (carnet && carnet._id && confirm(`Souhaitez-vous confirmer la suppression de carnet de"${carnet.nom}"?`)) {
       this.CarnetService.deleteCarnet(carnet._id).subscribe(

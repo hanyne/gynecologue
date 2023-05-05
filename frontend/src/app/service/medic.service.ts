@@ -14,9 +14,10 @@ export class MedicService {
   API_URI = 'http://localhost:4000/medic';
   constructor(private http:HttpClient ) {}
   //consulte
-getDrug(): Observable<any> {
-  return this.http.get(`${this.API_URI}/listDrug`);
-}
+  getDrug(searchTerm: string = ''): Observable<Medic[]> {
+    const query = searchTerm ? `?drugName=${searchTerm}` : '';
+    return this.http.get<Medic[]>(`${this.API_URI}/listDrug${query}`);
+  }
 //view 
 find(id: any): Observable<any> {
   return this.http.get(`${this.API_URI}/getDrug/${id}`);
@@ -50,7 +51,7 @@ filterDrugs(drug:Medic[],term: string): Medic[] {
     drug.drugName.toLowerCase().startsWith(term.toLowerCase())
   );
 }
- // Get all carnets
+ // Get all medic
  search(searchTerm: string = '') {
   const query = searchTerm ? `?DrugName=${searchTerm}` : '';
   return this.http.get(`${this.API_URI}${query}`);

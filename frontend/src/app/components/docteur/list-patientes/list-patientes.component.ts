@@ -41,6 +41,12 @@ export class ListPatientesComponent implements OnInit {
   createConsultation(patientId: any) {
     this.router.navigate(['/const', patientId]);
   }
+  createOrdonance(patientId: any) {
+    this.router.navigate(['/ord', patientId]);
+  }
+  listCarnet(patientId: any) {
+    this.router.navigate(['/patient', patientId]);
+  }
 
   ngOnInit() {
     this.getAll();

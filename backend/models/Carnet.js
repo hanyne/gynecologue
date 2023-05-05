@@ -5,10 +5,7 @@ const Schema = mongoose.Schema;
 // Define collection and schema
 let Carnet = new Schema({
 
-   patientId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Patient',
-    },
+   
     nom: {
       type: String
    },
@@ -126,7 +123,10 @@ let Carnet = new Schema({
    telM: {
       type: Number
    },
-
+patientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Patient',
+    },
 }, {
    timestamps: true,
    collection: 'carnets'

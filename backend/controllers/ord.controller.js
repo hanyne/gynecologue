@@ -1,6 +1,6 @@
-const Ord = require("../models/ordonnace");
 
-// Add Ordonnance
+
+/* Add Ordonnance
 exports.saveOrd = (req, res) => { 
     const Ord = new Ordonnance({
         dateOrd: Date.now(),
@@ -65,4 +65,4 @@ exports.deleteOrd = (req, res, next) => {
       })
     }
   })
-}
+}*/

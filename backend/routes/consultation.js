@@ -1,6 +1,5 @@
 const express = require('express')
 const router = require("express").Router();
-const app = express()
 const consultationRoute = express.Router()
 
 
@@ -24,21 +23,23 @@ consultationRoute.route('/:patientId/create').post((req, res, next) => {
 })
 
 // Get All consultations
-consultationRoute.route('/').get((req, res) => {
-  Consultation.find(query, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
+consultationRoute.route('/patient/:patientId').get((req, res,  next) => {
+  Consultation.find(
+    { patientId: req.params.patientId },
+    (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.json(data);
+      }
     }
-  });
+  );
 });
 
 // Get single consultation
-consultationRoute.route('/read/:patientId/:id').get((req, res) => {
+consultationRoute.route('/read/:id').get((req, res) => {
     Consultation.findOne({
     _id: req.params.id,
-    patientId: req.params.patientId,
   }, (error, data) => {
     if (error) {
       return next(error);

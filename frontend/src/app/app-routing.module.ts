@@ -29,6 +29,10 @@ import { AppointmentListComponent } from './components/appointment-list/appointm
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { AnalyseComponent } from './components/analyse/analyse.component';
+import { ConsultationListComponent } from './components/consultation-list/consultation-list.component';
+import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
+
 
 
 
@@ -39,7 +43,7 @@ const routes: Routes = [
   { path: 'employees-list', component: EmployeeListComponent }, 
   { path: 'create-carnet/:id', component: CarnetCreateComponent },
   { path: 'edit-carnet/:id', component: CarnetEditComponent },
-  { path: 'carnet-list', component: CarnetListComponent }, 
+  { path: 'patient/:id', component: CarnetListComponent }, 
   { path: 'home' , component: HomeComponent }, 
   { path: 'appointment' , component: AppointmentComponent  },
   { path: 'admin/listapp' , component: AppointmentListComponent  },  
@@ -53,9 +57,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/dashboard', component: DashboardComponent },
   { path: 'admin/listP', component: ListPatientesComponent },
-  { path: 'admin/ord', component: OrdonnanceComponent},
+  { path: 'ord/:id', component: OrdonnanceComponent},
   {path: 'admin/patiente', component:AddPatComponent},
   {path:'admin/addmedic', component:AddMedicComponent },
+  {path:'admin/addanalyse', component:AnalyseComponent },
   {path:'admin/listM', component:ListMedicComponent },
   {path:'admin/listR', component:ReclamationListComponent  },
   {path:'const/:id', component:ConsultationComponent  },
@@ -64,6 +69,9 @@ const routes: Routes = [
   {path:'response/:resettoken', component:ResponseResetComponent},
   {path:'changepass/:id', component: ChangePassComponent },
   {path:'carnet/:id', component:ConsultationComponent },
+  {path:'const-list/:id', component:ConsultationListComponent },
+  {path:'const-edit/:id', component:EditConsultationComponent },
+
 
   
   

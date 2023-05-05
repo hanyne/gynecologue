@@ -14,19 +14,22 @@
 			<h1 style="text-align: right" class="text-black" >الدكتورة نسرين مشاط حرم خلف الله</h1> 
 		</div>
 	    <div style="display: flex; justify-content: space-between;">
-			<h3 style="text-align: left" class="text-black" >Spécialiste en gynécologie - obstétrique</h3>
+			<h3 style="text-align: left" class="text-black" >Spécialiste en gynécologie - obstétrique</h3> 
 			<h3 style="text-align: right" class="text-black" >أخصائية أمراض النساء والتوليد</h3> 
 		</div>
 	</header>
 	<main>
-		<label for="drug">Médicament:</label>
-		<input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" (input)="readmedic(searchTerm)">
-		<ul>
-			<li *ngFor="let drug of drug">
-				<div (click)="onSelect(drug)">{{drug.drugName}} {{drug.dosage}}</div>
-			</li>
-		</ul>
-		<button> </button>
+		<form class="form-card" [formGroup]="ordForm" (ngSubmit)="onSubmit()">
+			<h1>Créer carnet de santé pour {{patient.nomP}} {{patient.prenomP}}</h1>
+			<label class="form-control-label px-3">Nom :<span class="text-danger"></span></label> <input type="text" id="date" name="date" placeholder="" formControlName="nom"> 
+			<div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Prenom :<span class="text-danger"></span></label> <input type="text" id="date" name="date" placeholder="" formControlName="prenom"> </div>	
+						<div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Date :<span class="text-danger"></span></label> <input type="date" id="date" name="date" placeholder="" formControlName="date"> </div>	
+						<textarea class="form-control form-control-alternative" rows="3" placeholder="Write a large text here ..." formControlName="traitement"></textarea>
+						<button class="formbold-btn " type="submit">
+				Register
+			  </button>
+				
+		</form>
 	</main>
 	<footer class="footer">
 		<p>عمارة العروس - الطابق 3 شارع الهادي شاكر ـ طريق السينما (امام مونوبري اكسبراس) 8000 نابل</p>

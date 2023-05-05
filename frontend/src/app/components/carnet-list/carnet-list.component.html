@@ -6,7 +6,8 @@
         <div *ngFor="let carnet of Carnet">
           <th scope="row">{{carnet._id}}</th>
           <td class="text-center edit-block">
-            <span class="edit" [routerLink]="['/edit-carnet/', carnet._id]">
+
+            <span class="edit" [routerLink]="['/edit-carnet/', carnet._id  ]">
               <button type="button" class="btn btn-success btn-sm">Edit</button>
             </span>
             <span class="delete" (click)="onDelete(carnet)">
@@ -14,7 +15,7 @@
             </span>
           </td>
           
-        
+<h1>Créer carnet de santé pour {{patient.nomP}} {{patient.prenomP}}</h1> 
 
   <div>nom:<p>{{carnet.nom}}</p> </div>    
    <div>prenom:<p>{{carnet.prenom}}</p> </div> 

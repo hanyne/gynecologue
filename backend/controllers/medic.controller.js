@@ -92,16 +92,19 @@ exports.deleteAllDrug = (req, res) => {
         .catch((error) => { console.log(error) });
       }
         // Get All medic
-        exports.getDrug = (req, res) => {
-  const { drugName } = req.query;
-  const query = drugName ? { drugName: { $regex: new RegExp(drugName), $options: 'i' } } : {};
-  Drug.find(query, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
-    }
-  });
+
+       //Filter by drugName
+exports.getDrug = (req, res) => {
+  const drugName = req.params.drugName;
+  Drug.find({ drugName: { $regex: new RegExp(drugName, "i") } })
+      .then((drugs) => {
+          res.status(200).send(drugs);
+      })
+      .catch((error) => {
+          console.log(error);
+          res.status(500);
+      });
 };
-        
+
+
       

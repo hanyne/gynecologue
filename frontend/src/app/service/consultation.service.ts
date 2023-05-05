@@ -20,7 +20,16 @@ export class ConsultationService {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
 
- 
+ // Get all consultations for a specific user
+getConsultations(patientId: string): Observable<any> {
+  const url = `${this.baseUri}/patient/${patientId}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: any) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
 // Get consultation
 getConsultation(id: any): Observable<any> {
   const url = `${this.baseUri}/read/${id}`;

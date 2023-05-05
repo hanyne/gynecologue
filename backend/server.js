@@ -27,8 +27,9 @@ const auth = require("../backend/routes/auth.routes")
 const patiente = require("../backend/routes/patiente.routes")
 const secretaire = require("../backend/routes/secretaire.routes")
 const medic = require("../backend/routes/medic.routes")
-const ord = require("../backend/routes/ordonance")
+const analyse = require("../backend/routes/analyse.route")
 const consultationRoutes = require('../backend/routes/consultation');
+const ordonanceRoute = require('./routes/ordonance.route');
 
 const app = express()
 app.use(bodyParser.json());
@@ -50,7 +51,8 @@ app.use('/patiente', patiente);
 app.use('/secretaire', secretaire);
 app.use('/uploads', express.static('uploads'));
 app.use('/medic', medic);
-app.use('/ord', ord);
+app.use('/analyse', analyse);
+app.use('/ord', ordonanceRoute);
 
 // Create port
 const port = process.env.PORT || 4000;

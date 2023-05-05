@@ -1,6 +1,8 @@
 export class Consultation {
+    splice: any;
+    findIndex: any;
     _id?: string;
-    consultdate!: Date ;
     conclusion!:string;
     annexe!: string;
+    timing!: Date; 
 }

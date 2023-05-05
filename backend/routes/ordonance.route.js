@@ -1,16 +1,16 @@
 const express = require('express')
 const router = require("express").Router();
 const app = express()
-const carnetRoute = express.Router()
-const multer = require("../config/multer");
+const ordonanceRoute = express.Router()
+
 
 // Carnet model
- const Carnet  = require('../models/Carnet')
+ const Ordonance  = require('../models/ordonnace')
 
 
 // Add Carnet
-carnetRoute.route('/:patientId/create').post((req, res, next) => {
-    Carnet.create(
+ordonanceRoute.route('/:patientId/create').post((req, res, next) => {
+    Ordonance.create(
     {...req.body, 
     patientId: req.params.patientId,
   },
@@ -18,29 +18,29 @@ carnetRoute.route('/:patientId/create').post((req, res, next) => {
     if (error) {
       return next(error)
     } else {
-      res.json(data)
-    }
+      res.json(data)    }
   })
 })
 
-// Get All Carnets for a specific user
-carnetRoute.route('/patient/:patientId').get((req, res, next) => {
-  Carnet.find(
-    { patientId: req.params.patientId },
-    (error, data) => {
-      if (error) {
-        return next(error);
-      } else {
-        res.json(data);
-      }
+
+// Get All ordonance
+ordonanceRoute.route('/').get((req, res) => {
+  const { date } = req.query;
+  const query = date ? { date: { $regex: new RegExp(date), $options: 'i' } } : {};
+  Ordonance.find(query, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
     }
-  );
+  });
 });
 
 // Get single Carnet
-carnetRoute.route('/read/:id').get((req, res) => {
-  Carnet.findOne({
+ordonanceRoute.route('/read/:patientId/:id').get((req, res) => {
+  Ordonance.findOne({
     _id: req.params.id,
+    patientId: req.params.patientId,
   }, (error, data) => {
     if (error) {
       return next(error);
@@ -51,8 +51,8 @@ carnetRoute.route('/read/:id').get((req, res) => {
 });
 
 // Update Carnet
-carnetRoute.route('/update/:id').put((req, res, next) => {
-    Carnet.findByIdAndUpdate(
+ordonanceRoute.route('/update/:id').put((req, res, next) => {
+    Ordonance.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -69,8 +69,8 @@ carnetRoute.route('/update/:id').put((req, res, next) => {
   )
 })
 // Delete a carnet by id
-carnetRoute.route('/delete/:id').delete((req, res) => {
-  Carnet.findByIdAndDelete(req.params.id, (err, message) => {
+ordonanceRoute.route('/delete/:id').delete((req, res) => {
+  Ordonance.findByIdAndDelete(req.params.id, (err, message) => {
     if (err) {
       res.status(500).json({ error: err.message });
     } else if (!message) {
@@ -81,4 +81,4 @@ carnetRoute.route('/delete/:id').delete((req, res) => {
   });
 });
 
-module.exports = carnetRoute
+module.exports = ordonanceRoute

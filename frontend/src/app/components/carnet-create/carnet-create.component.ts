@@ -78,7 +78,7 @@ export class CarnetCreateComponent implements OnInit {
       nomM: '',
       prenomM: '',
       telM: '',
-      password: '',
+    
     });
   }
 
@@ -108,7 +108,7 @@ export class CarnetCreateComponent implements OnInit {
       return this.carnetService.createCarnet(patientId!, this.carnetForm.value).subscribe({
         complete: () => {
           console.log('carnet successfully created!');
-          this.ngZone.run(() => this.router.navigateByUrl('/carnet-list'));
+          this.ngZone.run(() => this.router.navigateByUrl('/admin/listP'));
         },
         error: (e) => {
           console.log(e);

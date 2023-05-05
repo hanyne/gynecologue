@@ -1,0 +1,7 @@
+<form class="form-card" [formGroup]="analyseForm" (ngSubmit)="addAnalyse()">
+    <label>
+        analyse nom
+    </label>
+    <input formControlName="analyseName" >
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addAnalyse()" routerLink="/admin/listM" >Save</button>
+</form> 

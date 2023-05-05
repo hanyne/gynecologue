@@ -59,6 +59,9 @@ import { ReclamationListComponent } from './components/reclamation-list/reclamat
 import { HistoriqueComponent } from './components/historique/historique.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import { AnalyseComponent } from './components/analyse/analyse.component';
+import { ConsultationListComponent } from './components/consultation-list/consultation-list.component';
+import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
 
 @NgModule({
 
@@ -98,6 +101,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     ReclamationListComponent,
     HistoriqueComponent,
     ConsultationComponent,
+    AnalyseComponent,
+    ConsultationListComponent,
+    EditConsultationComponent,
 
  
 

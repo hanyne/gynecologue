@@ -18,11 +18,17 @@ export class carnetService {
     const url = `${this.baseUri}/${patientId}/create`;
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
-  // Get all carnets
-  getCarnets(searchTerm: string = '') {
-    const query = searchTerm ? `?nom=${searchTerm}` : '';
-    return this.http.get(`${this.baseUri}${query}`);
-  }
+// Get all carnets for a specific user
+getCarnets(patientId: string): Observable<any> {
+  const url = `${this.baseUri}/patient/${patientId}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: any) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
+
 // Get carnet
 getCarnet(id: any): Observable<any> {
   const url = `${this.baseUri}/read/${id}`;

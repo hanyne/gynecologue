@@ -10,8 +10,8 @@ let Consultation = new Schema({
       ref: 'Patient',
     },
     conclusion : { type: String },
-    consultdate: { type: String },
     annexe: { type: String },
+    timing: { type: String}
 
 
 

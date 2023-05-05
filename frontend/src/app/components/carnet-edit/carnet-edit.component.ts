@@ -18,6 +18,7 @@ couvertureList= ["Oui","Non"];
 sangList=["A","B","AB","O"];
 rhesusList=["Positive","Negative"];
 categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein","Coelioscopie","Stérilité du couple","ECG"];
+  route: any;
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
@@ -29,46 +30,45 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
     this.getCarnet(id);
     this.editForm = this.fb.group({
       
-    nom: ['', ],
-    prenom: ['', ],
-    adresse: ['', ],
-    naissance: ['', ],
-    nationalite: ['', ],
-    Cin: ['', ],
-    niv_inst: ['', ],
-    occupation: ['', ],
+    nom: [''],
+    prenom: [''],
+    adresse: [''],
+    naissance: [''],
+    nationalite: [''],
+    Cin: [''],
+    niv_inst: [''],
+    occupation: [''],
     tel: ['', [Validators.pattern('^[0-9]+$')]],
-    couv: ['', ],
-    num_c: ['', ],
-    sang: ['', ],
-    rhesus: ['', ],
-    type_allergie: ['', ],
-    declaree_allergie: ['', ],
-    traitement: ['', ],
-    med_tret: ['', ],
-    age_pub: ['', ],
-    prob: ['', ],
-    maladie: ['', ],
-   maladieF: ['', ],
-    type_handicap: ['', ],
-    declaree_handicap: ['', ],
-    date_vaccin1: ['', ],
-    lieu_vaccin1: ['', ],
-    date_vaccin2: ['', ],
-    lieu_vaccin2: ['', ],
-    date_vaccin3: ['', ],
-    lieu_vaccin3: ['', ],
-    date_vaccin4: ['', ],
-    lieu_vaccin4: ['', ],
-    date_vaccin5: ['', ],
-    lieu_vaccin5: ['', ],
-    date_rubeole: ['', ],
-    lieu_rubeole: ['', ],
-    autre_vaccin: ['', ],
-    nomM: ['', ],
-    prenomM: ['', ],
+    couv: [''],
+    num_c: [''],
+    sang: [''],
+    rhesus: [''],
+    type_allergie: [''],
+    declaree_allergie: [''],
+    traitement: [''],
+    med_tret: [''],
+    age_pub: [''],
+    prob: [''],
+    maladie: [''],
+   maladieF: [''],
+    type_handicap: [''],
+    declaree_handicap: [''],
+    date_vaccin1: [''],
+    lieu_vaccin1: [''],
+    date_vaccin2: [''],
+    lieu_vaccin2: [''],
+    date_vaccin3: [''],
+    lieu_vaccin3: [''],
+    date_vaccin4: [''],
+    lieu_vaccin4: [''],
+    date_vaccin5: [''],
+    lieu_vaccin5: [''],
+    date_rubeole: [''],
+    lieu_rubeole: [''],
+    autre_vaccin: [''],
+    nomM: [''],
+    prenomM: [''],
     telM: ['', [ Validators.pattern('^[0-9]+$')]],
-    password: ['', ],
     
     });
     }
@@ -157,7 +157,6 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
         prenomM:data['prenomM'],
      
         telM:data['telM'],
-        password:data['password'],
      
     
       });
@@ -167,7 +166,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
     this.editForm = this.fb.group({
    
 
-      nom: ['', ],
+      nom: [''],
       prenom: '',
  
       adresse: '',
@@ -242,8 +241,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
       prenomM: '',
    
       telM: ['', [ Validators.pattern('^[0-9]+$')]],
-      password : '',
-      role : '',
+
   
      
       
@@ -258,7 +256,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
         let id = this.actRoute.snapshot.paramMap.get('id');
         this.CarnetService .updateCarnet(id, this.editForm.value).subscribe({
           complete: () => {
-            this.router.navigateByUrl('/carnet-list');
+            this.router.navigateByUrl('/admin/listP');
             console.log('Content updated successfully!');
           },
           error: (e) => {

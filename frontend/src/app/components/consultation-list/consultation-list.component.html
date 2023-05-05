@@ -1,0 +1,27 @@
+<div class="container">
+    <!-- No data message -->
+    <p *ngIf="Consultation.length <= 0" class="no-data text-center">There is no Carnetadded yet!</div>
+    <!-- Carnetlist -->
+    <div *ngIf="Consultation.length > 0">
+        <div *ngFor="let consultation of Consultation">
+          <th scope="row">{{consultation._id}}</th>
+          <td class="text-center edit-block">
+
+            <span class="edit" [routerLink]="['/const-edit/', consultation._id  ]">
+              <button type="button" class="btn btn-success btn-sm">Edit</button>
+            </span>
+            <span class="delete" (click)="onDelete(consultation)">
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </span>
+          </td>
+          
+<h1>Créer carnet de santé pour {{patient.nomP}} {{patient.prenomP}}</h1> 
+
+  <div>date:<p>{{consultation.timing}}</p> </div>    
+   <div>compte rendu de consultation:<p>{{consultation.conclusion}}</p> </div> 
+
+   <div>Annexe:<p>{{consultation.annexe}}</p> </div> 
+    
+    </div>
+    </div>
+
