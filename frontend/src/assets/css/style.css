@@ -101,10 +101,7 @@
     }
 }
 
-.hero-header {
-    background: url('https://img.freepik.com/photos-gratuite/femmes-enceintes-concept-beaute-heureux-tendre-jolie-blonde-jeune-femme-femme-attend-enfant-tenir_1258-93657.jpg?w=1380&t=st=1678455740~exp=1678456340~hmac=d9913d3d17ca1e79cf26a3724303d91d452b25fe125a2cc2a606552fa0bf9c2e') top right no-repeat;
-    background-size: cover;
-}
+
 
 .service-item {
     position: relative;

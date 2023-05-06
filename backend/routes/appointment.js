@@ -37,6 +37,16 @@ appointmentRoutes.post('/new', (req, res) => {
     }
   });
 });
+//fonction count
+appointmentRoutes.get('/getA',(req,res) => {
+  Appointment.count({}).exec(function(err, st) {
+      if (st == 0 && err) {
+        res.json("Pas de messages", err);
+      } else {
+        res.json(st); 
+      }
+    });
+});
 
 // Delete appointment
 appointmentRoutes.post('/destroy', (req, res) => {

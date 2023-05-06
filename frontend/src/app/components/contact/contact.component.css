@@ -6,3 +6,8 @@
 }
 .b
 {background-color:#d38282 !important}
+.ico {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+  }

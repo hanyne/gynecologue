@@ -28,6 +28,18 @@ messageRoutes.get('/read/:id',(req, res) => {
     }
   });
 });
+
+//fonction count
+messageRoutes.get('/getM',(req,res) => {
+  Message.count({}).exec(function(err, st) {
+      if (st == 0 && err) {
+        res.json("Pas de messages", err);
+      } else {
+        res.json(st); 
+      }
+    });
+});
+
 // Add new message
 messageRoutes.post('/new', (req, res) => {
     const message = new Message({

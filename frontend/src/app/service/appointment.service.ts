@@ -24,7 +24,9 @@ export class AppointmentService {
       catchError(this.handleError)
     );
   }
-
+  getA(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getA`)
+  }
   deleteAppointment(appointment: any): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(`${this.apiUrl}/destroy`, appointment, { headers }).pipe(

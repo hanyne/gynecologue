@@ -2,6 +2,7 @@ import { Carnet } from './../../model/carnet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultationService } from '../../service/consultation.service';
+import { UserService } from '../../service/user.service';
 import { FormGroup, FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -18,6 +19,7 @@ export class EditConsultationComponent {
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private consultationService : ConsultationService ,
+    private userService : UserService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -87,7 +89,11 @@ export class EditConsultationComponent {
     }
     return true;
   }
- 
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.userService.logoutUser()
+    }
+  }
 }
 
 

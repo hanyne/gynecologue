@@ -16,6 +16,9 @@ export class ArticleService {
   getArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.apiUrl);
   }
+  getNbAr(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getArticle`)
+  }
 
   createArticle(article: Article, photo: File): Observable<Article> {
     const formData = new FormData();

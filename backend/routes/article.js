@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
 // Get all articles
 router.get('/', async (req, res) => {
   try {
@@ -26,6 +27,16 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+});
+//fonction count
+router.get('/getArticle',(req,res) => {
+  Article.count({}).exec(function(err, st) {
+      if (st == 0 && err) {
+        res.json("Pas de messages", err);
+      } else {
+        res.json(st); 
+      }
+    });
 });
 
 // Create an article

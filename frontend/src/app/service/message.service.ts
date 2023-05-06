@@ -32,6 +32,9 @@ getMessage(id: any): Observable<any> {
   );
 }
 
+getM(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getM`)
+}
   addMessage(message: any): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(`${this.apiUrl}/new`, message, { headers }).pipe(

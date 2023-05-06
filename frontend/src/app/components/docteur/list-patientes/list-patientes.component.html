@@ -15,9 +15,9 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/admin/css/style.css">
 </head>
-<body style="background-color: rgb(231, 111, 167);"  >
+<body style=" background: linear-gradient(80deg, rgba(240,111,167,1) 3%, rgba(130,177,233,1) 100%);" >
 	<!-- [ navigation menu ] start -->
-	<nav class="pcoded-navbar menu-dark ">
+    <nav class="pcoded-navbar" style="background:linear-gradient(80deg, rgba(130,177,233,1) 0%, rgba(240,111,167,1) 100%)">	
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div " >
 				<div >
@@ -40,30 +40,30 @@
                <li class="nav-item pcoded-hasmenu">
                   <a href="/admin/listP" class="nav-link "><span>
                      <img src="/assets/icons/woman.png"  class="icon"></span>
-                     <span class="pcoded-mtext">Gérer les patientes</span></a>
+                     <span class="pcoded-mtext"> patientes</span></a>
                   <ul class="pcoded-submenu">
-                      <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
+                      <li><a href="admin/listP" target="_blank mx-2">Liste des patientes</a></li>
                   </ul>
               </li>
               <li class="nav-item pcoded-hasmenu">
                 <a href="/admin/recl" class="nav-link "><span>
                    <img src="/assets/icons/rendez.png" class="icon"></span>
-                   <span class="pcoded-mtext">Gérer les rendez-vous</span></a>
+                   <span class="pcoded-mtext"> rendez-vous</span></a>
                 <ul class="pcoded-submenu">
-                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
+                    <li><a href="admin/recl" target="_blank mx-2"> Rendez-vous</a></li>
                 </ul>
               <li class="nav-item pcoded-hasmenu">
                 <a href="/admin/listP" class="nav-link "><span>
                    <img src="assets/icons/medica.png"  class="icon" ></span>
-                   <span class="pcoded-mtext">Gérer les médicaments</span></a>
+                   <span class="pcoded-mtext"> médicaments</span></a>
                 <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
+                    <li><a href="admin/listP" target="_blank mx-2">Liste des médicaments</a></li>
                 </ul>
             </li>
             <li class="nav-item pcoded-hasmenu">
                 <a href="/admin/listP" class="nav-link "><span>
                    <img src="/assets/icons/analysee.png" class="icon"></span>
-                   <span class="pcoded-mtext">Gérer les analyses</span></a>
+                   <span class="pcoded-mtext"> Analyses</span></a>
                 <ul class="pcoded-submenu">
                     <li><a href="admin/listP" target="_blank">Liste des analyses</a></li>
                 </ul>
@@ -71,9 +71,9 @@
         <li class="nav-item pcoded-hasmenu">
             <a href="/admin/recl" class="nav-link "><span>
                 <img src="/assets/icons/msg.png" class="icon"></span>
-               <span class="pcoded-mtext">Gérer les réclamations</span></a>
+               <span class="pcoded-mtext"> Messages</span></a>
             <ul class="pcoded-submenu">
-                <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
+                <li><a href="admin/recl" target="_blank mx-2"> Messages</a></li>
             </ul>
         </li>
         <br><br><br>
@@ -170,7 +170,7 @@
 				</div>
 				 </div><br>
 				<!-- table section -->
-				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/create-carnet"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>
+				<div class="example-button-row pos mb-1"><a mat-raised-button routerLink="/admin/patiente"><i class="fa fa-plus-circle p-1" aria-hidden="true"></i>Ajouter</a></div>
 				<table class="table align-middle mb-0 text-center table-responsive-lg" style="overflow-x:auto;">
 				   <thead class="bg countour border text-bold">
 					 <tr>

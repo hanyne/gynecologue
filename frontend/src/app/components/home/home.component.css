@@ -1,0 +1,18 @@
+.hero-header {
+    position: relative;
+    background: url('https://img.freepik.com/psd-premium/tampons-hygieniques-menstruels-tampons-fleur-rouge_114963-2204.jpg?w=900') top right no-repeat;
+    background-size: cover;
+}
+.ico {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+  }
+.b
+{background-color:#d382828d !important}
+.section {
+	position: relative;
+	height: 100vh;
+}
+
+
