@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from './../../service/message.service';
 import { Message } from '../../model/message';
+import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-reclamation-list',
   templateUrl: './reclamation-list.component.html',
@@ -10,8 +11,9 @@ export class ReclamationListComponent {
   messages: Message[] = [];
   selectedMessage: Message | null = null;
   isNew = false;
+ 
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private UserService:UserService ) { }
 
   ngOnInit(): void {
     this.getMessages();
@@ -38,6 +40,11 @@ export class ReclamationListComponent {
         console.error(`Failed to delete message with ID: ${id}`, error);
       }
     );
+  }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
+    }
   }
 
 

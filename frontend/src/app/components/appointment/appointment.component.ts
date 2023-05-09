@@ -25,7 +25,7 @@ export class AppointmentComponent implements OnInit {
     this.errorMessages = [];
   
 
-    if (!this.newAppointment?.nom || !this.newAppointment?.email || !this.newAppointment?.numt || !this.newAppointment?.date || !this.newAppointment?.motif) {
+    if (!this.newAppointment?.nom || !this.newAppointment?.prenom || !this.newAppointment?.email || !this.newAppointment?.numt || !this.newAppointment?.date || !this.newAppointment?.motif) {
       this.errorMessages.push('Veuillez entrer tous les détails du rendez-vous');
       return;
     }
@@ -42,6 +42,7 @@ export class AppointmentComponent implements OnInit {
 
     const appointment = {
       nom: this.newAppointment.nom,
+      prenom: this.newAppointment.prenom,
       email: this.newAppointment.email,
       numt: this.newAppointment.numt,
       date: this.newAppointment.date,
@@ -54,6 +55,7 @@ export class AppointmentComponent implements OnInit {
         // Clear the form after adding appointment successfully
         this.newAppointment = {
           nom: '',
+          prenom: '',
           email: '',
           numt: '',
           date: '',

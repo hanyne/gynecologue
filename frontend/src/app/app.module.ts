@@ -62,6 +62,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { AnalyseComponent } from './components/analyse/analyse.component';
 import { ConsultationListComponent } from './components/consultation-list/consultation-list.component';
 import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 @NgModule({
 
@@ -104,6 +105,7 @@ import { EditConsultationComponent } from './components/edit-consultation/edit-c
     AnalyseComponent,
     ConsultationListComponent,
     EditConsultationComponent,
+    MenuBarComponent,
 
  
 

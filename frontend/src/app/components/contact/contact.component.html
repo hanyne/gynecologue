@@ -101,14 +101,18 @@
                 <form (ngSubmit)="addMessage()">
                     <div class="row g-3">
                         <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;" id="nom" name="nom"
+                            <input type="text" class="form-control bg-light border-0" placeholder="Nom" style="height: 55px;" id="nom" name="nom"
                             [(ngModel)]="newMessage.nom" required>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <input type="text" class="form-control bg-light border-0" placeholder="Prenom" style="height: 55px;" id="prenom" name="prenom"
+                            [(ngModel)]="newMessage.prenom" required>
                         </div>
                         <div class="col-12 col-sm-6">
                             <input type="email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;"id="email" name="email"
                             [(ngModel)]="newMessage.email" required>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-sm-6">
                             <input type="text" class="form-control bg-light border-0" placeholder="Subject" style="height: 55px;"id="subject" name="subject"
                             [(ngModel)]="newMessage.subject" required>
                         </div>

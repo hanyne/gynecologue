@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../../service/appointment.service';
 import { Appointment } from '../../model/appointment';
+import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
@@ -9,7 +10,8 @@ import { Appointment } from '../../model/appointment';
 export class AppointmentListComponent {
   appointmentsList: Appointment[] = [];
   newAppointment: Appointment = new Appointment();
-  constructor(private appointmentService: AppointmentService) { }
+  constructor(private appointmentService: AppointmentService,private UserService:UserService 
+    ) { }
 
   ngOnInit(): void {
     this.getAppointments();
@@ -35,6 +37,11 @@ export class AppointmentListComponent {
         console.error('Failed to delete appointment', error);
       }
     );
+  }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
+    }
   }
 
 }

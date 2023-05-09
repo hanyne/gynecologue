@@ -18,13 +18,14 @@ export class ContactComponent implements OnInit {
   addMessage() {
     this.errorMessages = [];
 
-    if (!this.newMessage?.nom || !this.newMessage?.email || !this.newMessage?.subject || !this.newMessage?.mess ) {
+    if (!this.newMessage?.nom ||!this.newMessage?.prenom || !this.newMessage?.email || !this.newMessage?.subject || !this.newMessage?.mess ) {
       this.errorMessages.push('Veuillez entrer tous les détails de votre message');
       return;
     }
 
     const message = {
       nom: this.newMessage.nom,
+      prenom: this.newMessage.prenom,
       email: this.newMessage.email,
       subject: this.newMessage.subject,
       mess: this.newMessage.mess,

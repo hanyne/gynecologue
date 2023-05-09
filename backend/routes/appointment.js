@@ -23,6 +23,7 @@ appointmentRoutes.get('/', (req, res) => {
 appointmentRoutes.post('/new', (req, res) => {
   const appointment = new Appointment({
     nom: req.body.nom,
+    prenom: req.body.prenom,
     email: req.body.email,
     numt: req.body.numt,
     date: req.body.date,

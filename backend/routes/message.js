@@ -44,6 +44,7 @@ messageRoutes.get('/getM',(req,res) => {
 messageRoutes.post('/new', (req, res) => {
     const message = new Message({
       nom: req.body.nom,
+      prenom: req.body.prenom,
       email: req.body.email,
       subject: req.body.subject,
       mess: req.body.mess,
