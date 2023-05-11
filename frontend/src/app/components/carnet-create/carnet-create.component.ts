@@ -14,7 +14,6 @@ export class CarnetCreateComponent implements OnInit {
   patient: Patiente = new Patiente();
   submitted = false;
   carnetForm!: FormGroup;
-  photo: any = null;
   // radiobox
   couvertureList = ['Oui', 'Non'];
   sangList = ['A', 'B', 'AB', 'O'];
@@ -82,17 +81,6 @@ export class CarnetCreateComponent implements OnInit {
     });
   }
 
-  loadImage(photo: any) {
-    if (photo.target.files && photo.target.files[0]) {
-      this.photo = photo.target.files[0];
-      console.log(this.photo);
-    } else {
-      // Set a default picture if no photo was selected
-      this.photo = 'src/assets/image/default.jpg';
-    }
-  }
-
-  // Choose designation with select dropdown
 
   // Getter to access form control
   get myForm() {

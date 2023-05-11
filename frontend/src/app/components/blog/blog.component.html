@@ -1,85 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PFE</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="">
-    <meta name="author" content="Phoenixcoded" />
-    <!-- Favicon icon -->
-
-    
-    <link rel="icon" href="/assets/admin/images/favicon.ico" type="image/x-icon">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="/assets/admin/css/style.css">
+	<title>PFE</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="/assets/admin/images/favicon.ico" type="image/x-icon">
+	<!-- vendor css -->
+	<link rel="stylesheet" href="/assets/admin/css/style.css">
 </head>
 <body style=" background: linear-gradient(80deg, rgba(240,111,167,1) 3%, rgba(130,177,233,1) 100%);" >
 	<!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar" style="background:linear-gradient(80deg, rgba(130,177,233,1) 0%, rgba(240,111,167,1) 100%)">	
-		<div class="navbar-wrapper  ">
+	<nav class="pcoded-navbar" style="background:linear-gradient(80deg, rgba(130,177,233,1) 0%, rgba(240,111,167,1) 100%)">	
+			<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div " >
 				<div >
 					<div class="main-menu-header">
 						<img class="img-radius" src="/assets/img/gyne.png" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
-                            </div>
+							</div>
 						</div>
 					</div>
 				</div>
 <br><br>
 				<ul class="nav pcoded-inner-navbar contain "id="tit1">
 					<li class="nav-item">
-					    <a href="admin/dashboard" class="nav-link "><span>
-                      <img src="/assets/icons/home.png" class="icon"></span>
-                      <span class="pcoded-mtext">Tableau de bord</span></a>
+						<a href="admin/dashboard" class="nav-link "><span>
+					  <img src="/assets/icons/home.png" class="icon"></span>
+					  <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
 					</li>
-                    
-               <li class="nav-item pcoded-hasmenu">
-                  <a href="/admin/listP" class="nav-link "><span>
-                     <img src="/assets/icons/woman.png"  class="icon"></span>
-                     <span class="pcoded-mtext">Gérer les patientes</span></a>
-                  <ul class="pcoded-submenu">
-                      <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/recl" class="nav-link "><span>
-                   <img src="/assets/icons/rendez.png" class="icon"></span>
-                   <span class="pcoded-mtext">Gérer les rendez-vous</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
-                </ul>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/listP" class="nav-link "><span>
-                   <img src="assets/icons/medica.png"  class="icon" ></span>
-                   <span class="pcoded-mtext">Gérer les médicaments</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
-                </ul>
-            </li>
-            <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/listP" class="nav-link "><span>
-                   <img src="/assets/icons/analysee.png" class="icon"></span>
-                   <span class="pcoded-mtext">Gérer les analyses</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des analyses</a></li>
-                </ul>
-            </li>
-        <li class="nav-item pcoded-hasmenu">
-            <a href="/admin/recl" class="nav-link "><span>
-                <img src="/assets/icons/msg.png" class="icon"></span>
-               <span class="pcoded-mtext">Gérer les réclamations</span></a>
-            <ul class="pcoded-submenu">
-                <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
-            </ul>
-        </li>
-        <br><br><br>
-		<li><a href="/login" ><i class="fa fa-sign-out black_color text-bold"></i> 
-			<span>Déconnexion</span></a></li>		
-    </ul>
+					
+			   <li class="nav-item pcoded-hasmenu">
+				  <a href="/admin/listP" class="nav-link "><span>
+					 <img src="/assets/icons/woman.png"  class="icon"></span>
+					 <span class="pcoded-mtext mx-2"> Patientes</span></a>
+				  <ul class="pcoded-submenu">
+					  <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
+				  </ul>
+			  </li>
+			  <li class="nav-item pcoded-hasmenu">
+				<a href="admin/listapp" class="nav-link "><span>
+				   <img src="/assets/icons/rendez.png" class="icon"></span>
+				   <span class="pcoded-mtext mx-2"> Rendez-vous</span></a>
+				<ul class="pcoded-submenu">
+					<li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
+				</ul>
+		<li class="nav-item pcoded-hasmenu">
+			<a href="admin/listR" class="nav-link "><span>
+				<img src="/assets/icons/msg.png" class="icon"></span>
+			   <span class="pcoded-mtext mx-2"> Messages</span></a>
+			<ul class="pcoded-submenu">
+				<li><a href="admin/listR" target="_blank">Consulter les messages </a></li>
+			</ul>
+		</li>	
+	</ul>
 			</div>
 		</div>
 	</nav>
@@ -98,41 +77,17 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-                        
+						
 						<li class="nav-item" id="logout">
 							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 							<div class="search-bar">
 								<input type="text" id="m-search" class="form-control"  
-                                placeholder="Rechercher...">
+								placeholder="Rechercher...">
 								<button type="button" class="close" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 						</li>
-					</ul>
-					<ul class="navbar-nav ml-auto">
-                      
-						<li>
-							<div class="dropdown" id="logout">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
-								<div class="dropdown-menu dropdown-menu-right notification">
-									<div class="noti-head" >
-										<h6 class="d-inline-block m-b-0">Notifications</h6>
-									</div>
-								</div>
-							</div>
-						</li>&nbsp;&nbsp;&nbsp;
-						<li>
-							<div class="dropdown drp-user">
-								<a href="/login"  id="logout"
-                                     class="dropdown-toggle" data-toggle="dropdown">
-									<i class="feather icon-log-out"></i>
-								</a>
-							</div>
-						</li>
-                        <li>
-                            
-                        </li>
 					</ul>
 				</div>
 				
@@ -148,12 +103,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Réclamations</h5>
+                            <h5 class="m-b-10">Articles</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="/admin/listP">Gérer les réclamations</a></li>
-                            <li class="breadcrumb-item"><a href="/admin/listP">Réclamations</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/listP">Articles</a></li>
                         </ul>
                     </div>
                 </div>

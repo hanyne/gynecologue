@@ -60,11 +60,6 @@ export class ListPatientesComponent implements OnInit {
     } )
   }
 
-  async logOut() {
-    if (confirm("Do you want to log out?")) {
-      await this.patienteService.logoutUser()
-    }
-  }
 
   deletepatiente(patienteClicked: Patiente) {
     if(window.confirm('Do you want to go ahead?')) {

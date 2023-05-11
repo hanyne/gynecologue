@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
-const Role = require("../_helpers/role")
 const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Carnet = new Schema({
-
-   
     nom: {
       type: String
    },
@@ -22,7 +19,7 @@ let Carnet = new Schema({
       type: String
    },
    Cin: {
-      type: Number
+      type: String
    },
    niv_inst: {
       type: String

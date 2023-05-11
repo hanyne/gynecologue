@@ -1,4 +1,9 @@
-
+@media print {
+	header> *
+	button {
+	  display: none;
+	}
+  }
 label {
     display: block;
     margin: 10px 0;

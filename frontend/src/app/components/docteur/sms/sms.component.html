@@ -1,0 +1,18 @@
+<form class="form-card" [formGroup]="SmsForm" (ngSubmit)="onSubmit()">	
+    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Date de naissance : <span class="text-danger"></span></label> <input type="date" id="date" name="date" placeholder="" formControlName="naissance"> </div>	
+    <div style="display: flex; justify-content: space-between;">
+        <div class="form-group col-sm-6 flex-column d-flex">
+            <label class="form-control-label px-3">Nom :<span class="text-danger"></span></label>
+            <input type="text" id="date" name="date" placeholder="" formControlName="nom">
+        </div>
+        <div class="form-group ml col-sm-6 flex-column d-flex mx-2">
+            <label class="form-control-label px-3 mx-2">Prenom :<span class="text-danger"></span></label>
+            <input type="text" id="date" name="date" placeholder="" formControlName="prenom">
+        </div>
+    </div>
+        
+    <textarea class="form-control form-control-alternative" rows="3" placeholder="Write a large text here ..." formControlName="messageBody"></textarea>
+    <button class="formbold-btn " type="submit">
+       Envoyer
+    </button>
+</form>

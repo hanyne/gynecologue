@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone,VERSION } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Ordonnance} from '../../../model/ordonance';
@@ -13,6 +13,7 @@ import { Patiente } from 'src/app/model/patiente';
   styleUrls: ['./ordonnance.component.css']
 })
 export class OrdonnanceComponent implements OnInit  {
+  name = 'Angular ' + VERSION.major;
   patient: Patiente = new Patiente();
   Ord!: Ordonnance;
   submitted = false;
@@ -55,6 +56,9 @@ export class OrdonnanceComponent implements OnInit  {
         },
       });
     }
+  }
+  printPage() {
+    window.print();
   }
   }
   

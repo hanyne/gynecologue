@@ -3,7 +3,7 @@ const Patiente = require('../models/patiente.model');
 const Secretaire = require('../models/secretaire.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
-const { secret } = require('../middleware/auth.config');
+const config = require('../_helpers/auth.config');
 
 exports.signup = async (req, res) => {
   try {
@@ -23,16 +23,17 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) => {
   try {
     const user = await User.findOne({ userName: req.body.userName });
-
     if (!user) {
       const secretaire = await Secretaire.findOne({ userName: req.body.userName });
       if (secretaire) {
         bcrypt.compare(req.body.password, secretaire.password, function (err, isMatch) {
           if (isMatch && !err) {
             var token = jwt.sign(
-              { _id: secretaire._id, role: secretaire.role },
-              secret
-            );
+              { _id: secretaire._id, role: secretaire.role },config.secret, {
+                expiresIn: 86400, // 24 hours
+              });
+            console.log("token:", token)
+            res.cookie("token", token);
             res.json({
               success: true,
               token: token,
@@ -56,10 +57,11 @@ exports.signin = async (req, res) => {
         } else {
           bcrypt.compare(req.body.password, patiente.password, function (err, isMatch) {
             if (isMatch && !err) {
-              var token = jwt.sign(
-                { _id: patiente._id, role: patiente.role },
-                secret
-              );
+              var token = jwt.sign({ _id: patiente._id, role: patiente.role },config.secret, {
+                  expiresIn: 86400, // 24 hours
+                });
+              console.log("token:", token)
+              res.cookie("token", token);
               res.json({
                 success: true,
                 token: token,
@@ -78,7 +80,11 @@ exports.signin = async (req, res) => {
     } else {
       bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
         if (isMatch && !err) {
-          var token = jwt.sign({ _id: user._id, role: user.role }, secret);
+          var token = jwt.sign({ _id: user._id, role: user.role },config.secret, {
+            expiresIn: 86400, // 24 hours
+          });
+          console.log("token:", token)
+          res.cookie("token", token);
           res.json({
             success: true,
             token: token,
@@ -100,6 +106,27 @@ exports.signin = async (req, res) => {
       msg: "Something went wrong. Please try again later.",
     });
   }
+};
+exports.signout = async (req, res) => {
+  try {
+    req.session = null;
+    return res.status(200).send({ message: "You've been signed out!" });
+  } catch (err) {
+    this.next(err);
+  }
+};
+exports.allAccess = (req, res) => {
+  res.status(200).send("Public Content.");
+};
 
-  
+exports.patienteBoard = (req, res) => {
+  res.status(200).send("Patiente Content.");
+};
+
+exports.docteurBoard = (req, res) => {
+  res.status(200).send("Docteur Content.");
+};
+
+exports.secretaireBoard = (req, res) => {
+  res.status(200).send("Secretaire Content.");
 };

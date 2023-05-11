@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeCreateComponent } from './components/employee-create/employee-create.component';
-import { EmployeeListComponent } from './components/employee-list/employee-list.component';
-import { EmployeeEditComponent } from './components/employee-edit/employee-edit.component';
 import { CarnetCreateComponent } from './components/carnet-create/carnet-create.component';
 import { CarnetListComponent } from './components/carnet-list/carnet-list.component';
 import { CarnetEditComponent } from './components/carnet-edit/carnet-edit.component';
@@ -11,15 +8,10 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServiceComponent } from './components/service/service.component';
-import { CategorieComponent } from './components/categorie/categorie.component';
-import { CardcarnetComponent } from './components/cardcarnet/cardcarnet.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { MessageGestionComponent } from './components/message-gestion/message-gestion.component';
 import { LoginComponent } from './components/login/login.component';
-import { AddMedicComponent } from './components/docteur/add-medic/add-medic.component';
 import { AddPatComponent } from './components/docteur/add-pat/add-pat.component';
 import { DashboardComponent } from './components/docteur/dashboard/dashboard.component';
-import { ListMedicComponent } from './components/docteur/list-medic/list-medic.component';
 import { ListPatientesComponent } from './components/docteur/list-patientes/list-patientes.component';
 import { OrdonnanceComponent } from './components/docteur/ordonnance/ordonnance.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
@@ -29,18 +21,14 @@ import { AppointmentListComponent } from './components/appointment-list/appointm
 import { ReclamationListComponent } from './components/reclamation-list/reclamation-list.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { AnalyseComponent } from './components/analyse/analyse.component';
 import { ConsultationListComponent } from './components/consultation-list/consultation-list.component';
 import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
-
-
+import { AddEcoComponent } from './components/docteur/add-eco/add-eco.component';
+import { SmsComponent } from './components/docteur/sms/sms.component';
 
 
 const routes: Routes = [
   { path: '*', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'create-employee', component: EmployeeCreateComponent },
-  { path: 'edit-employee/:id', component: EmployeeEditComponent },
-  { path: 'employees-list', component: EmployeeListComponent }, 
   { path: 'create-carnet/:id', component: CarnetCreateComponent },
   { path: 'edit-carnet/:id', component: CarnetEditComponent },
   { path: 'patient/:id', component: CarnetListComponent }, 
@@ -50,20 +38,16 @@ const routes: Routes = [
   { path: 'contact' , component: ContactComponent  }, 
   { path: 'about' , component: AboutComponent  }, 
   { path: 'service' , component: ServiceComponent  }, 
-  { path: 'categorie' , component: CategorieComponent  }, 
-  { path: 'card' , component: CardcarnetComponent  },
   { path: 'blog' , component: BlogComponent  },
-  { path: 'msg' , component: MessageGestionComponent }, 
   { path: 'login', component: LoginComponent },
   { path: 'admin/dashboard', component: DashboardComponent },
   { path: 'admin/listP', component: ListPatientesComponent },
   { path: 'ord/:id', component: OrdonnanceComponent},
   {path: 'admin/patiente', component:AddPatComponent},
-  {path:'admin/addmedic', component:AddMedicComponent },
-  {path:'admin/addanalyse', component:AnalyseComponent },
-  {path:'admin/listM', component:ListMedicComponent },
   {path:'admin/listR', component:ReclamationListComponent  },
   {path:'const/:id', component:ConsultationComponent  },
+  {path:'eco/:id', component:AddEcoComponent },
+  {path:'sms/:id', component:SmsComponent },
   //psw
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
@@ -72,12 +56,6 @@ const routes: Routes = [
   {path:'const-list/:id', component:ConsultationListComponent },
   {path:'const-edit/:id', component:EditConsultationComponent },
 
-
-  
-  
-
-
-    
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
