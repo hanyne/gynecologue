@@ -60,8 +60,13 @@ import { EditConsultationComponent } from './components/edit-consultation/edit-c
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AddEcoComponent } from './components/docteur/add-eco/add-eco.component';
 import { SmsComponent } from './components/docteur/sms/sms.component';
+import { AboutPatienteComponent } from './components/docteur/about-patiente/about-patiente.component';
+import { CalenderComponent } from './components/calender/calender.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // Import FullCalendar module
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 @NgModule({
+  
 
   declarations: [
     
@@ -95,11 +100,9 @@ import { SmsComponent } from './components/docteur/sms/sms.component';
     MenuBarComponent,
     AddEcoComponent,
     SmsComponent,
+    AboutPatienteComponent,
+    CalenderComponent,
 
- 
-
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -125,8 +128,9 @@ import { SmsComponent } from './components/docteur/sms/sms.component';
     MatCardModule,
     MatProgressBarModule,
     MatPaginatorModule,
-    MatStepperModule
-    
+    MatStepperModule, 
+    FullCalendarModule,// Add FullCalendarModule to imports
+   
 
 
 

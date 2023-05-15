@@ -10,6 +10,14 @@ exports.AppointmentAll = (req, res) => {
     }
   });
 };
+//get by Id
+exports.getID = (req, res) => {
+  Appointment.findById({ _id: req.params.id })
+  .then((Appointment) => {
+      res.status(200).send(Appointment)
+  })
+  .catch((error) => { console.log(error) });
+};
 
 // Add new appointment
 exports.saveAppointment =(req, res) => {

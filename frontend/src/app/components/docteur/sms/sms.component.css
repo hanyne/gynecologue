@@ -103,8 +103,8 @@ table, th, td {
 		textarea {
 			height: 150px;
 		}
-		button[type="submit"] {
-			background-color: #4CAF50;
+		button{
+			background-color: #d11b70;
 			color: white;
 			border: none;
 			padding: 10px 20px;
@@ -113,8 +113,8 @@ table, th, td {
 			font-size: 16px;
 			margin-top: 20px;
 		}
-		button[type="submit"]:hover {
-			background-color: #3e8e41;
+		button:hover {
+			background-color: #8a3e8e;
 		}
 		.footer {
 			background-color: #333;

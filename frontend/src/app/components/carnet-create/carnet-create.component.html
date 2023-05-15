@@ -124,12 +124,15 @@
                 <h1> Carnet pour {{patient.nomP}} {{patient.prenomP}}</h1> 
             <div class="row justify-content-between text-left">
                   <div class="row justify-content-between text-left">
-                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3"> Name<span class="text-danger"> *</span></label> <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom"> </div>
+                      <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom" style="  display: none;">
+                        <label class="m form-control-label px-3"> Name<span class="text-danger"> *</span></label> 
+                        <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom"> </div>
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Prenom<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" formControlName="prenom" > </div>
                   </div>
                   <div class="row justify-content-between text-left">
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Adresse<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="adresse"> </div>
-                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">naissance<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="naissance"> </div>
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">naissance<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="naissance"> </div>
                   </div>
                   <div class="row justify-content-between text-left">
                     <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">nationalite<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="nationalite"> </div>

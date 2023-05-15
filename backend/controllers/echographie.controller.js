@@ -12,27 +12,40 @@ exports.listEco = (req, res, next) => {
 };
 
 // Save an Eco
-exports.saveEco = async (req, res) => {
-    try {
-      // Check if the DICOM file has been sent in the request
+exports.saveEco =  (req, res, next) => {
+    // Check if the DICOM file has been sent in the request
       if (!req.file) {
         return res.status(400).json({
           ok: false,
           message: "Please select a DICOM file.",
         });
-      }
-      const echographie = await Eco.save({
+      } 
+
+  // Création d'un nouvel objet carnet à partir des données de la requête
+  const echographie = new Eco({
+    dicom: req.file.path, // Chemin du fichier DICOM dans le système de fichiers
     ...req.body,
     patientId: req.params.patientId,
-    dicom: req.file.path,
+  });
+
+  // Sauvegarde du carnet dans la base de données
+  Eco.save((err, newEco) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({
+        ok: false,
+        message: "Une erreur est survenue lors de la sauvegarde.",
       });
-  
-      res.status(201).json(echographie);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
     }
-  };
-  
+
+    // Envoi de la réponse avec les données du carnet créé
+    res.status(201).json({
+      ok: true,
+      message: "Le carnet a été créé avec succès.",
+      echographie: newEco,
+    });
+  });
+};
 
 // Update an Eco
 exports.updateEco = async (req, res) => {

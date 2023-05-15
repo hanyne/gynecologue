@@ -1,0 +1,16 @@
+<button (click)="fetchAllEvents()">Get events</button>
+
+<full-calendar
+  *ngIf="calendarOptions"
+  #fullcalendar
+  [options]="calendarOptions"
+  (dateClick)="handleDateClick($event)"
+  (eventClick)="handleEventClick($event)"
+  (eventDragStop)="handleEventDragStop($event)"
+>
+  <ng-template #eventContent let-arg>
+    <b>{{ arg.event.title }}</b> - {{ arg.event.start.getDate() }}
+  </ng-template>
+</full-calendar>
+
+

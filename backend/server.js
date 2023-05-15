@@ -42,7 +42,8 @@ const consultationRoutes = require('./routes/consultation.route');
 
 const rendezvousRoutes = require('./routes/rendez_vous.route');
 const messageRoutes = require('./routes/message.route');
-const ecoRoutes = require('./routes/echographie.route')
+const ecoRoutes = require('./routes/echographie.route');
+const eventsRoutes = require('./routes/events.routes');
 // routes
 app.use('/auth', auth);
 app.use('/patiente', patiente);
@@ -55,6 +56,7 @@ app.use('/twilio', rendezvousRoutes);
 app.use('/articles', articleRoutes);
 app.use('/message', messageRoutes);
 app.use('/eco', ecoRoutes);
+app.use('/events', eventsRoutes);
 // routes middleware
 app.use('/uploads', express.static('uploads'));
 app.use('/dicom_files', express.static('dicom_files'));

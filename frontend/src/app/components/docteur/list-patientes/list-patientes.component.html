@@ -145,13 +145,13 @@
                        <td><p class="fw-normal mb-1">{{ patiente.naissance}}</p></td>
 					   <td><p class="fw-normal mb-1">{{ patiente.tel}}</p></td>
 					   <td>
-						<button mat-button routerLink="/const-list/{{patiente._id}}">vuecon</button>
+						<button class="fa fa-eye"  mat-button routerLink="/aboutpatient/{{patiente._id}}"></button>
+						<!--<button mat-button routerLink="/const-list/{{patiente._id}}">vuecon</button>
 						<button mat-button routerLink="/patient/{{patiente._id}}">vuecar</button>
 						<button mat-button routerLink="/create-carnet/{{patiente._id}}">carnet</button>
 						<button mat-button routerLink="/const/{{patiente._id}}"> consultation </button>
 						<button mat-button routerLink="/ord/{{patiente._id}}"> ord </button>
-						<button mat-button routerLink="/sms/{{patiente._id}}"> SMS </button>
-						<button mat-button routerLink="/eco/{{patiente._id}}"> Eco </button>
+						<button mat-button routerLink="/eco/{{patiente._id}}"> Eco </button>-->
 						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="deletepatiente(patiente)">
 						   <i class="fa fa-trash icon"></i>
 						 </button>

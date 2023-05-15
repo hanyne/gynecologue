@@ -118,7 +118,7 @@
 		<div class="col-xl-12">
 			<div class="container p-3 my-3 border cont">
 				<div class="form-group mb-4">
-				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des Rendez-vous</h1></div>
+				   <div class="card-header col-lg-12"><h1 class="text-center text">Listes des demandes de Rendez-vous</h1></div>
 				   <input id="exampleFormControlInput2" type="text" placeholder="Chercher ...?"
 				    class="form-control form-control-underlined">
 				 </div><br>
@@ -146,10 +146,11 @@
                        <td><p class="fw-normal mb-1">{{ appointment.date }}</p></td>
 					   <td><p class="fw-normal mb-1">{{ appointment.motif }}</p></td>
 					   <td>
-						 <button type="button" class="btn btn-link btn-sm btn-rounded" title="valider" routerLink="">
-							<i class="fa fa-check-circle" aria-hidden="true"></i>
-						 </button>
+						<a routerLink="/sms/{{appointment._id}}"  class="btn btn-link btn-sm btn-rounded" >
+							  <i class="fa fa-check-circle" aria-hidden="true"></i>
+						 </a>
 					   </td>
+					 
 					   <td>
 						<button type="button" class="btn btn-link btn-sm btn-rounded" title="supprimer"  (click)="deleteAppointment(appointment)">
 						  <i class="fa fa-trash icon"></i> 

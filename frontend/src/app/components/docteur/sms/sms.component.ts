@@ -1,55 +1,64 @@
-import { Component ,OnInit} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import{Sms} from '../../../model/sms'
-import {SmsService } from '../../../service/sms.service';
-import { PatienteService } from 'src/app/service/patiente.service';
-import { Patiente } from 'src/app/model/patiente';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SmsService } from '../../../service/sms.service';
+import { AppointmentService } from '../../../service/appointment.service';
+import { Appointment} from '../../../model/appointment';
 @Component({
   selector: 'app-sms',
   templateUrl: './sms.component.html',
   styleUrls: ['./sms.component.css']
 })
 export class SmsComponent implements OnInit {
-  patient: Patiente = new Patiente();
-  sms!: Sms;
+  appointment: Appointment = new Appointment();
   submitted = false;
   SmsForm!: FormGroup;
-  constructor(public fb: FormBuilder,private SMSService: SmsService ,private patienteService: PatienteService,private route: ActivatedRoute) { }
+
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private smsService: SmsService,
+    private AppointmentService: AppointmentService
+  ) {}
 
   ngOnInit() {
-    const patientId = this.route.snapshot.paramMap.get('id');
-    this.patienteService.getById(patientId!).subscribe((patient) => {
-      this.patient = patient;
-      this.mainForm(patientId!);
+    const appointmentId = this.route.snapshot.paramMap.get('id');
+    this.AppointmentService.getById(appointmentId!).subscribe((appointment) => {
+      this.appointment = appointment;
+      this.createForm();
     });
   }
-  mainForm(_id: string) {
+
+  createForm() {
     this.SmsForm = this.fb.group({
-      nom: this.patient.nomP,
-      prenom: this.patient.prenomP,
-      naissance:this.patient.naissance,
-      messageBody : '',
-    })}
+      nom: [this.appointment.nom],
+      prenom: [this.appointment.prenom],
+      numt: [this.appointment.numt],
+      messageBody: ['', Validators.required]
+    });
+  }
 
-
-  get myForm() {
+  get f() {
     return this.SmsForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
-    if (!this.SmsForm.valid) {
-      return false;
-    } else {
-      const patientId = this.route.snapshot.paramMap.get('id');
-      return this.SMSService.Send(patientId!, this.SmsForm.value).subscribe({
-        complete: () => {
-          console.log('ordonance successfully created!');
-        },
-      });
-    }
-  }
-  }
-  
 
+    if (this.SmsForm.invalid) {
+      return;
+    }
+
+    const appointmentId = this.route.snapshot.paramMap.get('id');
+    const data = this.SmsForm.value
+
+    this.smsService.Send(appointmentId!,data).subscribe(
+      () => {
+        console.log('SMS sent successfully.');
+      },
+      (error) => {
+        console.error('Failed to send SMS:', error);
+      }
+    );
+  }
+}

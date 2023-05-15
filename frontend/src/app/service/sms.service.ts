@@ -12,7 +12,7 @@ export class SmsService {
   baseUri: string = 'http://localhost:4000/twilio';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
-  Send(patientId: string, data: any) :Observable<any>{
-    return this.http.post<Sms>(`${this.baseUri}/${patientId}/msgtwilio`, data)
+  Send(appointmentId: string,data:any) :Observable<any>{
+    return this.http.post<Sms>(`${this.baseUri}/${appointmentId}/msgtwilio`, data)
   }
 }

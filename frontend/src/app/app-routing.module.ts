@@ -25,7 +25,8 @@ import { ConsultationListComponent } from './components/consultation-list/consul
 import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
 import { AddEcoComponent } from './components/docteur/add-eco/add-eco.component';
 import { SmsComponent } from './components/docteur/sms/sms.component';
-
+import { AboutPatienteComponent } from './components/docteur/about-patiente/about-patiente.component';
+import { CalenderComponent } from './components/calender/calender.component';
 
 const routes: Routes = [
   { path: '*', pathMatch: 'full', redirectTo: 'home' },
@@ -48,6 +49,7 @@ const routes: Routes = [
   {path:'const/:id', component:ConsultationComponent  },
   {path:'eco/:id', component:AddEcoComponent },
   {path:'sms/:id', component:SmsComponent },
+  {path: 'aboutpatient/:id', component:  AboutPatienteComponent },
   //psw
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
@@ -55,6 +57,7 @@ const routes: Routes = [
   {path:'carnet/:id', component:ConsultationComponent },
   {path:'const-list/:id', component:ConsultationListComponent },
   {path:'const-edit/:id', component:EditConsultationComponent },
+  {path:'calender', component: CalenderComponent },
 
 ];
 @NgModule({

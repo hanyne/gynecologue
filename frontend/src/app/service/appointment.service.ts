@@ -24,6 +24,9 @@ export class AppointmentService {
       catchError(this.handleError)
     );
   }
+  getById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getById/${id}`)
+  }
   getA(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getA`)
   }

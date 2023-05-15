@@ -1,27 +1,27 @@
-const Patiente = require('../models/patiente.model');
+const Appointment = require('../models/appointment');
+const sms = require('../models/twilio');
 const twilio = require('twilio');
 const accountSid = 'AC18d59b9ac1675efe84d5e5f993cb9281';
-const authToken = '868c091927d42293dfe11b0057d9fe9a';
+const authToken = '4fb4032e6a063f0d6eae2597deb90ad5';
 
 //MSG TEL 
 exports.rendezVous = async (req, res) => {
-  const { nomP, prenomP, naissance } = req.body;
-  if (!nomP || !prenomP || !naissance) {
+  const { nom, prenom} = req.body;
+  if (!nom || !prenom) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  const patiente = await Patiente.findOne({
-    nomP: nomP,
-    prenomP: prenomP,
-    naissance: naissance,
+  const appointment = await Appointment.findOne({
+    nom: nom,
+    prenomP: prenom,
   });
-  if (!patiente) {
+  if (!appointment) {
     return res
       .status(409)
       .json({ message: 'Patiente name does not exist' });
   }
 
-  const num = '+216' + patiente.tel;
+  const num = '+216' + appointment.numt;
   const twilioClient = twilio(accountSid, authToken);
   const messageBody = req.body.messageBody;
   const messageParams = {
@@ -31,7 +31,26 @@ exports.rendezVous = async (req, res) => {
   };
 
   twilioClient.messages
-    .create(messageParams)
-    .then(message => console.log(`SMS message sent with message ID ${message.sid}`))
-    .catch(error => console.error(`Failed to send SMS message: ${error.message}`));
-};
+  .create(messageParams)
+  .then(message => {
+    console.log(`SMS message sent with message ID ${message.sid}`);
+
+         // Create a new sms document in the database
+         const newSms = new sms({
+          appointmentId: appointment._id,
+          nom: appointment.nom,
+          prenom: appointment.prenom,
+          numt: num,
+          messageBody: messageBody,
+        });
+  
+        newSms.save()
+          .then(savedSms => {
+            console.log('SMS document saved:', savedSms);
+          })
+          .catch(error => {
+            console.error('Failed to save SMS document:', error);
+          });
+      })
+      .catch(error => console.error(`Failed to send SMS message: ${error.message}`));
+  };
