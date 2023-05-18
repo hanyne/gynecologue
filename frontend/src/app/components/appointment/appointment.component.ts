@@ -14,16 +14,17 @@ export class AppointmentComponent implements OnInit {
   errorMessages: string[] = [];
  
 
-  constructor( private appointmentService: AppointmentService, private toastrService: ToastrService,
-    private router: Router) { }
+  constructor(
+    private appointmentService: AppointmentService,
+    private toastrService: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   addAppointment() {
-    
     this.errorMessages = [];
-  
 
     if (!this.newAppointment?.nom || !this.newAppointment?.prenom || !this.newAppointment?.email || !this.newAppointment?.numt || !this.newAppointment?.date || !this.newAppointment?.motif) {
       this.errorMessages.push('Veuillez entrer tous les détails du rendez-vous');
@@ -39,6 +40,11 @@ export class AppointmentComponent implements OnInit {
       return;
     }
 
+    const dayOfWeek = selectedDate.getDay();
+    if (dayOfWeek === 0) {
+      this.errorMessages.push('Les rendez-vous ne sont pas disponibles le dimanche , Veuillez choisir une autre date.');
+      return;
+    }
 
     const appointment = {
       nom: this.newAppointment.nom,
@@ -59,10 +65,8 @@ export class AppointmentComponent implements OnInit {
           email: '',
           numt: '',
           date: '',
-          motif:'',
+          motif: '',
         };
-
-       
       },
       (error) => {
         console.error(error);
@@ -72,4 +76,3 @@ export class AppointmentComponent implements OnInit {
   }
 
 }
-

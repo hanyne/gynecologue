@@ -1,10 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators , } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { ConsultationService } from 'src/app/service/consultation.service';
+import { UserService } from 'src/app/service/user.service';
+
 @Component({
   selector: 'app-consultation',
   templateUrl: './consultation.component.html',
@@ -22,7 +23,8 @@ export class ConsultationComponent  implements OnInit  {
     private ngZone: NgZone,
     private consultationService: ConsultationService,
     private patienteService: PatienteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private UserService:UserService ,
   ) {}
 
   ngOnInit() {
@@ -74,6 +76,12 @@ export class ConsultationComponent  implements OnInit  {
           console.log(e);
         },
       });
+    }
+  }
+  
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
     }
   }
 }

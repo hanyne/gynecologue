@@ -25,7 +25,7 @@ export class OrdonnanceService {
     return this.http.get(`${this.baseUri}${query}`);
   }
 // Get ordonance
-getOrdonance(id: any): Observable<any> {
+getOrd(id: any): Observable<any> {
   const url = `${this.baseUri}/read/${id}`;
   return this.http.get(url, { headers: this.headers }).pipe(
     map((res: any) => {

@@ -64,6 +64,7 @@ import { AboutPatienteComponent } from './components/docteur/about-patiente/abou
 import { CalenderComponent } from './components/calender/calender.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // Import FullCalendar module
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { OrdonnanceListComponent } from './components/ordonnace-list/ordonnace-list.component';
 
 @NgModule({
   
@@ -102,6 +103,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
     SmsComponent,
     AboutPatienteComponent,
     CalenderComponent,
+    OrdonnanceListComponent,
 
   ],
   imports: [

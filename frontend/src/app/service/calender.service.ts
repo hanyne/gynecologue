@@ -24,7 +24,7 @@ export class CalendarService {
   }
 
   deleteEvent(eventId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${eventId}`);
+    return this.http.delete(`${this.baseUrl}/${eventId}`);
   }
   
 }

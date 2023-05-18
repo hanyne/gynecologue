@@ -15,10 +15,10 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/admin/css/style.css">
 </head>
-<body style="background-color: rgb(231, 111, 167);"  >
+<body style=" background: linear-gradient(80deg, rgba(240,111,167,1) 3%, rgba(130,177,233,1) 100%);" >
 	<!-- [ navigation menu ] start -->
-	<nav class="pcoded-navbar menu-dark ">
-		<div class="navbar-wrapper  ">
+    <nav class="pcoded-navbar" style="background:linear-gradient(80deg, rgba(130,177,233,1) 0%, rgba(240,111,167,1) 100%)">	
+        	<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div " >
 				<div >
 					<div class="main-menu-header">
@@ -40,30 +40,26 @@
                <li class="nav-item pcoded-hasmenu">
                   <a href="/admin/listP" class="nav-link "><span>
                      <img src="/assets/icons/woman.png"  class="icon"></span>
-                     <span class="pcoded-mtext mx-2">Patientes</span></a>
+                     <span class="pcoded-mtext mx-2"> Patientes</span></a>
                   <ul class="pcoded-submenu">
                       <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
                   </ul>
               </li>
               <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/recl" class="nav-link "><span>
+                <a href="admin/listapp" class="nav-link "><span>
                    <img src="/assets/icons/rendez.png" class="icon"></span>
-                   <span class="pcoded-mtext mx-2">Rendez-vous</span></a>
+                   <span class="pcoded-mtext mx-2"> Rendez-vous</span></a>
                 <ul class="pcoded-submenu">
-                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
+                    <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
                 </ul>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/listP" class="nav-link "><span>
-                   <img src="assets/icons/medica.png"  class="icon" ></span>
-                   <span class="pcoded-mtext mx-2">Médicaments</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
-                </ul>
-            </li>
-          
-        <br><br><br>
-		<li><a href="/login" ><i class="fa fa-sign-out black_color text-bold"></i> 
-			<span>Déconnexion</span></a></li>		
+        <li class="nav-item pcoded-hasmenu">
+            <a href="admin/listR" class="nav-link "><span>
+                <img src="/assets/icons/msg.png" class="icon"></span>
+               <span class="pcoded-mtext mx-2"> Messages</span></a>
+            <ul class="pcoded-submenu">
+                <li><a href="admin/listR" target="_blank">Consulter les messages </a></li>
+            </ul>
+        </li>	
     </ul>
 			</div>
 		</div>
@@ -109,7 +105,7 @@
 						</li>&nbsp;&nbsp;&nbsp;
 						<li>
 							<div class="dropdown drp-user">
-								<a href="/login"  id="logout"
+								<a href="/login" (click)="logOut()" id="logout"
                                      class="dropdown-toggle" data-toggle="dropdown">
 									<i class="feather icon-log-out"></i>
 								</a>
@@ -154,6 +150,7 @@
 
                 <div class="row justify-content-between text-left">
                     <div class="form-group col-sm-6 flex-column d-flex">
+                      <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom" style="  display: none;">
                       <label class="form-control-label px-3">Annexe<span class="text-danger"> *</span></label>
                       <input type="file" id="lname" name="lname" placeholder="Enter your last name" formControlName="annexe">
                     </div>

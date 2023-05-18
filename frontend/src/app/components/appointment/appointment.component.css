@@ -202,3 +202,48 @@
 		margin-left: 0px;
 	}
 }
+
+.work-schedules {
+	
+	padding: 20px;
+	border-radius: 8px;
+  }
+  
+  .section-title {
+	color: #252324;
+	font-size: 24px;
+	margin-bottom: 20px;
+  }
+  
+  .work-schedule {
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+  }
+  
+  .schedule-content {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .work-schedule h3 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	color: #151515af;
+  }
+  
+  .work-schedule p {
+	font-size: 16px;
+	color: #777;
+	margin: 0;
+  }
+  
+  .work-schedule i {
+	font-size: 20px;
+	color: #777;
+	margin-bottom: 30px;
+  }
+  
+  

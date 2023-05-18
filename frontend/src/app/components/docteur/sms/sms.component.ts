@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsService } from '../../../service/sms.service';
 import { AppointmentService } from '../../../service/appointment.service';
 import { Appointment} from '../../../model/appointment';
+import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-sms',
   templateUrl: './sms.component.html',
@@ -18,7 +19,9 @@ export class SmsComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private smsService: SmsService,
-    private AppointmentService: AppointmentService
+    private AppointmentService: AppointmentService,
+    private UserService:UserService ,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -48,6 +51,7 @@ export class SmsComponent implements OnInit {
     if (this.SmsForm.invalid) {
       return;
     }
+    this.router.navigate(['/admin/listapp']);
 
     const appointmentId = this.route.snapshot.paramMap.get('id');
     const data = this.SmsForm.value
@@ -60,5 +64,10 @@ export class SmsComponent implements OnInit {
         console.error('Failed to send SMS:', error);
       }
     );
+  }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
+    }
   }
 }

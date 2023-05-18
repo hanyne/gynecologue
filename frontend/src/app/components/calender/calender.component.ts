@@ -65,7 +65,7 @@ export class CalenderComponent implements OnInit {
   }
 
   handleDateClick(arg: any) {
-    const title = prompt('Enter event title:');
+    const title = prompt('Ecrire votre note:');
     if (title) {
       const eventData: Calender = {
         title: title,
@@ -89,7 +89,7 @@ export class CalenderComponent implements OnInit {
 
   handleEventClick(arg: any) {
     const eventId = arg.event.id;
-    const confirmation = confirm(`Souhaitez-vous confirmer la suppression de carnet de"${arg.event.eventId}"?`);
+    const confirmation = confirm(`Souhaitez-vous confirmer la suppression de carnet de"${arg.event.title}"?`);
     if (confirmation) {
       this.calendarService.deleteEvent(eventId).subscribe(
         () => {
