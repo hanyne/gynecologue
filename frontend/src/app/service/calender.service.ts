@@ -19,12 +19,13 @@ export class CalendarService {
     return this.http.post<Calender>(this.baseUrl, eventData);
   }
 
-  updateEvent(eventId: string, eventData: Calender): Observable<Calender> {
-    return this.http.put<Calender>(`${this.baseUrl}/${eventId}`, eventData);
+  updateEvent(id: string, eventData: Calender): Observable<Calender> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.put<Calender>(url, eventData);
   }
 
-  deleteEvent(eventId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${eventId}`);
+  deleteEvent(id: string): Observable<any> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete(url);
   }
-  
 }

@@ -8,6 +8,7 @@ const appointmentSchema = new Schema({
   numt: { type: String, required: true },
   date: { type: String, required: true },
   motif: { type: String, required: true },
+  status: { type: String, enum: ['valid', 'invalid'], default: 'invalid' }, // Add status field
 });
 
 const Appointment = mongoose.model('Appointment', appointmentSchema);

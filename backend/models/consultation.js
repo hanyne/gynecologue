@@ -12,9 +12,6 @@ let Consultation = new Schema({
     conclusion : { type: String },
     annexe: { type: String },
     timing: { type: String}
-
-
-
 }, {
    timestamps: true,
    collection: 'consultaion'

@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SmsService } from '../../../service/sms.service';
 import { AppointmentService } from '../../../service/appointment.service';
-import { Appointment} from '../../../model/appointment';
+import { Appointment } from '../../../model/appointment';
 import { UserService } from 'src/app/service/user.service';
+
 @Component({
   selector: 'app-sms',
   templateUrl: './sms.component.html',
@@ -19,14 +20,14 @@ export class SmsComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private smsService: SmsService,
-    private AppointmentService: AppointmentService,
-    private UserService:UserService ,
+    private appointmentService: AppointmentService,
+    private userService: UserService,
     private router: Router
   ) {}
 
   ngOnInit() {
     const appointmentId = this.route.snapshot.paramMap.get('id');
-    this.AppointmentService.getById(appointmentId!).subscribe((appointment) => {
+    this.appointmentService.getById(appointmentId!).subscribe((appointment) => {
       this.appointment = appointment;
       this.createForm();
     });
@@ -51,12 +52,13 @@ export class SmsComponent implements OnInit {
     if (this.SmsForm.invalid) {
       return;
     }
+
     this.router.navigate(['/admin/listapp']);
 
     const appointmentId = this.route.snapshot.paramMap.get('id');
-    const data = this.SmsForm.value
+    const data = this.SmsForm.value;
 
-    this.smsService.Send(appointmentId!,data).subscribe(
+    this.smsService.Send(appointmentId!, data).subscribe(
       () => {
         console.log('SMS sent successfully.');
       },
@@ -65,9 +67,10 @@ export class SmsComponent implements OnInit {
       }
     );
   }
+
   async logOut() {
     if (confirm("Do you want to log out?")) {
-      await this.UserService.logoutUser()
+      await this.userService.logoutUser();
     }
   }
 }

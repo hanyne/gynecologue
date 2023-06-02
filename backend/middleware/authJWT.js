@@ -11,13 +11,14 @@ const verifyToken = (req, res, next) => {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  jwt.verify(token, config.secret, (err, decoded) => {
-    if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
-    }
-    req._id = decoded.id;
-    next();
-  });
+   jwt.verify(token, config.secret, (err, decoded) => {
+  if (err) {
+    return res.status(401).send({ message: "Unauthorized!" });
+  }
+  req._id = decoded._id;
+  req.userRole = decoded.role; // Attach the user role to the request object
+  next();
+});
 };
 
 const isDocteur= (req, res, next) => {
@@ -102,10 +103,13 @@ const isPatiente = (req, res, next) => {
       );
     });
   };
+ 
 const authJwt = {
   verifyToken,
   isDocteur,
   isSecretaire,
   isPatiente,
 };
+
+
 module.exports = authJwt;

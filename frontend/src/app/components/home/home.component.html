@@ -34,7 +34,7 @@
                         <h5 class="d-inline-block  text-uppercase border-bottom border-5 text-black">About Us</h5>
                         <h1 class="display-4">A propos de nous</h1>
                     </div>
-                    <p>Bienvenue sur mon site dédiée à la gynécologie ! Je suis Nessrine machat, votre gynécologue qualifiée avec [nombre d'années] d'expérience dans le domaine de la santé des femmes. Mon objectif principal est de fournir des soins de qualité, bienveillants et holistiques aux femmes de tous âges, en veillant à leur santé reproductive et à leur bien-être global.</p>
+                    <p>Bienvenue sur mon site dédiée à la gynécologie ! Je suis Nessrine machat, votre gynécologue qualifiée avec 9 ans d'expérience dans le domaine de la santé des femmes. Mon objectif principal est de fournir des soins de qualité, bienveillants et holistiques aux femmes de tous âges, en veillant à leur santé reproductive et à leur bien-être global.</p>
                     <p>Je suis passionnée par l'amélioration de la santé des femmes et je m'engage à offrir un environnement chaleureux et confortable où les femmes peuvent poser toutes leurs questions et recevoir des soins personnalisés en fonction de leurs besoins spécifiques. </p>
                     <p> Que vous ayez besoin d'un dépistage du cancer du col de l'utérus, d'un suivi de grossesse, de conseils en matière de contraception, ou de toute autre préoccupation liée à la gynécologie, vous pouvez compter sur moi pour vous offrir des soins de qualité et respectueux. Je suis impatiente de vous rencontrer et de vous accompagner dans votre parcours de santé.</p>
                     <div class="row g-3 pt-3">
@@ -95,7 +95,7 @@
                         <div class="service-icon mb-4">
                             <i class="fa fa-2x fa-procedures text-white"></i>
                         </div>
-                        <h4 class="mb-3">Echographie</h4>
+                        <h4 class="mb-3">Echographie obstétricale et gynécologique</h4>
                         <p class="m-0">l'échographie abdominale,l'échographie endo-vaginale, qui visualise mieux le col de l'utérus, l'utérus, et les ovaires.</p>
                         <a class="btn btn-lg b rounded-pill" href="/service">
                             <i class="bi bi-arrow-right"></i>
@@ -144,8 +144,8 @@
                         <div class="service-icon mb-4">
                             <i class="fa fa-2x fa-microscope text-white"></i>
                         </div>
-                        <h4 class="mb-3">ECG</h4>
-                        <p class="m-0">L'électrocardiogramme ou ECG est un examen majeur en cardiologie qui permet d'effectuer des diagnostics précis, notamment celui de troubles du rythme, de l'infarctus ou de péricardite</p>
+                        <h4 class="mb-3">RCF</h4>
+                        <p class="m-0">La tachycardie fœtale se définit comme un rythme cardiaque de plus de 160 battements par minute pendant une durée d'au moins 10 minutes.</p>
                         <a class="btn btn-lg b rounded-pill" href="/service">
                             <i class="bi bi-arrow-right"></i>
                         </a>
@@ -156,27 +156,26 @@
     </div>
     <!-- Services End -->
 
-    <!-- Blog Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                <h5 class="d-inline-block  text-uppercase border-bottom border-5 text-black">Blog Post</h5>
-                <h1 class="display-4"> Nos Articles </h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-xl-4 col-lg-6" *ngFor="let article of articles">
-                    <div class="bg-light rounded overflow-hidden">
-                        <img class="img-fluid w-100" *ngIf="article.photo" [src]="'http://localhost:4000/uploads/' + article.photo"  alt="Article photo">
-                        <div class="p-4">
-                            <a class="h3 d-block mb-3" href="">{{ article.title }}</a>
-                            <p class="m-0">{{ article.content }}</p>
-                        </div>
-                     
+ <!-- Blog Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <h5 class="d-inline-block text-uppercase border-bottom border-5 text-black">Blog Post</h5>
+            <h1 class="display-4">Nos Articles</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-xl-4 col-lg-6" *ngFor="let article of articles">
+                <div class="bg-light rounded overflow-hidden">
+                    <img class="img-fluid w-100" *ngIf="article.photo" [src]="'http://localhost:4000/uploads/' + article.photo" alt="Article photo">
+                    <div class="p-4">
+                        <a class="h3 d-block mb-3" href="">{{ article.title }}</a>
+                        <p class="m-0">{{ article.description }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- Blog End -->
     <!-- Footer Start --><app-footer></app-footer>  <!-- Footer End -->
     <a href="/home" class="btn btn-lg b ma btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

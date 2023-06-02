@@ -14,8 +14,9 @@ export class EchographieService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  getAllEco(): Observable<Echographie []> {
-    return this.http.get<Echographie []>(this.apiUrl);
+  getAllEco(patientId: string): Observable<Echographie []> {
+    const url = `${this.apiUrl}/eco/${patientId}`;
+    return this.http.get<Echographie []>(url);
   }
   createEco(eco: Echographie ,patientId: string, dicom: File): Observable<Echographie > {
     const formData = new FormData();
@@ -40,8 +41,6 @@ export class EchographieService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.patch<Echographie >(url, formData);
   }
-
-
 
   deleteEco(id: string): Observable<any> {
     const url = `${this.apiUrl}/${id}`;

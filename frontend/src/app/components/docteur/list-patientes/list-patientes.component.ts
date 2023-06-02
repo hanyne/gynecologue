@@ -45,7 +45,7 @@ export class ListPatientesComponent implements OnInit {
 
 
   deletepatiente(patienteClicked: Patiente) {
-    if(window.confirm('Do you want to go ahead?')) {
+    if(window.confirm('Souhaitez-vous supprimer les données de cette patiente ?')) {
       this.patienteService.deleteP(patienteClicked._id)
         .subscribe(() => {
           this.patientes = this.patientes.filter(tL => tL._id != patienteClicked._id);

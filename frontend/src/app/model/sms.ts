@@ -4,4 +4,5 @@ export class Sms {
     prenom!:string;
     numt!:string;
     messageBody !:string;
+  valide: any;
 }

@@ -27,7 +27,10 @@ import { AddEcoComponent } from './components/docteur/add-eco/add-eco.component'
 import { SmsComponent } from './components/docteur/sms/sms.component';
 import { AboutPatienteComponent } from './components/docteur/about-patiente/about-patiente.component';
 import { CalenderComponent } from './components/calender/calender.component';
-import { OrdonnanceListComponent } from './components/ordonnace-list/ordonnace-list.component';
+import { OrdoListComponent } from './components/ordo-list/ordo-list.component';
+import { PrintOrdComponent } from './components/print-ord/print-ord.component';
+
+
 
 
 const routes: Routes = [
@@ -60,10 +63,11 @@ const routes: Routes = [
   {path:'const-list/:id', component:ConsultationListComponent },
   {path:'const-edit/:id', component:EditConsultationComponent },
   {path:'calender', component: CalenderComponent },
-  {path:'ordo/:id', component: OrdonnanceListComponent },
+  {path:'ordlist/:id', component: OrdoListComponent },
+  {path:'printord/:id', component: PrintOrdComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }  

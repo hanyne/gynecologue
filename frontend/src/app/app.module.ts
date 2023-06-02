@@ -57,14 +57,15 @@ import { ConsultationComponent } from './components/consultation/consultation.co
 import {MatStepperModule} from '@angular/material/stepper';
 import { ConsultationListComponent } from './components/consultation-list/consultation-list.component';
 import { EditConsultationComponent } from './components/edit-consultation/edit-consultation.component';
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { AddEcoComponent } from './components/docteur/add-eco/add-eco.component';
 import { SmsComponent } from './components/docteur/sms/sms.component';
 import { AboutPatienteComponent } from './components/docteur/about-patiente/about-patiente.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // Import FullCalendar module
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { OrdonnanceListComponent } from './components/ordonnace-list/ordonnace-list.component';
+import { OrdoListComponent } from './components/ordo-list/ordo-list.component';
+import { PrintOrdComponent } from './components/print-ord/print-ord.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   
@@ -98,12 +99,14 @@ import { OrdonnanceListComponent } from './components/ordonnace-list/ordonnace-l
     ConsultationComponent,
     ConsultationListComponent,
     EditConsultationComponent,
-    MenuBarComponent,
     AddEcoComponent,
     SmsComponent,
     AboutPatienteComponent,
     CalenderComponent,
-    OrdonnanceListComponent,
+    OrdoListComponent,
+    PrintOrdComponent,
+    ProfileComponent,
+    
 
   ],
   imports: [
@@ -132,12 +135,12 @@ import { OrdonnanceListComponent } from './components/ordonnace-list/ordonnace-l
     MatPaginatorModule,
     MatStepperModule, 
     FullCalendarModule,// Add FullCalendarModule to imports
-   
+  
 
 
 
   ],
-  providers: [ApiService],
+  providers: [ApiService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,10 @@ import { Patiente } from 'src/app/model/patiente';
 //cornerstone
 import * as cornerstone from 'cornerstone-core';
 import * as dicomParser from 'dicom-parser';
+import { parseDicom } from 'dicom-parser';
+
+
+
 
 @Component({
   selector: 'app-add-eco',
@@ -22,6 +26,7 @@ export class AddEcoComponent implements OnInit {
   selectedEco: Echographie| undefined = undefined;
   isEditMode: boolean = false;
   patient: Patiente = new Patiente();
+  ecoItem: any
   constructor(private ecoService: EchographieService,   
     private patienteService: PatienteService,
     private route: ActivatedRoute) { }
@@ -31,7 +36,7 @@ export class AddEcoComponent implements OnInit {
       this.patient = patient;
       this.mainForm(patientId!);
 
-    this.getAllEco();
+    this.getAllEco(patientId!);
   
     });
   }  
@@ -42,8 +47,8 @@ export class AddEcoComponent implements OnInit {
       content: new FormControl('', Validators.required),
       dicom: new FormControl('')
     });}
-getAllEco() {
-    this.ecoService.getAllEco().subscribe(
+getAllEco(patientId: string) {
+    this.ecoService.getAllEco(patientId).subscribe(
       (res: Echographie[]) => {
         this.eco = res;
       },
@@ -51,30 +56,33 @@ getAllEco() {
     );
   }
   
-loadDicomImage(): void {
-  // Charge l'image DICOM
-const xhr = new XMLHttpRequest();
-const imageId =  `http://localhost:4000/${this.echo.dicom}`
-xhr.open('get', imageId , true);
-xhr.responseType = 'arraybuffer';
-
-xhr.onload = () => {
-  const byteArray = new Uint8Array(xhr.response);
-  dicomParser.parseDicom(byteArray);
-  const canvas = document.getElementById('dicomCanvas') as HTMLCanvasElement;
-  cornerstone.loadAndCacheImage(imageId).then((image) => {
-    cornerstone.displayImage(canvas, image);
-  });
-}
-xhr.send();
-}
-onFileSelected(event: Event): void {
+  loadDicomImage(dicomFile: File, ecoItem: Echographie): void {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const arrayBuffer = e.target?.result as ArrayBuffer;
+      const byteArray = new Uint8Array(arrayBuffer);
+      const dataSet = parseDicom(byteArray);
+  
+      // Get the ImageID from the DICOM data
+      const imageId = dataSet.string('x0020000d') || dataSet.string('x00080018');
+  
+      const canvasId = 'dicomCanvas-' + ecoItem._id;
+      const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+      cornerstone.enable(canvas);
+  
+      cornerstone.loadAndCacheImage(imageId!).then(image => {
+        cornerstone.displayImage(canvas, image);
+      });
+    };
+    reader.readAsArrayBuffer(dicomFile);
+  }
+  onFileSelected(event: Event, ecoItem: Echographie): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length) {
-      this.dicom = input.files[0];
+      const dicomFile = input.files[0];
+      this.loadDicomImage(dicomFile, ecoItem);
     }
   }
-
 onSubmit() {
     const eco = this.ecoForm.value;
     if (this.isEditMode && this.selectedEco && this.selectedEco._id && this.dicom) {

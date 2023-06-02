@@ -30,8 +30,10 @@ export class UserService {
         const data = response as any;
         const token = data.token;
         const role = data.role;
+        const user = data.user; // Assuming the server returns the user object
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
+        localStorage.setItem('user', user);
         return response;
       }),
       catchError(error => {
@@ -47,10 +49,10 @@ export class UserService {
   }
 
   getCurrentUser() {
-    const user_string = localStorage.getItem('User');
-    const user = JSON.parse(user_string || '{}');
-    return user;
+    const user = localStorage.getItem('User');
+    return user ? JSON.parse(user) : null;
   }
+  
 
   requestReset(body:any): Observable<any> {
     return this.http.post(`${this.API_URI}/ResetPassword`, body);
@@ -63,5 +65,19 @@ export class UserService {
   ValidPasswordToken(resettoken:any, patienteId:any): Observable<any> {
     return this.http.get(`${this.API_URI}/ValidPasswordToken${patienteId}/${resettoken}`);
   }
+
+  getUserProfile(): Observable<any> {
+    return this.http.get(`${this.API_URI}/profile`).pipe(
+      catchError(error => {
+        let errorMessage = 'An error occurred. Please try again later.';
+        if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+        return throwError(errorMessage);
+      })
+    );
+  }
+  
+  
 
 }

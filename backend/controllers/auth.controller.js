@@ -28,12 +28,11 @@ exports.signin = async (req, res) => {
       if (secretaire) {
         bcrypt.compare(req.body.password, secretaire.password, function (err, isMatch) {
           if (isMatch && !err) {
-            var token = jwt.sign(
-              { _id: secretaire._id, role: secretaire.role },config.secret, {
-                expiresIn: 86400, // 24 hours
-              });
-            console.log("token:", token)
-            res.cookie("token", token);
+            var token = jwt.sign({ _id: user._id, role: user.role }, config.secret, {
+              expiresIn: expirationTime,
+            });
+            console.log("token:", token);
+            res.cookie("token", token, { maxAge: expirationTime * 1000 });
             res.json({
               success: true,
               token: token,
@@ -107,6 +106,7 @@ exports.signin = async (req, res) => {
     });
   }
 };
+
 exports.signout = async (req, res) => {
   try {
     req.session = null;
@@ -129,4 +129,35 @@ exports.docteurBoard = (req, res) => {
 
 exports.secretaireBoard = (req, res) => {
   res.status(200).send("Secretaire Content.");
+};
+
+exports.getCurrentUserProfile = async (req, res) => {
+  try {
+    if (!req._id) {
+      return res.status(401).send({ message: "Unauthorized!" });
+    }
+
+    let user;
+    switch (req.userRole) {
+      case "docteur":
+        user = await User.findById(req._id);
+        break;
+      case "patiente":
+        user = await Patiente.findById(req._id);
+        break;
+      case "secretaire":
+        user = await Secretaire.findById(req._id);
+        break;
+      default:
+        return res.status(400).send({ message: "Invalid user role." });
+    }
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found." });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };

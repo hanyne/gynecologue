@@ -17,4 +17,5 @@ router.get("/docteur",[authJwt.verifyToken, authJwt.isDocteur],authController.do
 router.post("/ResetPassword", passController.ResetPassword);
 router.get("/ValidPasswordToken/:patienteId/:resettoken", passController.ValidPasswordToken);
 router.post("/NewPassword/:patienteId/:resettoken", passController.NewPassword);
+router.get("/profile", authJwt.verifyToken, authController.getCurrentUserProfile);
 module.exports = router;

@@ -20,9 +20,10 @@ exports.getID = (req, res) => {
 };
 
 // Add new appointment
-exports.saveAppointment =(req, res) => {
+exports.saveAppointment = (req, res) => {
   const appointment = new Appointment({
     ...req.body,
+    status: 'invalid', // Set the initial status as 'invalid'
   });
 
   appointment.save((err) => {

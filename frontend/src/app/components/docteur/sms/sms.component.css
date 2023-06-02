@@ -136,20 +136,3 @@ input[type="text"] {
 				margin-right: 5px;
 			}
 		
-		ul {
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-			
-			width: 300px;
-			max-height: 300px;
-			overflow-y: auto;
-		}
-		li {
-			padding: 5px;
-			cursor: pointer;
-		}
-		li:hover {
-			background-color: #f2f2f2;
-		}
-	

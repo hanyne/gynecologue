@@ -6,6 +6,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
+import {Ordonnance} from '../model/ordonance';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,11 +20,16 @@ export class OrdonnanceService {
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   
-  // Get all ordonances
-  getOrdonances(searchTerm: string = '') {
-    const query = searchTerm ? `?date=${searchTerm}` : '';
-    return this.http.get(`${this.baseUri}${query}`);
-  }
+  // Get all ordonances for a specific user
+getOrdonnances(patientId: string): Observable<any> {
+  const url = `${this.baseUri}/patient/${patientId}`;
+  return this.http.get(url, { headers: this.headers }).pipe(
+    map((res: any) => {
+      return res || {};
+    }),
+    catchError(this.errorMgmt)
+  );
+}
 // Get ordonance
 getOrd(id: any): Observable<any> {
   const url = `${this.baseUri}/read/${id}`;

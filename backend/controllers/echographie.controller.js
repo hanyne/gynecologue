@@ -28,15 +28,15 @@ exports.saveEco =  (req, res, next) => {
     patientId: req.params.patientId,
   });
 
-  // Sauvegarde du carnet dans la base de données
-  Eco.save((err, newEco) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({
-        ok: false,
-        message: "Une erreur est survenue lors de la sauvegarde.",
-      });
-    }
+ // Sauvegarde du carnet dans la base de données
+ echographie.save((err, newEco) => {
+  if (err) {
+    console.error(err);
+    return res.status(500).json({
+      ok: false,
+      message: "Une erreur est survenue lors de la sauvegarde.",
+    });
+  }
 
     // Envoi de la réponse avec les données du carnet créé
     res.status(201).json({

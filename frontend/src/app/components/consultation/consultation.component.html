@@ -24,43 +24,56 @@
 					<div class="main-menu-header">
 						<img class="img-radius" src="/assets/img/gyne.png" alt="User-Profile-Image">
 						<div class="user-details">
-							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
+							<div id="more-details" class="text-white">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
                             </div>
 						</div>
 					</div>
 				</div>
 <br><br>
-				<ul class="nav pcoded-inner-navbar contain "id="tit1">
-					<li class="nav-item">
-					    <a href="admin/dashboard" class="nav-link "><span>
-                      <img src="/assets/icons/home.png" class="icon"></span>
-                      <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
-					</li>
-                    
-               <li class="nav-item pcoded-hasmenu">
-                  <a href="/admin/listP" class="nav-link "><span>
-                     <img src="/assets/icons/woman.png"  class="icon"></span>
-                     <span class="pcoded-mtext mx-2"> Patientes</span></a>
-                  <ul class="pcoded-submenu">
-                      <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="admin/listapp" class="nav-link "><span>
-                   <img src="/assets/icons/rendez.png" class="icon"></span>
-                   <span class="pcoded-mtext mx-2"> Rendez-vous</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
-                </ul>
-        <li class="nav-item pcoded-hasmenu">
-            <a href="admin/listR" class="nav-link "><span>
-                <img src="/assets/icons/msg.png" class="icon"></span>
-               <span class="pcoded-mtext mx-2"> Messages</span></a>
-            <ul class="pcoded-submenu">
-                <li><a href="admin/listR" target="_blank">Consulter les messages </a></li>
-            </ul>
-        </li>	
+<ul class="nav pcoded-inner-navbar contain "id="tit1">
+  <li class="nav-item">
+      <a href="admin/dashboard" class="nav-link "><span>
+              <img src="../../../../assets/icons/dashboard.png" class="icon"></span>
+              <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
+  </li>
+            
+       <li class="nav-item pcoded-hasmenu">
+          <a href="/admin/listP" class="nav-link "><span>
+             <img src="/assets/icons/consent.png"  class="icon"></span>
+             <span class="pcoded-mtext mx-2"> Patientes</span></a>
+          <ul class="pcoded-submenu">
+              <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
+          </ul>
+      </li>
+      <li class="nav-item pcoded-hasmenu">
+        <a href="admin/listapp" class="nav-link "><span>
+           <img src="/assets/icons/online.png" class="icon"></span>
+           <span class="pcoded-mtext mx-2"> Demande Rendez-vous</span></a>
+        <ul class="pcoded-submenu">
+            <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
+        </ul>
+<li class="nav-item pcoded-hasmenu">
+    <a href="admin/listR" class="nav-link "><span>
+        <img src="/assets/icons/comments.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> Messages</span></a>
+    <ul class="pcoded-submenu">
+        <li><a href="admin/listR" target="_blank">Consulter les messages </a></li>
     </ul>
+</li>
+<li class="nav-item pcoded-hasmenu">
+    <a href="blog" class="nav-link "><span>
+        <img src="/assets/icons/blog.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> Articles</span></a>
+    <ul class="pcoded-submenu">
+        <li><a href="blog" target="_blank">Consulter les articles </a></li>
+    </ul>
+</li>
+<li class="nav-item pcoded-hasmenu">
+    <a href="calender" class="nav-link "><span>
+        <img src="/assets/icons/clock.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> calendrier </span></a>
+</li>	
+</ul>
 			</div>
 		</div>
 	</nav>
@@ -152,7 +165,7 @@
                     <div class="form-group col-sm-6 flex-column d-flex">
                       <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom" style="  display: none;">
                       <label class="form-control-label px-3">Annexe<span class="text-danger"> *</span></label>
-                      <input type="file" id="lname" name="lname" placeholder="Enter your last name" formControlName="annexe">
+                      <input type="file" id="annexe" name="annexe"  formControlName="annexe">
                     </div>
                     <div class="form-group col-sm-6 flex-column d-flex">
                       <label class="form-control-label px-3">Date de consultation<span class="text-danger"> *</span></label>

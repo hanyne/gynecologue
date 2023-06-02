@@ -15,54 +15,65 @@ export class LoginComponent implements OnInit {
   hide = true;
   user!: User;
   secretaire!: Secretaire;
-  patiente!:Patiente;
+  patiente!: Patiente;
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   error = '';
-  constructor(public formBuilder: FormBuilder, private userService: UserService, 
-    private router: Router) {
-    this.loginForm= this.formBuilder.group({
+
+  constructor(
+    public formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
+    this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
-      })
-   }
+    });
+  }
 
+  get f() {
+    return this.loginForm.controls;
+  }
 
-   get f() { return this.loginForm.controls; }  
-   ngOnInit(): void {
-     
-   }
-   onSubmit() {
-     this.submitted = true;
-     if (this.loginForm.invalid) {
-         return;
-     }
-     this.loading = true;
-     this.userService.login(this.loginForm.value)        
-     .subscribe(     
+  ngOnInit(): void {}
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.userService.login(this.loginForm.value).subscribe(
       data => {
-        localStorage.setItem('token', data.token); 
-        localStorage.setItem('userName', data.user.userName);   
         if (data === null) {
           alert('Username or password is wrong');
+        } else if (!data.token) {
+          alert('Password is incorrect');
         } else {
           console.log('Login successful');
           console.log('Data.user.role:', data.user.role);
-          if (data.user.role ==='docteur') {
-            this.router.navigate(['admin/dashboard']);
-          } else if (data.user.role === 'patiente') {
-            //const id = data.user._id;
-            /*this.router.navigate(['/changepass',id]);*/
-            this.router.navigate(['/home']);
-          } else if (data.user.role === 'secretaire') {
-            this.router.navigate(['admin/dashboard']);
-          } else {
-            console.log('Unknown role:', data);
-            alert('Unknown user role');
+          const role = data.user.role;
+          switch (role) {
+            case 'docteur':
+              this.router.navigate(['admin/dashboard']);
+              break;
+            case 'patiente':
+              this.router.navigate(['/home']);
+              break;
+            case 'secretaire':
+              this.router.navigate(['admin/dashboard']);
+              break;
+            default:
+              console.log('Unknown role:', data);
+              alert('Unknown user role');
+              break;
           }
         }
-      }, err => {
-        alert("Login failed");        
-      })
-   }}
+      },
+      err => {
+        alert('Login failed');
+      }
+    );
+  }
+}

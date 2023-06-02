@@ -18,3 +18,14 @@
     height: 60px;
     background-size: cover;
   }
+  b {
+    background-color: black;
+  }
+  .valid-btn {
+    background-color: rgb(143, 246, 143);
+    color: white;
+  }
+  .invalid-btn{
+    background-color: rgb(246, 143, 164);
+    color: white;
+  }

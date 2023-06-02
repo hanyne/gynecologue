@@ -17,24 +17,23 @@ exports.saveOrd =(req, res, next) => {
 }
 
 
-// Get All ordonance
-exports.getAllOrd =(req, res) => {
-  const { date } = req.query;
-  const query = date ? { date: { $regex: new RegExp(date), $options: 'i' } } : {};
-  Ordonance.find(query, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
+// Get All ordonance for a specific user
+exports.getAllOrd =(req, res, next) => {
+  Ordonance.find(
+    { patientId: req.params.patientId },
+    (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.json(data);
+      }
     }
-  });
+  );
 };
-
 // Get single Ord
 exports.getOrd =(req, res) => {
   Ordonance.findOne({
     _id: req.params.id,
-    patientId: req.params.patientId,
   }, (error, data) => {
     if (error) {
       return next(error);

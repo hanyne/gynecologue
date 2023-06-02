@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { AppointmentService } from '../../service/appointment.service';
 import { Appointment } from '../../model/appointment';
 import { UserService } from 'src/app/service/user.service';
+
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
   styleUrls: ['./appointment-list.component.css']
 })
-export class AppointmentListComponent {
+export class AppointmentListComponent implements OnInit {
   appointmentsList: Appointment[] = [];
   newAppointment: Appointment = new Appointment();
-  constructor(private appointmentService: AppointmentService,private UserService:UserService 
-    ) { }
+
+  constructor(
+    private appointmentService: AppointmentService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.getAppointments();

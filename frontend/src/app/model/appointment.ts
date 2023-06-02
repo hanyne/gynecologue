@@ -6,5 +6,5 @@ export class Appointment {
 	numt!: String;
 	date!: Date;
 	motif!:String;
-    
+    status: string | undefined;
 }
