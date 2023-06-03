@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { ActivatedRoute,  } from '@angular/router';
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 
 
@@ -24,12 +23,16 @@ export class AboutPatienteComponent {
     private patienteService: PatienteService,
     private UserService:UserService ,
   ) { }
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
     });
-  }
+  } 
+}
   createCarnet(patientId: any) {
     this.router.navigate(['/create-carnet', patientId]);
   }

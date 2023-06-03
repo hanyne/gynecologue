@@ -25,14 +25,17 @@ export class SmsComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.userService.isDocteurOrSecretaire()) {
+      this.userService.logout(); // Redirect to login page
+    } else {
     const appointmentId = this.route.snapshot.paramMap.get('id');
     this.appointmentService.getById(appointmentId!).subscribe((appointment) => {
       this.appointment = appointment;
       this.createForm();
     });
   }
-
+  }
   createForm() {
     this.SmsForm = this.fb.group({
       nom: [this.appointment.nom],

@@ -23,6 +23,9 @@ export class EditConsultationComponent {
     private router: Router
   ) {}
   ngOnInit(): void {
+    if (!this.userService.isDocteurOrSecretaire()) {
+      this.userService.logout(); // Redirect to login page
+    } else {
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getConsultation(id);
     this.editForm = this.fb.group({
@@ -34,6 +37,7 @@ export class EditConsultationComponent {
    
     });
     }
+  }
 
   // Getter to access form control
   get myForm() {

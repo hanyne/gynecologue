@@ -5,6 +5,8 @@ import { Carnet } from 'src/app/model/carnet';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-carnet-list',
@@ -27,18 +29,27 @@ maladie = this.fb.group({
   Hépatite_C:false,
   Hépatite_B: false,
 });
-  constructor(public fb: FormBuilder,private CarnetService: carnetService,private patienteService: PatienteService,private route: ActivatedRoute) { 
+  constructor(public fb: FormBuilder,
+    private CarnetService: carnetService,
+    private patienteService: PatienteService,
+    private route: ActivatedRoute,
+    private UserService: UserService
+    ) { 
    
   }
   
  
-  ngOnInit() {
+  ngOnInit(): void{
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
       this.readCarnet(patientId!);
     });
-  }
+  } 
+}
 
   readCarnet(patientId: string) {
     this.CarnetService.getCarnets(patientId).subscribe((data) => {

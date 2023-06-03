@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Ordonnance } from '../../model/ordonance';
 import { OrdonnanceService } from '../../service/ordonance.service';
 import { Patiente } from 'src/app/model/patiente';
-
+import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-print-ord',
   templateUrl: './print-ord.component.html',
@@ -20,14 +20,18 @@ export class PrintOrdComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private ordonnanceService: OrdonnanceService,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private UserService : UserService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     this.initOrdForm();
     this.getOrd();
   }
-
+  }
   initOrdForm() {
     this.ordForm = this.fb.group({
       nom: [''],

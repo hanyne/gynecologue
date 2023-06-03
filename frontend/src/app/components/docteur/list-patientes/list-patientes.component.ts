@@ -5,6 +5,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
+
 
 
 @Component({
@@ -27,13 +29,19 @@ export class ListPatientesComponent implements OnInit {
   
   constructor(
     private patienteService: PatienteService,
-    private router: Router
+    private router: Router,
+    private UserService:UserService ,
+
   ) { }
   
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.UserService.isDocteurOrSecretaire()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     this.getAll();
   }
+}
 
   getAll(searchTerm: string = ''){
     this.patienteService.getP(searchTerm).subscribe((data) =>

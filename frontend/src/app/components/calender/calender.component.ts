@@ -5,6 +5,8 @@ import interactionPlugin, { DateClickArg, EventDragStopArg } from '@fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarService } from '../../service/calender.service';
 import { Calender } from 'src/app/model/calender';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-calender',
@@ -16,9 +18,11 @@ export class CalenderComponent implements OnInit {
   @ViewChild('fullcalendar') fullcalendar?: FullCalendarComponent;
   events: EventInput[] = []; // Array to store all events
 
-  constructor(private calendarService: CalendarService) {}
-
-  ngOnInit() {
+  constructor(private calendarService: CalendarService , private UserService: UserService) {}
+  ngOnInit(): void {
+    if (!this.UserService.isDocteurOrSecretaire()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     this.calendarOptions = {
       plugins: [timeGridPlugin, interactionPlugin],
       editable: true,
@@ -51,6 +55,7 @@ export class CalenderComponent implements OnInit {
     // Call a method to fetch all events from the calendar service
     this.fetchAllEvents();
   }
+}
 
   fetchAllEvents() {
     this.calendarService.getEvents().subscribe(

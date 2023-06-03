@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {PatienteService  } from '../../../service/patiente.service';
 import {FormControl, FormGroup,FormBuilder, Validators } from '@angular/forms';
 import{Patiente} from '../../../model/patiente'
+import { UserService } from 'src/app/service/user.service';
+
 @Component({
   selector: 'app-add-pat',
   templateUrl: './add-pat.component.html',
@@ -18,7 +20,7 @@ export class AddPatComponent {
   pwdPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,12}$";
   emailPattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
   telPattern = "[0-9]{8}$"; 
-  constructor(public formBuilder: FormBuilder, private P:PatienteService, private router: Router) { 
+  constructor(public formBuilder: FormBuilder, private P:PatienteService, private router: Router, private UserService: UserService) { 
   this.  registerForm = this.formBuilder.group({
     nomP: new FormControl('', [Validators.required, Validators.pattern(this.stringPattern)]),
     prenomP: new FormControl('', [Validators.required, Validators.pattern(this.stringPattern)]),
@@ -30,7 +32,12 @@ export class AddPatComponent {
   })
 }   
 get f() { return this.registerForm.controls; }  
-  ngOnInit() { }
+ngOnInit(): void {
+  if (!this.UserService.isDocteurOrSecretaire()) {
+    this.UserService.logout(); // Redirect to login page
+   return;
+  }
+  }
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid) {

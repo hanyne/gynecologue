@@ -5,6 +5,8 @@ import { Echographie } from '../../../model/echographie';
 import { EchographieService} from '../../../service/echographie.service';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
+import { UserService } from 'src/app/service/user.service';
+
 //cornerstone
 import * as cornerstone from 'cornerstone-core';
 import * as dicomParser from 'dicom-parser';
@@ -29,8 +31,12 @@ export class AddEcoComponent implements OnInit {
   ecoItem: any
   constructor(private ecoService: EchographieService,   
     private patienteService: PatienteService,
-    private route: ActivatedRoute) { }
-  ngOnInit(): void {
+    private route: ActivatedRoute, 
+    private UserService: UserService) { }
+    ngOnInit(): void {
+      if (!this.UserService.isDocteur()) {
+        this.UserService.logout(); // Redirect to login page
+      } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
@@ -40,6 +46,7 @@ export class AddEcoComponent implements OnInit {
   
     });
   }  
+}
   mainForm(_id: string) {
   this.ecoForm = new FormGroup({
       title: new FormControl('', Validators.required),

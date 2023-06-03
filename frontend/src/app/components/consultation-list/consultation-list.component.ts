@@ -5,6 +5,8 @@ import { Consultation } from 'src/app/model/consultation';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-consultation-list',
@@ -17,18 +19,26 @@ export class ConsultationListComponent implements OnInit {
   Consultation:any = [];
   patient: Patiente = new Patiente();
 
-  constructor(public fb: FormBuilder,private ConsultationService: ConsultationService,private patienteService: PatienteService,private route: ActivatedRoute) { 
+  constructor(public fb: FormBuilder,
+    private ConsultationService: ConsultationService,
+    private patienteService: PatienteService,
+    private route: ActivatedRoute, 
+    private UserService: UserService
+    ) { 
    
   }
   
  
-  ngOnInit() {
+  ngOnInit(): void{
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
       this.readConsultation(patientId!);
     });
-  }
+  } }
 
   readConsultation(patientId: string) {
     this.ConsultationService.getConsultations(patientId).subscribe((data) => {

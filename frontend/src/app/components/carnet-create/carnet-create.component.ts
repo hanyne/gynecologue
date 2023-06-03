@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { carnetService } from 'src/app/service/carnet.service';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-carnet-create',
@@ -25,16 +27,22 @@ export class CarnetCreateComponent implements OnInit {
     private ngZone: NgZone,
     private carnetService: carnetService,
     private patienteService: PatienteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, 
+    private UserService: UserService
   ) {}
 
-  ngOnInit() {
+
+  ngOnInit(): void{
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
       this.mainForm(patientId!);
     });
   }
+}
 
   mainForm(_id: string) {
     this.carnetForm = this.fb.group({

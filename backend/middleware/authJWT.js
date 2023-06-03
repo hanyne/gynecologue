@@ -5,21 +5,24 @@ const Patiente = require('../models/patiente.model.js');
 const Secretaire = require('../models/secretaire.model.js');
 
 const verifyToken = (req, res, next) => {
-  let token = req.cookies.token;
+  let token = req.headers.authorization;
 
-  if (!token) {
+  if (!token || !token.startsWith("Bearer")) {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-   jwt.verify(token, config.secret, (err, decoded) => {
-  if (err) {
-    return res.status(401).send({ message: "Unauthorized!" });
-  }
-  req._id = decoded._id;
-  req.userRole = decoded.role; // Attach the user role to the request object
-  next();
-});
+  token = token.split(" ")[1];
+
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: "Unauthorized!" });
+    }
+    req._id = decoded._id;
+    req.userRole = decoded.role; // Attach the user role to the request object
+    next();
+  });
 };
+
 
 const isDocteur= (req, res, next) => {
   User.findById(req._id).exec((err, user) => {

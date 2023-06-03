@@ -14,13 +14,15 @@ export class AppointmentListComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
-    private userService: UserService
+    private UserService: UserService
   ) {}
-
   ngOnInit(): void {
-    this.getAppointments();
+    if (!this.UserService.isDocteurOrSecretaire()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
+      this.getAppointments();
+    }
   }
-
   getAppointments(): void {
     this.appointmentService.getAppointments().subscribe(
       appointments => {

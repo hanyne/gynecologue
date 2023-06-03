@@ -11,7 +11,9 @@ exports.signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     const newUser = new User({ 
       userName: req.body.userName,
-      password: hashedPassword
+      password: hashedPassword,
+      role: req.body.role,
+      accessToken: token
     });
     await newUser.save();
     res.status(200).json("User successfully added");
@@ -26,9 +28,11 @@ exports.signin = async (req, res) => {
     if (!user) {
       const secretaire = await Secretaire.findOne({ userName: req.body.userName });
       if (secretaire) {
+        req.userRole = "secretaire";
         bcrypt.compare(req.body.password, secretaire.password, function (err, isMatch) {
           if (isMatch && !err) {
-            var token = jwt.sign({ _id: user._id, role: user.role }, config.secret, {
+            const expirationTime = 86400; 
+            var token = jwt.sign({ _id: secretaire._id, role: secretaire.role }, config.secret, {
               expiresIn: expirationTime,
             });
             console.log("token:", token);
@@ -54,6 +58,7 @@ exports.signin = async (req, res) => {
             msg: "Authentication failed. User not found.",
           });
         } else {
+          req.userRole = "patiente";
           bcrypt.compare(req.body.password, patiente.password, function (err, isMatch) {
             if (isMatch && !err) {
               var token = jwt.sign({ _id: patiente._id, role: patiente.role },config.secret, {
@@ -77,6 +82,7 @@ exports.signin = async (req, res) => {
         }
       }
     } else {
+      req.userRole = "docteur";
       bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
         if (isMatch && !err) {
           var token = jwt.sign({ _id: user._id, role: user.role },config.secret, {
@@ -118,22 +124,33 @@ exports.signout = async (req, res) => {
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
 };
-
-exports.patienteBoard = (req, res) => {
-  res.status(200).send("Patiente Content.");
+exports.docteurBoard = (req, res) => {
+  if (req.userRole === 'docteur') {
+    res.status(200).send("Docteur Content.");
+  } else {
+    res.status(403).send("Access Denied.");
+  }
 };
 
-exports.docteurBoard = (req, res) => {
-  res.status(200).send("Docteur Content.");
+exports.patienteBoard = (req, res) => {
+  if (req.userRole === 'patiente') {
+    res.status(200).send("Patiente Content.");
+  } else {
+    res.status(403).send("Access Denied.");
+  }
 };
 
 exports.secretaireBoard = (req, res) => {
-  res.status(200).send("Secretaire Content.");
+  if (req.userRole === 'secretaire') {
+    res.status(200).send("Secretaire Content.");
+  } else {
+    res.status(403).send("Access Denied.");
+  }
 };
 
 exports.getCurrentUserProfile = async (req, res) => {
   try {
-    if (!req._id) {
+    if (!req._id || !req.userRole) {
       return res.status(401).send({ message: "Unauthorized!" });
     }
 

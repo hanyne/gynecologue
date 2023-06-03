@@ -1,9 +1,9 @@
-import { Carnet } from './../../model/carnet';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { carnetService } from '../../service/carnet.service';
-import { FormGroup, FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators,  } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-carnet-edit',
   templateUrl: './carnet-edit.component.html',
@@ -23,9 +23,14 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private CarnetService : carnetService ,
-    private router: Router
+    private router: Router,
+    private UserService: UserService
+
   ) {}
-  ngOnInit(): void {
+  ngOnInit(): void{
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getCarnet(id);
     this.editForm = this.fb.group({
@@ -72,6 +77,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
     
     });
     }
+  }
 
   // Getter to access form control
   get myForm() {

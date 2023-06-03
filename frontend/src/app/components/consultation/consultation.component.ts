@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { ConsultationService } from 'src/app/service/consultation.service';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-consultation',
@@ -21,15 +23,20 @@ photo : any;
     private consultationService: ConsultationService,
     private patienteService: PatienteService,
     private route: ActivatedRoute,
+    private UserService:UserService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.UserService.isDocteurOrSecretaire()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
       this.createForm(patientId!);
     });
   }
+}
 
   createForm(_id: string) {
     this.consultationForm = this.fb.group({

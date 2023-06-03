@@ -28,32 +28,41 @@
 <!-- Navbar Start -->
 <div class="container-fluid sticky-top bg-white shadow-sm">
     <div class="container">
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-            <a href="/home" class="navbar-brand">
-                <h1 class="m-0 text-uppercase "><img  src="https://cdn-icons-png.flaticon.com/512/122/122454.png?w=740&t=st=1683411200~exp=1683411800~hmac=f3c6a7b9b77b2d276ae7597c3008e292fb05c8d5b0bcfb94464ca60a3ecc8cd3" class="ico me-2 ml-5 mb-2">DR. Nesrine machat</h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="/home" class="nav-item nav-link ">Accueil</a>
-                    <a href="/about" class="nav-item nav-link">A propos</a>
-                    <a href="/service" class="nav-item nav-link">Services</a>
-                    <a href="/appointment" class="nav-item nav-link">Rendez-vous</a>
-                    <a href="/contact" class="nav-item nav-link">Contact</a>
-                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" role="button"
-                          data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa fa-user"></i>
-                     </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                          <li><a class="dropdown-item" href="/login" (click)="logOut()">Déconnexion</a></li>
-                          <li><a class="dropdown-item" href="#">Changer le mot de passe</a></li>
-                        </ul>
-                      </div>
-                </div>
+      <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+        <a href="/home" class="navbar-brand">
+          <h1 class="m-0 text-uppercase">
+            <img src="https://cdn-icons-png.flaticon.com/512/122/122454.png?w=740&t=st=1683411200~exp=1683411800~hmac=f3c6a7b9b77b2d276ae7597c3008e292fb05c8d5b0bcfb94464ca60a3ecc8cd3" class="ico me-2 ml-5 mb-2" alt="Logo">
+            <span class="name">DR. Nesrine machat</span>
+          </h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto py-0">
+            <a href="/home" class="nav-item nav-link">Accueil</a>
+            <a href="/about" class="nav-item nav-link">A propos</a>
+            <a href="/service" class="nav-item nav-link">Services</a>
+            <a href="/appointment" class="nav-item nav-link">Rendez-vous</a>
+            <a href="/contact" class="nav-item nav-link">Contact</a>
+            <div class="nav-item dropdown" *ngIf="userProfile">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user"></i>
+                <span class="name mx-1">{{ userName }}</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="/home" (click)="logOut()">Déconnexion</a></li>
+                <li><a class="dropdown-item" href="#">Changer le mot de passe</a></li>
+              </ul>
             </div>
-        </nav>
+            <div class="nav-item dropdown" *ngIf="!userProfile">
+                <a href="/login" class="nav-item nav-link">se connecter</a>
+               
+              </div>
+          </div>
+        </div>
+      </nav>
     </div>
-</div>
+  </div>
+  
 <!-- Navbar End -->

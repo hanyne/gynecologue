@@ -5,6 +5,8 @@ import { Ordonnance } from '../../../model/ordonance';
 import { OrdonnanceService } from '../../../service/ordonance.service';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
+import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-ordonnance',
@@ -23,16 +25,21 @@ export class OrdonnanceComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ordonnanceService: OrdonnanceService,
-    private patienteService: PatienteService
+    private patienteService: PatienteService, 
+    private UserService:UserService ,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (!this.UserService.isDocteur()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
       this.patient = patient;
       this.initOrdForm();
     });
   }
+}
 
   initOrdForm() {
     this.ordForm = this.fb.group({

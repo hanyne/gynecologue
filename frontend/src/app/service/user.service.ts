@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { map } from 'rxjs/operators';
@@ -13,17 +13,18 @@ import { Patiente } from '../model/patiente';
 })
 export class UserService {
   currentUser!: User;
-  name!: String;
+  name!: string;
   currentPatiente!: Patiente;
-  constructor(private http: HttpClient, private router: Router) { 
-      
-    }
+
+  constructor(private http: HttpClient, private router: Router) { }
+
   API_URI = 'http://localhost:4000/auth';
 
   logoutUser() {
-    localStorage.clear()
-    window.location.reload()
+    localStorage.clear();
+    window.location.reload();
   }
+
   login(user: User): Observable<any> {
     return this.http.post(`${this.API_URI}/signin`, user).pipe(
       map(response => {
@@ -33,7 +34,7 @@ export class UserService {
         const user = data.user; // Assuming the server returns the user object
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user)); // Store the user object as a string
         return response;
       }),
       catchError(error => {
@@ -42,32 +43,31 @@ export class UserService {
       })
     );
   }
-  
+
   logout() {
-    localStorage.removeItem('User');
+    localStorage.removeItem('user'); // Update to remove 'User' key
     this.router.navigate(['/login']);
   }
 
   getCurrentUser() {
-    const user = localStorage.getItem('User');
+    const user = localStorage.getItem('user'); // Update to retrieve 'user' key
     return user ? JSON.parse(user) : null;
   }
-  
 
-  requestReset(body:any): Observable<any> {
+  requestReset(body: any): Observable<any> {
     return this.http.post(`${this.API_URI}/ResetPassword`, body);
   }
 
-  //newPassword(resettoken:any, patienteId:any): Observable<any> {
-  //  return this.http.post(`${this.API_URI}/NewPassword/${patienteId}/${resettoken}`);
- // }
-
-  ValidPasswordToken(resettoken:any, patienteId:any): Observable<any> {
+  ValidPasswordToken(resettoken: any, patienteId: any): Observable<any> {
     return this.http.get(`${this.API_URI}/ValidPasswordToken${patienteId}/${resettoken}`);
   }
 
   getUserProfile(): Observable<any> {
-    return this.http.get(`${this.API_URI}/profile`).pipe(
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
+    // Include the token in the request headers
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.API_URI}/profile`, { headers }).pipe(
       catchError(error => {
         let errorMessage = 'An error occurred. Please try again later.';
         if (error.error && error.error.message) {
@@ -77,7 +77,13 @@ export class UserService {
       })
     );
   }
-  
-  
 
+  isDocteur(): boolean {
+    const role = localStorage.getItem('role'); // Retrieve the role from localStorage
+    return role === 'docteur'; // Check if the role is 'docteur'
+  }
+  isDocteurOrSecretaire(): boolean {
+    const role = localStorage.getItem('role'); // Retrieve the role from localStorage
+    return role === 'docteur' || role === 'secretaire';
+  }
 }

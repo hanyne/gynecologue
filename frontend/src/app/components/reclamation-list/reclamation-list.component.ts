@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from './../../service/message.service';
 import { Message } from '../../model/message';
 import { UserService } from 'src/app/service/user.service';
+
 @Component({
   selector: 'app-reclamation-list',
   templateUrl: './reclamation-list.component.html',
@@ -11,13 +12,15 @@ export class ReclamationListComponent {
   messages: Message[] = [];
   selectedMessage: Message | null = null;
   isNew = false;
- 
-
   constructor(private messageService: MessageService, private UserService:UserService ) { }
 
   ngOnInit(): void {
+    if (!this.UserService.isDocteurOrSecretaire()) {
+      this.UserService.logout(); // Redirect to login page
+    } else {
     this.getMessages();
   }
+}
 
   getMessages(): void {
     this.messageService.getMessages().subscribe(

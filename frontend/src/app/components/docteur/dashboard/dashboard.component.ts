@@ -25,14 +25,17 @@ export class DashboardComponent {
     private messageService:MessageService,){}
     user!:any;
     ngOnInit(): void {
-      this.getNbP()
-      this.getNbM()
-      this.getNbA()
-      this.getNbAr()
-      document.querySelector("#content > div.topbar");
-      this.user = this.UserService.getCurrentUser().user;
+      if (!this.UserService.isDocteurOrSecretaire()) {
+        this.UserService.logout(); // Redirect to login page
+      } else {
+        this.getNbP();
+        this.getNbM();
+        this.getNbA();
+        this.getNbAr();
+        document.querySelector("#content > div.topbar");
+        this.user = this.UserService.getCurrentUser().user;
       }
-    
+    }
       getNbP(){
         this.PatienteService.getNbP().subscribe((data)=>
         {this.nbrP =data, console.log("Nombre de patiente "+this.nbrP)});
