@@ -24,68 +24,62 @@
 					<div class="main-menu-header">
 						<img class="img-radius" src="/assets/img/gyne.png" alt="User-Profile-Image">
 						<div class="user-details">
-							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
+							<div id="more-details" class="text-white">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
                             </div>
 						</div>
 					</div>
 				</div>
 <br><br>
-				<ul class="nav pcoded-inner-navbar contain "id="tit1">
-					<li class="nav-item">
-					    <a href="admin/dashboard" class="nav-link "><span>
-                      <img src="/assets/icons/home.png" class="icon"></span>
-                      <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
-					</li>
-                    
-               <li class="nav-item pcoded-hasmenu">
-                  <a href="/admin/listP" class="nav-link "><span>
-                     <img src="/assets/icons/woman.png"  class="icon"></span>
-                     <span class="pcoded-mtext mx-2"> Patientes</span></a>
-                  <ul class="pcoded-submenu">
-                      <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/recl" class="nav-link "><span>
-                   <img src="/assets/icons/rendez.png" class="icon"></span>
-                   <span class="pcoded-mtext mx-2"> Rendez-vous</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
-                </ul>
-              <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/listP" class="nav-link "><span>
-                   <img src="assets/icons/medica.png"  class="icon" ></span>
-                   <span class="pcoded-mtext mx-2"> Médicaments</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
-                </ul>
-            </li>
-            <li class="nav-item pcoded-hasmenu">
-                <a href="/admin/listP" class="nav-link "><span>
-                   <img src="/assets/icons/analysee.png" class="icon"></span>
-                   <span class="pcoded-mtext mx-2"> Analyses</span></a>
-                <ul class="pcoded-submenu">
-                    <li><a href="admin/listP" target="_blank">Liste des analyses</a></li>
-                </ul>
-            </li>
-        <li class="nav-item pcoded-hasmenu">
-            <a href="/admin/listR" class="nav-link "><span>
-                <img src="/assets/icons/msg.png" class="icon"></span>
-               <span class="pcoded-mtext mx-2"> Réclamations</span></a>
-            <ul class="pcoded-submenu">
-                <li><a href="admin/listR" target="_blank">Consulter les réclamations</a></li>
-            </ul>
-        </li>
-        <br><br><br>
-		<li><a href="/login" (click)="logOut()"><i class="fa fa-sign-out black_color text-bold"></i> 
-			<span>Déconnexion</span></a></li>		
+<ul class="nav pcoded-inner-navbar contain "id="tit1">
+  <li class="nav-item">
+      <a href="admin/dashboard" class="nav-link "><span>
+              <img src="../../../../assets/icons/dashboard.png" class="icon"></span>
+              <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
+  </li>
+            
+       <li class="nav-item pcoded-hasmenu">
+          <a href="/admin/listP" class="nav-link "><span>
+             <img src="/assets/icons/consent.png"  class="icon"></span>
+             <span class="pcoded-mtext mx-2"> Patientes</span></a>
+          <ul class="pcoded-submenu">
+              <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
+          </ul>
+      </li>
+      <li class="nav-item pcoded-hasmenu">
+        <a href="admin/listapp" class="nav-link "><span>
+           <img src="/assets/icons/online.png" class="icon"></span>
+           <span class="pcoded-mtext mx-2"> Demande Rendez-vous</span></a>
+        <ul class="pcoded-submenu">
+            <li><a href="admin/listapp" target="_blank">Consulter les rendez-vous</a></li>
+        </ul>
+<li class="nav-item pcoded-hasmenu">
+    <a href="admin/listR" class="nav-link "><span>
+        <img src="/assets/icons/comments.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> Messages</span></a>
+    <ul class="pcoded-submenu">
+        <li><a href="admin/listR" target="_blank">Consulter les messages </a></li>
     </ul>
+</li>
+<li class="nav-item pcoded-hasmenu">
+    <a href="blog" class="nav-link "><span>
+        <img src="/assets/icons/blog.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> Articles</span></a>
+    <ul class="pcoded-submenu">
+        <li><a href="blog" target="_blank">Consulter les articles </a></li>
+    </ul>
+</li>
+<li class="nav-item pcoded-hasmenu">
+    <a href="calender" class="nav-link "><span>
+        <img src="/assets/icons/clock.png" class="icon"></span>
+       <span class="pcoded-mtext mx-2"> calendrier </span></a>
+</li>	
+</ul>
 			</div>
 		</div>
 	</nav>
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+  <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
 		<div class="m-header">
 					<a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
 					<a href="#!" class="b-brand">
@@ -114,10 +108,11 @@
                       
 						<li>
 							<div class="dropdown" id="logout">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                                <img  class="ic mr-1"src="../../../../assets/icons/follower.png">
+								<a class="dropdown-toggle mr-5" href="#" data-toggle="dropdown"><app-profile></app-profile></a>
 								<div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head" >
-										<h6 class="d-inline-block m-b-0">Notifications</h6>
+										<h6 class="d-inline-block m-b-0"></h6>
 									</div>
 								</div>
 							</div>
@@ -130,9 +125,7 @@
 								</a>
 							</div>
 						</li>
-                        <li>
-                            
-                        </li>
+                       
 					</ul>
 				</div>
 				
@@ -166,17 +159,20 @@
             <div class="card">
               <form class="form-card" [formGroup]="editForm" (ngSubmit)="onSubmit()">
                 <div class="row justify-content-between text-left">
-                    <div class="form-group col-sm-6 flex-column d-flex">
-                      <label class="form-control-label px-3">Annexe<span class="text-danger"> *</span></label>
-                      <input type="file" id="lname" name="lname" placeholder="Enter your last name" formControlName="annexe">
-                    </div>
-                    <div class="form-group col-sm-6 flex-column d-flex">
-                      <label class="form-control-label px-3">Date de consultation<span class="text-danger"> *</span></label>
-                     <input type="date" id="lname" name="lname" placeholder="Enter your last name" formControlName="timing">
-                    </div>
+                  <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom" style="display: none;">
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3">Annexe<span class="text-danger"> *</span></label>
+                    <input type="file" class="form-control-file" id="photo" (change)="onFileChange($event)" formControlName="annexe">
                   </div>
+                  <div class="form-group col-sm-6 flex-column d-flex">
+                    <label class="form-control-label px-3">Date de consultation<span class="text-danger"> *</span></label>
+                    <input type="date" id="lname" name="lname" placeholder="Enter your last name" formControlName="timing">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="form-control-label px-3">Compte rendu de consultation<span class="text-danger"> *</span></label>
                   <textarea class="form-control form-control-alternative" rows="3" placeholder="Write a large text here ..." formControlName="conclusion"></textarea>
+                </div>
                 <div class="form-group">
                   <button class="formbold-btn" type="submit">Register</button>
                 </div>
@@ -185,8 +181,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+</div> 
+</section>   
   
 </body>
 </html>

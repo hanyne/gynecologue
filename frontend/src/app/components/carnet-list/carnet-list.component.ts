@@ -68,5 +68,10 @@ maladie = this.fb.group({
       );
     }
   }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
+    }
+  }
   
 }

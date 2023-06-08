@@ -29,3 +29,29 @@
     background-color: rgb(246, 143, 164);
     color: white;
   }
+  .ic {
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+  }
+a{
+    color: white;
+}
+.color{
+    color: rgba(0, 0, 0, 0.66);
+}
+.profile-info,
+.error-info {
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-info p,
+.error-info p {
+  margin: 0;
+}
+
+
+

@@ -1,11 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, RequiredValidator } from '@angular/forms';
 import { PatienteService } from 'src/app/service/patiente.service';
 import { Patiente } from 'src/app/model/patiente';
 import { ConsultationService } from 'src/app/service/consultation.service';
 import { UserService } from 'src/app/service/user.service';
-
 
 @Component({
   selector: 'app-consultation',
@@ -16,51 +15,40 @@ export class ConsultationComponent implements OnInit {
   patient: Patiente = new Patiente();
   submitted = false;
   consultationForm!: FormGroup;
-photo : any;
+  annexe: File | null = null;
 
   constructor(
     private fb: FormBuilder,
     private consultationService: ConsultationService,
     private patienteService: PatienteService,
     private route: ActivatedRoute,
-    private UserService:UserService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    if (!this.UserService.isDocteurOrSecretaire()) {
-      this.UserService.logout(); // Redirect to login page
+    if (!this.userService.isDocteurOrSecretaire()) {
+      this.userService.logout(); // Redirect to login page
     } else {
-    const patientId = this.route.snapshot.paramMap.get('id');
-    this.patienteService.getById(patientId!).subscribe((patient) => {
-      this.patient = patient;
-      this.createForm(patientId!);
-    });
+      const patientId = this.route.snapshot.paramMap.get('id');
+      this.patienteService.getById(patientId!).subscribe((patient) => {
+        this.patient = patient;
+        this.createForm(patientId!);
+      });
+    }
   }
-}
 
   createForm(_id: string) {
     this.consultationForm = this.fb.group({
-      conclusion: '',
-      annexe: '',
-      timing: '',
+      conclusion: ['', Validators.required],
+      timing: ['',  Validators.required],
     });
   }
 
-  loadImage(photo: any) {
-    if (photo.target.files && photo.target.files[0]) {
-      this.photo = photo.target.files[0];
-      console.log(this.photo);
-  
-      // Set the annexe value in the form to the selected photo
-      this.consultationForm.patchValue({
-        annexe: this.photo
-      });
-    } else {
-      // Set a default picture if no photo was selected
-      this.photo = 'src/assets/image/default.jpg';
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.annexe = event.target.files[0];
     }
   }
-  
 
   // Getter to access form control
   get myForm() {
@@ -73,21 +61,28 @@ photo : any;
       return false;
     } else {
       const patientId = this.route.snapshot.paramMap.get('id');
-      return this.consultationService.createConsultation(patientId!, this.consultationForm.value).subscribe({
-        complete: () => {
-          console.log('Consultation successfully created!');
-          // Perform the desired action after consultation creation
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
+      const formData = new FormData();
+      formData.append('conclusion', this.consultationForm.value.conclusion);
+      formData.append('timing', this.consultationForm.value.timing);
+      formData.append('annexe', this.annexe!);
+
+      return this.consultationService
+        .createConsultation(patientId!, formData)
+        .subscribe({
+          complete: () => {
+            console.log('Consultation successfully created!');
+            // Perform the desired action after consultation creation
+          },
+          error: (e) => {
+            console.log(e);
+          },
+        });
     }
   }
 
-  logOut() {
+  async logOut() {
     if (confirm("Do you want to log out?")) {
-      // Perform the log out action
+      await this.userService.logoutUser()
     }
   }
 }

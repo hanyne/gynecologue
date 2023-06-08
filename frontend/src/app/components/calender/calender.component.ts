@@ -151,5 +151,10 @@ handleEventDragStop(arg: any) {
   };
   this.updateEvent(eventId, eventData);
 }
+async logOut() {
+  if (confirm("Do you want to log out?")) {
+    await this.UserService.logoutUser()
+  }
+}
   
 }

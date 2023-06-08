@@ -51,8 +51,8 @@
                 <span class="name mx-1">{{ userName }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                <li><a class="dropdown-item" href="/home" (click)="logOut()">Déconnexion</a></li>
-                <li><a class="dropdown-item" href="#">Changer le mot de passe</a></li>
+                <li><a class="dropdown-item" href="/login" (click)="logOut()" >Déconnexion</a></li>
+                <li><a class="dropdown-item" routerLink="/changepass/"> Changer le mot de passe</a></li>
               </ul>
             </div>
             <div class="nav-item dropdown" *ngIf="!userProfile">

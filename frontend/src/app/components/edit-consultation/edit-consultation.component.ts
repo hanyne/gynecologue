@@ -1,41 +1,38 @@
-import { Carnet } from './../../model/carnet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultationService } from '../../service/consultation.service';
 import { UserService } from '../../service/user.service';
-import { FormGroup, FormBuilder, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-consultation',
   templateUrl: './edit-consultation.component.html',
   styleUrls: ['./edit-consultation.component.css']
 })
-export class EditConsultationComponent {
+export class EditConsultationComponent implements OnInit {
   submitted = false;
-  editForm!:FormGroup;
+  editForm!: FormGroup;
+  annexe: File | null = null;
 
-  route: any;
   constructor(
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
-    private consultationService : ConsultationService ,
-    private userService : UserService,
+    private consultationService: ConsultationService,
+    private userService: UserService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
     if (!this.userService.isDocteurOrSecretaire()) {
       this.userService.logout(); // Redirect to login page
     } else {
-    let id = this.actRoute.snapshot.paramMap.get('id');
-    this.getConsultation(id);
-    this.editForm = this.fb.group({
-      
-    timing: [''],
-    conclusion: [''],
-    annexe: [''],
-
-   
-    });
+      let id = this.actRoute.snapshot.paramMap.get('id');
+      this.getConsultation(id);
+      this.editForm = this.fb.group({
+        timing: ['', Validators.required],
+        conclusion: ['', Validators.required],
+        annexe: [''],
+      });
     }
   }
 
@@ -43,36 +40,29 @@ export class EditConsultationComponent {
   get myForm() {
     return this.editForm.controls;
   }
+
   getConsultation(id: string | null) {
-    this.consultationService .getConsultation(id).subscribe((data) => {
+    this.consultationService.getConsultation(id).subscribe((data) => {
       this.editForm.setValue({
-
-       timing :data['timing'],
-
-        conclusion:data['conclusion'],
-     
-        annexe:data['annexe'],
-     
-      
+        timing: data['timing'],
+        conclusion: data['conclusion'],
+        annexe: data['annexe'],
       });
     });
   }
-  updateConsultation() {
-    this.editForm = this.fb.group({
-   
 
-      timing: '',
-      conclusion: '',
- 
-      annexe: '',
-   
-     
-     
-  
-     
-      
-    });
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.annexe = event.target.files[0];
+    }
   }
+
+  updateConsultation() {
+    if (this.annexe) {
+      this.editForm.patchValue({ annexe: this.annexe });
+    }
+  }
+
   onSubmit() {
     this.submitted = true;
     if (!this.editForm.valid) {
@@ -80,7 +70,8 @@ export class EditConsultationComponent {
     } else {
       if (window.confirm('Are you sure?')) {
         let id = this.actRoute.snapshot.paramMap.get('id');
-        this.consultationService .updateConsultation(id, this.editForm.value).subscribe({
+        this.updateConsultation();
+        this.consultationService.updateConsultation(id, this.editForm.value).subscribe({
           complete: () => {
             this.router.navigateByUrl('/admin/listP');
             console.log('Content updated successfully!');
@@ -93,13 +84,10 @@ export class EditConsultationComponent {
     }
     return true;
   }
+
   async logOut() {
-    if (confirm("Do you want to log out?")) {
-      await this.userService.logoutUser()
+    if (confirm('Do you want to log out?')) {
+      await this.userService.logoutUser();
     }
   }
 }
-
-
-
-

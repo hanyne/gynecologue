@@ -29,17 +29,22 @@ import { AboutPatienteComponent } from './components/docteur/about-patiente/abou
 import { CalenderComponent } from './components/calender/calender.component';
 import { OrdoListComponent } from './components/ordo-list/ordo-list.component';
 import { PrintOrdComponent } from './components/print-ord/print-ord.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { DeniedComponent } from './components/denied/denied.component';
+import { EcoListComponent } from './components/docteur/eco-list/eco-list.component';
+
 
 
 
 
 const routes: Routes = [
-  { path: '*', pathMatch: 'full', redirectTo: 'home' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'create-carnet/:id', component: CarnetCreateComponent },
   { path: 'edit-carnet/:id', component: CarnetEditComponent },
   { path: 'patient/:id', component: CarnetListComponent }, 
   { path: 'home' , component: HomeComponent }, 
   { path: 'appointment' , component: AppointmentComponent  },
+  { path: 'accesdenied' , component: DeniedComponent  },
   { path: 'admin/listapp' , component: AppointmentListComponent  },  
   { path: 'contact' , component: ContactComponent  }, 
   { path: 'about' , component: AboutComponent  }, 
@@ -65,6 +70,7 @@ const routes: Routes = [
   {path:'calender', component: CalenderComponent },
   {path:'ordlist/:id', component: OrdoListComponent },
   {path:'printord/:id', component: PrintOrdComponent},
+  {path:'ecolist/:id', component: EcoListComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

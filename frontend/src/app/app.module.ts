@@ -66,6 +66,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { OrdoListComponent } from './components/ordo-list/ordo-list.component';
 import { PrintOrdComponent } from './components/print-ord/print-ord.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DeniedComponent } from './components/denied/denied.component';
+import { EcoListComponent } from './components/docteur/eco-list/eco-list.component';
 
 @NgModule({
   
@@ -106,6 +108,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     OrdoListComponent,
     PrintOrdComponent,
     ProfileComponent,
+    DeniedComponent,
+    EcoListComponent,
     
 
   ],

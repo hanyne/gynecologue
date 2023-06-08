@@ -77,35 +77,58 @@
 	</nav>
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
-		<div class="m-header">
-					<a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
-					<a href="#!" class="b-brand">
-						<!-- ========   change your logo hear   ============ -->
-						<img src="/assets/admin/images/logo-icon.png" alt="" class="logo-thumb">
-					</a>
-					<a href="#!" class="mob-toggler" >
-						<i class="feather icon-more-vertical"></i>
-					</a>
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-						
-						<li class="nav-item" id="logout">
-							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-							<div class="search-bar">
-								<input type="text" id="m-search" class="form-control"  
-								placeholder="Rechercher...">
-								<button type="button" class="close" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						</li>
-					</ul>
-				</div>
-				
-			
-	</header>
+  <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+    <div class="m-header">
+          <a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
+          <a href="#!" class="b-brand">
+            <!-- ========   change your logo hear   ============ -->
+            <img src="/assets/admin/images/logo-icon.png" alt="" class="logo-thumb">
+          </a>
+          <a href="#!" class="mob-toggler" >
+            <i class="feather icon-more-vertical"></i>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+                        
+            <li class="nav-item" id="logout">
+              <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+              <div class="search-bar">
+                <input type="text" id="m-search" class="form-control"  
+                                placeholder="Rechercher...">
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+                      
+            <li>
+              <div class="dropdown" id="logout">
+                                <img  class="ic mr-1"src="../../../../assets/icons/follower.png">
+                <a class="dropdown-toggle mr-5" href="#" data-toggle="dropdown"><app-profile></app-profile></a>
+                <div class="dropdown-menu dropdown-menu-right notification">
+                  <div class="noti-head" >
+                    <h6 class="d-inline-block m-b-0"></h6>
+                  </div>
+                </div>
+              </div>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li>
+              <div class="dropdown drp-user">
+                <a href="/login" (click)="logOut()" id="logout"
+                                     class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="feather icon-log-out"></i>
+                </a>
+              </div>
+            </li>
+                       
+          </ul>
+        </div>
+        
+      
+  </header>
 	<!-- [ Header ] end -->
 <!-- [ Main Content ] start -->
 <div class="pcoded-main-container">
@@ -139,20 +162,26 @@
                   <div class="row justify-content-between text-left">
                       <div class="form-group col-sm-6 flex-column d-flex"> 
                         <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom" style="  display: none;">
-                        <label class="m form-control-label px-3"> Name<span class="text-danger"> *</span></label> 
+                        <label class="m form-control-label px-3"> Name</label> 
                         <input type="text" id="nom" name="nom" placeholder="Enter your first nom" formControlName="nom"> </div>
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Prenom<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" formControlName="prenom" > </div>
                   </div>
                   <div class="row justify-content-between text-left">
-                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Adresse<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="adresse"> </div>
+                      <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Adresse<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="adresse"> <div *ngIf="submitted && myForm['adresse'].errors" class="error-message text-danger">
+                        Adresse is required
+                      </div></div>
                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">naissance<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="naissance"> </div>
                   </div>
                   <div class="row justify-content-between text-left">
-                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">nationalite<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="nationalite"> </div>
-                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Cin<span class="text-danger"> *</span></label> <input type="number" id="mob" name="mob" placeholder="" formControlName="Cin" > </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">nationalite<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="nationalite">  <div *ngIf="submitted && myForm['adresse'].errors" class="error-message text-danger">
+                      Nationalité is required
+                    </div></div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Cin<span class="text-danger"> *</span></label> <input type="number" id="mob" name="mob" placeholder="" formControlName="Cin" ><div *ngIf="submitted && myForm['adresse'].errors" class="error-message text-danger">
+                      Cin is required
+                    </div> </div>
                 </div>
                 <div class="row justify-content-between text-left">
-                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Niveau D'instruction<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3" formControlName="niv_inst" >
+                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Niveau D'instruction</label> <select class="form-control formbold-form-input formbold-mb-3" formControlName="niv_inst" >
                     <option selected hidden value="">Selectionner :</option>
                     <option value="Niveau primaire">Niveau primaire</option>
                     <option value="Niveau secondaire">Niveau secondaire</option>
@@ -161,43 +190,43 @@
                     <option value="Rien">Rien</option>
                   </select>
                 </div>
-                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">occupation<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="occupation"> </div>
+                  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">occupation</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="occupation"> </div>
               </div>
               <div class="row justify-content-between text-left">
-                <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">numéro du telephone<span class="text-danger"> *</span></label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="tel"> </div>
-                <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">num_c<span class="text-danger"> *</span></label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="num_c"> </div>
+                <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">numéro du telephone</label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="tel"> </div>
+                <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">num_c</label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="num_c"> </div>
             </div>
             <div class="row justify-content-between text-left">
-              <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">COUVERTURE MEDICALE<span class="text-danger"> *</span></label><mat-radio-group formControlName="couv" class="example-radio-group">
+              <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">COUVERTURE MEDICALE</label><mat-radio-group formControlName="couv" class="example-radio-group">
                 <mat-radio-button  class="example-radio-button" *ngFor="let couverture of couvertureList" [value]="couverture">
               {{couverture}} 
           </mat-radio-button>
           </mat-radio-group></div>
-              <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">Group sanguin <span class="text-danger"> *</span></label>          <mat-radio-group class="example-radio-group" type="text" formControlName="sang" >
+              <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">Group sanguin </label>          <mat-radio-group class="example-radio-group" type="text" formControlName="sang" >
                 <mat-radio-button  class="example-radio-button" *ngFor="let sang of sangList" [value]="sang">
               {{sang}} 
              </mat-radio-button>
            </mat-radio-group></div>
-           <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">rhesus<span class="text-danger"> *</span></label> <mat-radio-group formControlName="rhesus" class="example-radio-group">
+           <div class="form-group col-sm-4 flex-column d-flex"> <label class="m form-control-label px-3">rhesus</label> <mat-radio-group formControlName="rhesus" class="example-radio-group">
             <mat-radio-button  class="example-radio-button" *ngFor="let rhesus of rhesusList" [value]="rhesus">
             {{rhesus}} 
             </mat-radio-button>
             </mat-radio-group></div>
           </div>
           <div class="row justify-content-between text-left">
-            <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">type_allergie<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="type_allergie"> </div>
-            <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">declaree_allergie<span class="text-danger"> *</span></label> <input type="date" id="adresse" name="adresse" placeholder="" formControlName="declaree_allergie"> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">type_allergie</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="type_allergie"> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">declaree_allergie</label> <input type="date" id="adresse" name="adresse" placeholder="" formControlName="declaree_allergie"> </div>
         </div>
         <div class="row justify-content-between text-left">
-          <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">traitement<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="traitement" > </div>
-          <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">med_tret<span class="text-danger"> *</span></label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" formControlName="med_tret"  > </div>
+          <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">traitement</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="traitement" > </div>
+          <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">med_tret</label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" formControlName="med_tret"  > </div>
       </div>
       <div class="row justify-content-between text-left">
-        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">age_pub<span class="text-danger"> *</span></label> <input type="number" id="lname" name="lname" placeholder="Enter your last name" formControlName="age_pub" > </div>
-        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">prob<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prob"> </div>
+        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">age_pub</label> <input type="number" id="lname" name="lname" placeholder="Enter your last name" formControlName="age_pub" > </div>
+        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">prob</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prob"> </div>
     </div>
     <div class="row justify-content-between text-left">
-        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Maladie<span class="text-danger"> *</span></label> <select class="form-control formbold-form-input formbold-mb-3" formControlName="maladie" >
+        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">Maladie</label> <select class="form-control formbold-form-input formbold-mb-3" formControlName="maladie" >
           <option selected hidden value="">Selectionner :</option>
           <option value="Diabéte">Diabéte</option>
           <option value="Cardiopathie">Cardiopathie</option>
@@ -209,43 +238,43 @@
           <option value="Rien">Rien</option>
 
         </select></div>
-        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">maladieF<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="maladieF"> </div>
+        <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">maladieF</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="maladieF"> </div>
     </div>
   <div class="row justify-content-between text-left">
-    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">type_handicap<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="type_handicap"> </div>
-    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">declaree_handicap<span class="text-danger"> *</span></label> <input type="date" id="adresse" name="adresse" placeholder="" formControlName="declaree_handicap"> </div>
+    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">type_handicap</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="type_handicap"> </div>
+    <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">declaree_handicap</label> <input type="date" id="adresse" name="adresse" placeholder="" formControlName="declaree_handicap"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin1<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder=""formControlName="date_vaccin1" > </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin1<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin1"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin1</label> <input type="date" id="mob" name="mob" placeholder=""formControlName="date_vaccin1" > </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin1</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin1"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin2<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin2"> </div>
-<div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin2<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin2"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin2</label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin2"> </div>
+<div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin2</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin2"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin3<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin3"> </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin3<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin3" > </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin3</label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin3"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin3</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin3" > </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin4<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin4" > </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin4<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin4" > </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin4</label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin4" > </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin4</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin4" > </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin5<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin5"> </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin5<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin5"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_vaccin5</label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_vaccin5"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_vaccin5</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_vaccin5"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_rubeole<span class="text-danger"> *</span></label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_rubeole" > </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_rubeole<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_rubeole"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">date_rubeole</label> <input type="date" id="mob" name="mob" placeholder="" formControlName="date_rubeole" > </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">lieu_rubeole</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="lieu_rubeole"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">autre_vaccin<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="autre_vaccin"> </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">nomM<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" formControlName="nomM"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">autre_vaccin</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="autre_vaccin"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">nomM</label> <input type="text" id="mob" name="mob" placeholder="" formControlName="nomM"> </div>
 </div>
 <div class="row justify-content-between text-left">
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">prenomM<span class="text-danger"> *</span></label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prenomM"> </div>
-  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">telM<span class="text-danger"> *</span></label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="telM"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">prenomM</label> <input type="text" id="adresse" name="adresse" placeholder="" formControlName="prenomM"> </div>
+  <div class="form-group col-sm-6 flex-column d-flex"> <label class="m form-control-label px-3">telM</label> <input type="number" id="adresse" name="adresse" placeholder="" formControlName="telM"> </div>
 </div>
 <div class="form-group">
   <button class="formbold-btn " type="submit">

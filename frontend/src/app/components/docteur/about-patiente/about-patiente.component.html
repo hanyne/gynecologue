@@ -79,7 +79,7 @@
 	</nav>
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+  <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
 		<div class="m-header">
 					<a class="mobile-menu" id="mobile-collapse" href="/admin/dashboard"><span></span></a>
 					<a href="#!" class="b-brand">
@@ -108,10 +108,11 @@
                       
 						<li>
 							<div class="dropdown" id="logout">
-								<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                                <img  class="ic mr-1"src="../../../../assets/icons/follower.png">
+								<a class="dropdown-toggle mr-5" href="#" data-toggle="dropdown"><app-profile></app-profile></a>
 								<div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head" >
-										<h6 class="d-inline-block m-b-0">Notifications</h6>
+										<h6 class="d-inline-block m-b-0"></h6>
 									</div>
 								</div>
 							</div>
@@ -124,9 +125,7 @@
 								</a>
 							</div>
 						</li>
-                        <li>
-                            
-                        </li>
+                       
 					</ul>
 				</div>
 				
@@ -196,7 +195,9 @@
           <img class="card-img" src="https://img.freepik.com/vecteurs-libre/illustration-echographie-design-plat-dessine-main_23-2149380909.jpg?w=740&t=st=1684183071~exp=1684183671~hmac=50c6589c0302988d30be3074a10afbf67cd9b5999730ac26de6ee2caab0bd55c" alt="Card Image">
           <div class="card-content">
               <h2 class="card-title ">Les echographies</h2>
-              <button class="card-link mx-5 " routerLink="/eco/{{patient._id}}" target="_blank">consulter et  créer</button>
+              <button class="card-link " routerLink="/eco/{{patient._id}}" target="_blank">Créer</button>
+              <button class="card-link " routerLink="/ecolist/{{patient._id}}" target="_blank">Consulter</button>
+
             </div>
         </div>
       </div>

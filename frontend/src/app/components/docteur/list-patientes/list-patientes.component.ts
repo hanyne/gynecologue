@@ -60,6 +60,11 @@ export class ListPatientesComponent implements OnInit {
         });
     }
   }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
+    }
+  } 
 
  
   }

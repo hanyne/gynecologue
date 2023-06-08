@@ -48,10 +48,10 @@ export class CarnetCreateComponent implements OnInit {
     this.carnetForm = this.fb.group({
       nom: [this.patient.nomP],
       prenom: [this.patient.prenomP],
-      adresse: [''],
+      adresse: ['', Validators.required],
       naissance: [this.patient.naissance],
-      nationalite: [''],
-      Cin: [''],
+      nationalite: ['', Validators.required],
+      Cin: ['', Validators.required],
       niv_inst: [''],
       occupation: [''],
       tel: [this.patient.tel],
@@ -107,6 +107,11 @@ export class CarnetCreateComponent implements OnInit {
           console.log(e);
         },
       });
+    }
+  }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
     }
   }
 }

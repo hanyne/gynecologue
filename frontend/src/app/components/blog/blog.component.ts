@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Article } from '../../model/article';
 import { ArticleService } from '../../service/article.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-blog',
@@ -15,7 +16,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   selectedArticle: Article | undefined = undefined;
   isEditMode: boolean = false;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService,private UserService:UserService ,
+    ) { }
 
   ngOnDestroy(): void {
     // left empty
@@ -103,6 +105,11 @@ export class BlogComponent implements OnInit, OnDestroy {
         },
         (err) => console.error(err)
       );
+    }
+  }
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.UserService.logoutUser()
     }
   }
   
