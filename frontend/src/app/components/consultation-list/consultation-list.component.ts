@@ -60,4 +60,7 @@ export class ConsultationListComponent implements OnInit {
       await this.userService.logoutUser()
     }
   }
+  isPDF(url: string): boolean {
+    return url.toLowerCase().endsWith('.pdf');
+  }
 }

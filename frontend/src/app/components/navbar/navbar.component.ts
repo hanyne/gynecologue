@@ -35,4 +35,7 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+  isPatient(): boolean {
+    return this.role === 'patiente';
+  }
 }

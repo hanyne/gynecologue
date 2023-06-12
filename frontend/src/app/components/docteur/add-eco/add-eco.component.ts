@@ -27,6 +27,7 @@ patient: Patiente = new Patiente();
 ecoItem: any;
 
 constructor(
+private router: Router, 
 private ecoService: EchographieService,
 private patienteService: PatienteService,
 private route: ActivatedRoute,
@@ -35,8 +36,8 @@ private UserService:UserService ,
 ) {}
 
 ngOnInit(): void {
-if (!this.userService.isDocteur()) {
-this.userService.logout(); // Redirect to login page
+  if (!this.UserService.isDocteur()) {
+    this.router.navigate(['/accesdenied']); // Redirect to  page
 } else {
 const patientId = this.route.snapshot.paramMap.get('id');
 this.patienteService.getById(patientId!).subscribe((patient) => {

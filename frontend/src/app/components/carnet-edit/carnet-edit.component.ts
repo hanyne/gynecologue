@@ -29,7 +29,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
   ) {}
   ngOnInit(): void{
     if (!this.UserService.isDocteur()) {
-      this.UserService.logout(); // Redirect to login page
+      this.router.navigate(['/accesdenied']); // Redirect to  page
     } else {
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.getCarnet(id);

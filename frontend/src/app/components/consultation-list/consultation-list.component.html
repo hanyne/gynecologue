@@ -159,21 +159,22 @@
 
 <!-- Carnet list -->
 <!-- No data message -->
-<p *ngIf="consultations.length <= 0" class="no-data text-center">There is no Carnet added yet!</p>
+<p *ngIf="consultations.length <= 0" class="no-data text-center">Aucune consultation en ce moment.</p>
 
 <!-- Carnet list -->
 <h1 class="text-center mt-5 my-5">Historique des consultations pour {{ patient.nomP }} {{ patient.prenomP }}</h1> 
-
+<div class="row">
+<div class="col-md-6 mb-3">
 <div class="container-custom" *ngIf="consultations.length > 0">
   <div class="card" *ngFor="let consultation of consultations">
     <div class="card-header">
       <div class="date">{{ consultation.timing }}</div>
       <div class="actions">
         <span class="edit" [routerLink]="['/const-edit/', consultation._id]">
-          <button type="button" class="btn btn-success btn-sm">Edit</button>
+          <button type="button" class="btn btn-success btn-sm ">Edit</button>
         </span>
         <span class="delete" (click)="onDelete(consultation)">
-          <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          <button type="button" class="btn btn-danger btn-sm ml-1">Delete</button>
         </span>
       </div>
     </div>
@@ -183,14 +184,22 @@
           <h5>Compte rendu de consultation</h5>
           <p>{{ consultation.conclusion }}</p>
         </div>
-        <img *ngIf="consultation.annexe" [src]="'http://localhost:4000' + consultation.annexe" class="card-img" alt="Annexe">
-      </div>
+        <div *ngIf="consultation.annexe">
+          <div *ngIf="isPDF(consultation.annexe)">
+            <!-- If annexe is a PDF, open in a new tab -->
+            <a [href]="'http://localhost:4000' + consultation.annexe" class="pdf-button" target="_blank">Open PDF</a>
+          </div>
+          <div *ngIf="!isPDF(consultation.annexe)">
+            <!-- If annexe is an image, display it in the same page -->
+            <img [src]="'http://localhost:4000' + consultation.annexe" class="card-img" alt="Annexe">
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
 </div>
-
-
-
+</div>
+</div>
 
 </div>
 </div>

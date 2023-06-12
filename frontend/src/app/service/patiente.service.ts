@@ -61,4 +61,8 @@ export class PatienteService {
       })
     );
   }
+  isPatient(): boolean {
+    const role = localStorage.getItem('role'); // Retrieve the role from localStorage
+    return role === 'patiente'; // Check if the role is 'patiente'
+  }
 }

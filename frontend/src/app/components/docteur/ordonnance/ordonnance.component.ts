@@ -31,7 +31,7 @@ export class OrdonnanceComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.UserService.isDocteur()) {
-      this.UserService.logout(); // Redirect to login page
+      this.router.navigate(['/accesdenied']); // Redirect to  page
     } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {

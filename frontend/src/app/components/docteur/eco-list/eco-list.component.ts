@@ -33,10 +33,11 @@ export class EcoListComponent {
   constructor(private ecoService: EchographieService,   
     private patienteService: PatienteService,
     private route: ActivatedRoute, 
+    private router: Router, 
     private UserService: UserService) { }
     ngOnInit(): void {
       if (!this.UserService.isDocteur()) {
-        this.UserService.logout(); // Redirect to login page
+        this.router.navigate(['/accesdenied']); // Redirect to  page
       } else {
     const patientId = this.route.snapshot.paramMap.get('id');
     this.patienteService.getById(patientId!).subscribe((patient) => {
