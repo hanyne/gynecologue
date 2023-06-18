@@ -66,30 +66,11 @@ this.eco = res;
 );
 }
 
-loadDicomImage(dicomFile: File, ecoItem: Echographie): void {
-const reader = new FileReader();
-reader.onload = (e) => {
-const arrayBuffer = e.target?.result as ArrayBuffer;
-const byteArray = new Uint8Array(arrayBuffer);
-const dataSet = parseDicom(byteArray);
-const imageId = dataSet.string('x0020000d') || dataSet.string('x00080018');
 
-const canvasId = 'dicomCanvas-' + ecoItem._id;
-const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
-cornerstone.enable(canvas);
-
-cornerstone.loadAndCacheImage(imageId!).then((image) => {
-  cornerstone.displayImage(canvas, image);
-});
-};
-reader.readAsArrayBuffer(dicomFile);
-}
-
-onFileSelected(event: Event, ecoItem: Echographie): void {
-const input = event.target as HTMLInputElement;
-if (input.files && input.files.length) {
-const dicomFile = input.files[0];
-this.loadDicomImage(dicomFile, ecoItem);
+onFileSelected(dicom: any ): void {
+if (dicom.target.files && dicom.target.files.length) {
+ this.dicom = dicom.target.files[0];
+console.log(this.dicom);
 }
 }
 
@@ -102,6 +83,8 @@ this.ecoService.createEco(eco, patientId!, this.dicom).subscribe(
 this.eco.unshift(res);
 this.ecoForm.reset();
 this.dicom = undefined;
+window.alert("L'echographie est ajoutée avec succées ");
+
 },
 (err) => console.error(err)
 );

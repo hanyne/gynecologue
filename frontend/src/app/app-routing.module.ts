@@ -33,6 +33,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { DeniedComponent } from './components/denied/denied.component';
 import { EcoListComponent } from './components/docteur/eco-list/eco-list.component';
 
+import { PatCarnetComponent } from './components/pat-carnet/pat-carnet.component';
 
 
 
@@ -71,6 +72,7 @@ const routes: Routes = [
   {path:'ordlist/:id', component: OrdoListComponent },
   {path:'printord/:id', component: PrintOrdComponent},
   {path:'ecolist/:id', component: EcoListComponent},
+  {path:'patientcar/:id', component: PatCarnetComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

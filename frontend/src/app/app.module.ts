@@ -68,6 +68,7 @@ import { PrintOrdComponent } from './components/print-ord/print-ord.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DeniedComponent } from './components/denied/denied.component';
 import { EcoListComponent } from './components/docteur/eco-list/eco-list.component';
+import { PatCarnetComponent } from './components/pat-carnet/pat-carnet.component';
 
 @NgModule({
   
@@ -110,6 +111,7 @@ import { EcoListComponent } from './components/docteur/eco-list/eco-list.compone
     ProfileComponent,
     DeniedComponent,
     EcoListComponent,
+    PatCarnetComponent,
     
 
   ],

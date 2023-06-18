@@ -6,11 +6,9 @@ const ecoSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
   },
   content: {
     type: String,
-    required: true
   },
   dicom: {
     type: String

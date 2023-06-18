@@ -70,7 +70,7 @@ export class ConsultationComponent implements OnInit {
         .createConsultation(patientId!, formData)
         .subscribe({
           complete: () => {
-            console.log('Consultation successfully created!');
+            window.alert("La consultation  est ajoutée avec succées ");
             // Perform the desired action after consultation creation
           },
           error: (e) => {

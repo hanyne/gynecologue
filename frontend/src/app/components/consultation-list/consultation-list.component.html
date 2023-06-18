@@ -163,6 +163,9 @@
 
 <!-- Carnet list -->
 <h1 class="text-center mt-5 my-5">Historique des consultations pour {{ patient.nomP }} {{ patient.prenomP }}</h1> 
+<div class="form-group has-search container col-md-6 mt-1">
+  <input type="text" class="form-control fa fa-search " placeholder="Search" >
+</div>
 <div class="row">
 <div class="col-md-6 mb-3">
 <div class="container-custom" *ngIf="consultations.length > 0">

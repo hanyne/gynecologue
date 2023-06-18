@@ -263,7 +263,7 @@ categorieList= ["Gynécologie-obstérique","Echographie","Les maladies du sein",
         this.CarnetService .updateCarnet(id, this.editForm.value).subscribe({
           complete: () => {
             this.router.navigateByUrl('/admin/listP');
-            console.log('Content updated successfully!');
+            window.alert("Le carnet  est modifié avec succées ");
           },
           error: (e) => {
             console.log(e);

@@ -182,21 +182,21 @@
                     <h1>Ajout d'échographie</h1>
                     <form [formGroup]="ecoForm" (ngSubmit)="onSubmit()">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="title" formControlName="title" required style=" display: none;">
+                        <input type="text" class="form-control" id="title" formControlName="title"  style=" display: none;">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" formControlName="title" required>
                       </div>
                       <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea class="form-control" id="description" formControlName="description" required></textarea>
+                        <textarea class="form-control" id="description" formControlName="description" ></textarea>
                       </div>
                       <div class="form-group">
                         <label for="content">Content:</label>
-                        <textarea class="form-control" id="content" formControlName="content" required></textarea>
+                        <textarea class="form-control" id="content" formControlName="content" ></textarea>
                       </div>
                         <div class="form-group">
                             <label for="dicom">Echographie</label>
-                            <input type="file" class="form-control-file" id="dicom" (change)="onFileSelected($event, ecoItem)">
+                            <input type="file" class="form-control-file" id="dicom" (change)="onFileSelected($event)">
                           </div>
                       <button type="submit" class="btn btn-primary mr-1">Save</button>
                     </form>

@@ -100,7 +100,7 @@ export class CarnetCreateComponent implements OnInit {
       const patientId = this.route.snapshot.paramMap.get('id');
       return this.carnetService.createCarnet(patientId!, this.carnetForm.value).subscribe({
         complete: () => {
-          console.log('carnet successfully created!');
+          window.alert("Le carnet  est ajoutée avec succées ");
           this.ngZone.run(() => this.router.navigateByUrl('/admin/listP'));
         },
         error: (e) => {

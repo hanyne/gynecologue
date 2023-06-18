@@ -53,6 +53,7 @@
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                 <li><a class="dropdown-item" href="/login" (click)="logOut()" >Déconnexion</a></li>
                 <li><a class="dropdown-item"  *ngIf="isPatient()" routerLink="/changepass/{{userProfile._id}}"> Changer le mot de passe</a></li>
+                <li><a class="dropdown-item"  *ngIf="isPatient()" routerLink="/patientcar/{{userProfile._id}}"> carnet</a></li>
               </ul>
             </div>
             <div class="nav-item dropdown" *ngIf="!userProfile">
