@@ -80,7 +80,7 @@ const server = app.listen(port, () => {
 
 // Connecting with mongo db
 mongoose
-  .connect('mongodb+srv://hanyne:1234@cluster0.uclfv9f.mongodb.net/test')
+  .connect('YOUR-DB-URL')
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
